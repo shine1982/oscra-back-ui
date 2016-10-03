@@ -1,0 +1,8 @@
+<div>
+ <a ui-sref="usercreate">Add</a>
+<ul ng-repeat="user in userList.users">
+    <li>{{user.id}} {{user.firstName}} {{user.lastName}} <a ui-sref="usermodify({userId:{{user.id}}})">Modify</a>
+        <a ui-sref="userdelete({userId:{{user.id}}})">Delete</a></li>
+</ul>
+
+</div>

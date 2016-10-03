@@ -1,0 +1,39 @@
+{
+  "name": "oscra-ui",
+  "version": "1.0.0",
+  "description": "oscra ui",
+  "scripts": {
+    "test": "test",
+    "start": "node ./serve.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shine1982/oscra-ui.git"
+  },
+  "configuration": {
+    "directories": {
+      "src": "src",
+      "dest": "build",
+      "release": "release"
+    }
+  },
+  "keywords": [
+    "cra"
+  ],
+  "author": "ospiea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shine1982/oscra-ui/issues"
+  },
+  "homepage": "https://github.com/shine1982/oscra-ui#readme",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.1",
+    "css-loader": "^0.25.0",
+    "html-loader": "^0.4.4"
+  },
+  "devDependencies": {
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.1"
+  }
+}
