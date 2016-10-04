@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('oscra-ui').config(function($stateProvider, $urlRouterProvider) {
+angular.module('oscra-ui.user').config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state('usersall', {
+        .state('userall', {
             url: '/user/list',
             template: require('./list/list.html'),
             controller: require('./list/list'),
@@ -28,5 +28,5 @@ angular.module('oscra-ui').config(function($stateProvider, $urlRouterProvider) {
             controllerAs: 'userCreate'
         });
 
-    $urlRouterProvider.otherwise('/user/list');
+    //$urlRouterProvider.otherwise('/user/list');
 });

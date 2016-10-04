@@ -1,0 +1,70 @@
+<!--http://blog.sodhanalibrary.com/2015/07/header-design-with-angularjs-material-ui.html#.V_O9uZOLQ8Y-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<md-toolbar>
+    <div layout="row" class="md-toolbar-tools md-whiteframe-z3">
+        <h2>
+            <span>Heading</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-icon-button" aria-label="User">
+            <md-tooltip>User</md-tooltip>
+            <i class="material-icons md-24" >account_box</i>
+        </md-button>
+
+        <md-button class="md-icon-button" aria-label="User">
+            <md-tooltip>Help</md-tooltip>
+            <i class="material-icons">help</i>
+        </md-button>
+
+    </div>
+</md-toolbar>
+<div class="container" layout="row" flex>
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">sidenav</md-sidenav>
+    <md-content id="content" flex>Content</md-content>
+</div>
+
+<style>
+    .material-icons {
+        font-family: 'Material Icons';
+        font-weight: normal;
+        font-style: normal;
+        font-size: 24px;  /* Preferred icon size */
+        display: inline-block;
+        line-height: 1;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+
+    /* Rules for sizing the icon. */
+    .material-icons.md-18 { font-size: 18px; }
+    .material-icons.md-24 { font-size: 24px; }
+    .material-icons.md-36 { font-size: 36px; }
+    .material-icons.md-48 { font-size: 48px; }
+
+    /* Rules for using icons as black on a light background. */
+    .material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+    .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+    /* Rules for using icons as white on a dark background. */
+    .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+    .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+</style>
+
+
+
+
+

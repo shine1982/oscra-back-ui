@@ -4,6 +4,14 @@ require('angular');
 require('angular-ui-router');
 require('./util/api');
 
-var app = angular.module('oscra-ui', ['ui.router','oscra-ui.util']);
+require('angular-material');
+require('angular-animate');
+require('angular-aria');
+
+
+var app = angular.module('oscra-ui',
+            ['ui.router','ngMaterial',
+                'oscra-ui.util', 'oscra-ui.user','oscra-ui.headbar']);
 
 require('./user/user.module');
+require('./headbar/headbar.module');

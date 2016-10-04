@@ -6,7 +6,7 @@ function service($http){
 
     var apiServerUrl = 'http://localhost:8000/';
 
-    function callApi(method,url, data, callback){
+    function callApi(method, url, data, callback){
         $http({
             method: method,
             url: apiServerUrl+url,
