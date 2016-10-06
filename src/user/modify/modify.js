@@ -26,7 +26,7 @@ module.exports = function controller(UserService, $stateParams, $state){
         user.lastName = vm.lastName;
         user.id=$stateParams.userId;
         UserService.modify(user,function (response) {
-            $state.go('usersall');
+            $state.go('root.mainpanel.userall');
         })
     }
 };
