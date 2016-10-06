@@ -27,6 +27,4 @@ angular.module('oscra-ui.user').config(function($stateProvider, $urlRouterProvid
             controller: require('./create/create'),
             controllerAs: 'userCreate'
         });
-
-    //$urlRouterProvider.otherwise('/user/list');
 });
