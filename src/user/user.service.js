@@ -3,7 +3,7 @@ angular.module('oscra-ui.user').factory('UserService', service);
 
 function service(API){
 
-    var USERS = 'api/users/';
+    var USERS = 'users/';
 
     function list(callBack) {
         API.get(USERS+'all', null, callBack);

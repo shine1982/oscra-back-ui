@@ -1,7 +1,40 @@
+<!--Refer to https://github.com/iamisti/mdDataTable-->
+User List
+<div layout-margin>
+    <md-card style="margin:0px">
+        <md-subheader>Filter by search</md-subheader>
+
+        <md-input-container style="margin:15px;">
+            <label>Search</label>
+            <input type="text" ng-model="filterName">
+        </md-input-container>
+
+        <div ng-hide="true">
+            {{(filteredItems = (userList.users | filter: filterName))}}
+        </div>
+    </md-card>
+    <mdt-table sortable-columns="true" animate-sort-icon="true" paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
+               mdt-row="{'data': filteredItems,
+                      'table-row-id-key': 'id',
+                      'column-keys': ['id','firstName', 'lastName', 'email', 'mobilephoneNumber', 'address', 'position', 'role']}">
+        <mdt-header-row>
+            <mdt-column align-rule="left">Id</mdt-column>
+            <mdt-column align-rule="right">firstName</mdt-column>
+            <mdt-column align-rule="right">lastName</mdt-column>
+            <mdt-column align-rule="right">Email</mdt-column>
+            <mdt-column align-rule="right">Mobile Phone</mdt-column>
+            <mdt-column align-rule="right">Address</mdt-column>
+            <mdt-column align-rule="right">Position</mdt-column>
+            <mdt-column align-rule="right">Role</mdt-column>
+        </mdt-header-row>
+    </mdt-table>
+</div>
+
+
 <div>
- <a ui-sref="root.mainpanel.usercreate">Add</a>
+    <a ui-sref="root.mainpanel.usercreate">Add</a>
 <ul ng-repeat="user in userList.users">
-    <li>{{user.id}} {{user.firstName}} {{user.lastName}} <a ui-sref="root.mainpanel.usermodify({userId:{{user.id}}})">Modify</a>
+    <li><a ui-sref="root.mainpanel.usermodify({userId:{{user.id}}})">Modify</a>
         <a ui-sref="root.mainpanel.userdelete({userId:{{user.id}}})">Delete</a></li>
 </ul>
 
