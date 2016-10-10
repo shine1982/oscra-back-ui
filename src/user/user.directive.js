@@ -1,12 +1,5 @@
 'use strict';
 
-function FooDirCtrl() {
-
-}
-
-
-
-
 
 angular.module('oscra-ui.user').directive('userinfo', function(){
     return {
