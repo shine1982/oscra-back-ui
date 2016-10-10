@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(UserService,$http, $scope, $mdToast, $state){
+module.exports = function controller(UserService, $http, $scope, $mdToast, $state){
 
     var vm = this;
 
@@ -16,6 +16,14 @@ module.exports = function controller(UserService,$http, $scope, $mdToast, $state
     };
 
     function init() {
+/*
+        $http.get("/src/user/user.json").then(function(response){
+                        //console.log(response.data["userlist"]);
+            alert('ok')
+                            vm.users=response.data["userlist"];
+
+        })
+*/
         UserService.list(function (response) {
             //console.log(response.data)
             vm.users = response.data;

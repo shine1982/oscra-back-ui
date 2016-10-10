@@ -3,8 +3,7 @@
 module.exports = function controller(UserService, $stateParams, $state){
 
     var vm = this;
-    vm.name = 'Todd Motto';
-    vm.firstName = 'test'
+
     vm.modify = modify;
 
     var userToModify;
@@ -17,10 +16,11 @@ module.exports = function controller(UserService, $stateParams, $state){
         UserService.findById($stateParams.userId, function (response) {
             userToModify = response.data;
             vm.firstName=userToModify.firstName;
-            /*
+            var user={};
             Object.keys(userToModify).forEach(function(key, idx) {
-               vm[key]=userToModify[key];
-            });*/
+               user[key]=userToModify[key];
+            });
+            vm.inituser=user;
         });
     }
 

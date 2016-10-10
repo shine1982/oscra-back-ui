@@ -13,7 +13,7 @@ angular.module('oscra-ui.user').config(function($stateProvider, $urlRouterProvid
             url: '/user/modify/:userId',
             template: require('./modify/modify.html'),
             controller: require('./modify/modify'),
-            controllerAs: 'vm'
+            controllerAs: 'userModify'
         })
         .state('root.mainpanel.userdelete', {
             url: '/user/delete/:userId',
