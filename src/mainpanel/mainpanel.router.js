@@ -5,9 +5,9 @@ angular.module('oscra-ui.mainpanel').config(function($stateProvider, $urlRouterP
         .state('root.mainpanel', {
             url: '/mainpanel',
             views:{
-                'sidebar':{
+                /*'sidebar':{
                     template: require('./../mainpanel/sidebar/sidebar.html')
-                },
+                },*/
                 'contentpanel':{
                     template: require('./../mainpanel/contentpanel/content.html')
                 }

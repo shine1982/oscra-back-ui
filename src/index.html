@@ -11,9 +11,10 @@
 
 </head>
 <body ng-app="oscra-ui" >
-<div ui-view="headbar"></div>
-<div ui-view="mainpanel" layout="row" flex class="change-my-css"></div>
-
+<div layout="column">
+    <div ui-view="headbar"></div>
+    <div ui-view="mainpanel" layout="row" flex class="change-my-css"></div>
+</div>
 
 <script type="text/javascript" src="/bundle.js" char  set="utf-8"></script>
 <!--script src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table-templates.min.js"></script>

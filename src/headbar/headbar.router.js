@@ -6,7 +6,16 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
             url: '/root',
             views:{
                 'headbar':{
-                    template: require('./headbarlayout.html')
+                    template: require('./headbarlayout.html'),
+                    controller:function($scope, $mdSidenav){
+                        $scope.showMobileMainHeader = true;
+                        $scope.openSideNavPanel = function() {
+                            $mdSidenav('left').toggle();
+                        };
+                        $scope.closeSideNavPanel = function() {
+                            $mdSidenav('left').close();
+                        };
+                    }
                 },
                 'mainpanel':{
                     template: '<div ui-view="sidebar"></div>'+
