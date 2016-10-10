@@ -3,7 +3,8 @@
 module.exports = function controller(UserService, $stateParams, $state){
 
     var vm = this;
-
+    vm.name = 'Todd Motto';
+    vm.firstName = 'test'
     vm.modify = modify;
 
     var userToModify;
@@ -11,13 +12,16 @@ module.exports = function controller(UserService, $stateParams, $state){
     init();
 
     function init() {
-        console.log($stateParams.userId);
+        //console.log($stateParams.userId);
+        var user = {};
         UserService.findById($stateParams.userId, function (response) {
             userToModify = response.data;
-            vm.firstName = userToModify.firstName;
-            vm.lastName = userToModify.lastName;
+            vm.firstName=userToModify.firstName;
+            /*
+            Object.keys(userToModify).forEach(function(key, idx) {
+               vm[key]=userToModify[key];
+            });*/
         });
-
     }
 
     function modify() {
@@ -29,4 +33,4 @@ module.exports = function controller(UserService, $stateParams, $state){
             $state.go('root.mainpanel.userall');
         })
     }
-};
+}

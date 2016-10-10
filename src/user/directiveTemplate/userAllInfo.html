@@ -1,14 +1,10 @@
-<h1>Modify a user</h1>
-{{vm.firstName}}
-<!--userinfo id="vm.id" firstName="vm.firstName"></userinfo-->
-<foo-directive firstName="vm.firstName"></foo-directive>
-<userinfo firstName="vm.name"></userinfo>
+firstName : {{inituser.firstName}}
 <!--div  layout="column" ng-cloak="" class="md-inline-form inputdemoBasicUsage">
-    <md-content md-theme="docs-dark" layout-gt-sm="row" layout-padding="" ng-hide="true">
+    <md-content layout-gt-sm="row" layout-padding="" ng-hide="true">
         <div>
             <md-input-container >
                 <label>Id</label>
-                <input ng-model="userModify.id"  disabled="">
+                <input ng-model="vm.id"  disabled="">
             </md-input-container>
         </div>
     </md-content>
@@ -19,18 +15,18 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>First name</label>
-                        <input ng-model="userModify.firstName">
+                        <input ng-model="vm.firstName">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Last name</label>
-                        <input ng-model="userModify.lastName">
+                        <input ng-model="vm.lastName">
                     </md-input-container>
                 </div>
 
                 <md-input-container class="md-block">
                     <label>Email</label>
-                    <input required="" type="email" name="Email" ng-model="userModify.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+                    <input required="" type="email" name="Email" ng-model="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
 
                     <div ng-messages="email.$error" role="alert">
                         <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
@@ -42,7 +38,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Mobile Number</label>
-                        <input name="phoneNumber" ng-model="userModify.phoneNumber" placeholder="123457890" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                        <input name="phoneNumber" ng-model="phoneNumber" placeholder="123457890" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                         <div ng-messages="userForm.phoneNumber.$error" role="alert" multiple="">
                             <div ng-message="required" class="my-message">You must supply a mobile phone number.</div>
@@ -56,7 +52,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Fix Number</label>
-                        <input name="fixNumber" ng-model="userModify.fixNumber" placeholder="123457890"  ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                        <input name="fixNumber" ng-model="fixNumber" placeholder="123457890"  ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                         <div ng-messages="userForm.fixNumber.$error" role="alert" multiple="">
                             <div ng-message="pattern" class="my-message">That doesn't look like a valid fix phone number
@@ -76,14 +72,14 @@
 
                     <md-input-container flex-gt-sm="">
                         <label>Birthday</label>
-                        <md-datepicker ng-model="userModify.birthday"></md-datepicker>
+                        <md-datepicker ng-model="birthday"></md-datepicker>
                     </md-input-container>
                 </div>
 
                 <div layout-gt-xs="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Civility</label>
-                        <md-select ng-model="userModify.civility">
+                        <md-select ng-model="civility">
                             <md-option value="MALE">
                                 MALE
                             </md-option>
@@ -97,24 +93,24 @@
                 <div layout-gt-xs="row">
                     <md-input-container >
                         <label>Role</label>
-                        <input ng-model="userModify.role" ng-init="userModify.role='USER'" disabled="">
+                        <input ng-model="role" ng-init="role='USER'" disabled="">
                     </md-input-container>
                 </div>
 
                 <md-input-container class="md-block">
                     <label>Address</label>
-                    <input ng-model="userModify.address">
+                    <input ng-model="address">
                 </md-input-container>
 
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>City</label>
-                        <input ng-model="userModify.city">
+                        <input ng-model="city">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Postal Code</label>
-                        <input name="postalCode" ng-model="userModify.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                        <input name="postalCode" ng-model="postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
                         <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                             <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -129,7 +125,7 @@
                 </div>
 
                 <div>
-                    <md-button ng-click="userModify.modify()" type="submit">Submit</md-button>
+                    <md-button ng-click="modify()" type="submit">Submit</md-button>
                 </div>
             </form>
         </div>
