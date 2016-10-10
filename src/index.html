@@ -1,10 +1,24 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!--https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table-templates.min.js
+    https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table.min.js
+    https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table-style.css-->
+
 
 </head>
-<body ng-app="oscra-ui">
-<div ui-view></div>
-<script type="text/javascript" src="/bundle.js" charset="utf-8"></script>
+<body ng-app="oscra-ui" >
+<div ui-view="headbar"></div>
+<div ui-view="mainpanel" layout="row" flex class="change-my-css"></div>
+
+
+<script type="text/javascript" src="/bundle.js" char  set="utf-8"></script>
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table-templates.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/1.8.0/md-data-table.min.js"></script-->
+
+
 </body>
 </html>

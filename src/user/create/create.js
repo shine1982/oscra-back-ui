@@ -12,7 +12,7 @@ module.exports = function controller(UserService, $state){
         user.lastName = vm.lastName;
 
         UserService.create(user,function (response) {
-            $state.go('usersall');
+            $state.go('root.mainpanel.userall');
         })
     }
 };
