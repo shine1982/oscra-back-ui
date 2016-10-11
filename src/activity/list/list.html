@@ -1,40 +1,60 @@
 
 <h2>Activity List</h2>
-<!--div ng-cloak="" class="tabsdemoStaticTabs"  layout-margin>
 
-
-    <md-content>
-        <md-tabs md-dynamic-height="" md-border-bottom="">
-            <md-tab label="one">
-                <md-content class="md-padding">
-                    <h1 class="md-display-2">Tab One</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
-                </md-content>
-            </md-tab>
-            <md-tab label="two">
-                <md-content class="md-padding">
-                    <h1 class="md-display-2">Tab Two</h1>
-                    test2
-                </md-content>
-            </md-tab>
-            <md-tab label="three">
-                <md-content class="md-padding">
-                    <h1 class="md-display-2">Tab Three</h1>
-                    test 3
-                </md-content>
-            </md-tab>
-        </md-tabs>
-    </md-content>
-</div-->
 <div ng-cloak="" class="tabsdemoStaticTabs"  >
     <md-content class="md-padding">
         <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
             <md-tab id="tab1">
-                <md-tab-label>Item One</md-tab-label>
+                <md-tab-label>User</md-tab-label>
                 <md-tab-body>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+                    <div flex="100">
+                        <h2>User List</h2>
+                        <md-divider></md-divider>
 
+                        <md-radio-group ng-model="cc.selectedId" >
+                            <div  class="row">
+                                <div flex layout='row' layout-padding layout-align="start center" >
+                                    <md-radio-button flex
+                                                     ng-value="person.id"
+                                                     class="md-primary" >
+                                        person.fullName
+                                    </md-radio-button>
+                                    <div flex style="max-width:200px;">
+                                        person.title
+                                    </div>
+                                </div>
+                            </div>
+                        </md-radio-group>
 
+                        <md-divider></md-divider>
+                        <div class="summary" flex layout="row" layout-align="space-between center">
+                            <div flex-initial>
+                                <span class="title">Selected User</span>: <span class="md-checked">{{cc.selectedUser()}}</span>
+                            </div>
+                        </div>
+
+                        <!--md-content>
+                            <md-list flex="">
+                                <md-subheader class="md-no-sticky">Please select a user</md-subheader>
+                                <md-radio-group ng-model="data.group1">
+                                    <md-list-item class="md-3-line" >
+                                        <div class="md-list-item-text" layout="column">
+                                            <p>Selected Value: <span class="radioValue">{{ data.group1 }}</span> </p>
+
+                                                <md-radio-button value="Apple" class="md-primary">
+                                                    <h3> item.who </h3>
+                                                    <h4> item.what </h4>
+                                                    <p> item.notes </p>
+                                                    Apple
+                                                </md-radio-button>
+                                                <md-radio-button value="Banana"> Banana </md-radio-button>
+
+                                        </div>
+                                    </md-list-item>
+                                </md-radio-group>
+                            </md-list>
+                        </md-content-->
+                    </div>
                 </md-tab-body>
             </md-tab>
             <md-tab id="tab2" ng-disabled="data.secondLocked">
@@ -85,4 +105,7 @@
         margin-left: 0; }
 </style>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
+    In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
+</p>

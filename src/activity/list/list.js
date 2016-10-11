@@ -26,6 +26,10 @@ module.exports = function controller(ActivityService, $scope, $mdToast, $state){
         );
     };
 
+    function getAllUsers(){
+
+    }
+    
     function getAllActivities() {
 
         ActivityService.list(userId,function (response) {
