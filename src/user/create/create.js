@@ -4,7 +4,7 @@ module.exports = function controller(UserService, $state){
 
     var vm = this;
 
-    vm.create = create;
+    vm.submit = create;
 
     function create() {
         var user = {};

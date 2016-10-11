@@ -4,7 +4,7 @@ module.exports = function controller(UserService, $stateParams, $state){
 
     var vm = this;
 
-    vm.modify = modify;
+    vm.submit = modify;
 
     var userToModify;
 
