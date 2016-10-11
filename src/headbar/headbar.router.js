@@ -18,8 +18,8 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                     }
                 },
                 'mainpanel':{
-                    template: '<div ui-view="sidebar"></div>'+
-                    '<div ui-view="contentpanel"></div>',
+                    template: //'<div ui-view="sidebar"></div>'+
+                    '<div layout="row" ui-view="contentpanel"></div>',
                     controller:function($scope,$state){
                         $state.go('root.mainpanel')
                     }

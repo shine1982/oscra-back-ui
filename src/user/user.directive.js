@@ -7,7 +7,6 @@ angular.module('oscra-ui.user').directive('userinfo', function(){
         scope: {
             tuser: '=suser'
         },
-
         template: require('./directiveTemplate/userAllInfo.html'),
         link: function($scope){}
     };
