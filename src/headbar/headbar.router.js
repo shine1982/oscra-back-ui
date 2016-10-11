@@ -18,10 +18,10 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                     }
                 },
                 'mainpanel':{
-                    template: //'<div ui-view="sidebar"></div>'+
-                    '<div layout="row" ui-view="contentpanel"></div>',
+                    template:
+                    '<div layout="column" ui-view flex-offset="25"></div>',
                     controller:function($scope,$state){
-                        $state.go('root.mainpanel')
+                        //$state.go('root.activityall')
                     }
                 }
             }
