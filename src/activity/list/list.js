@@ -1,41 +1,42 @@
 'use strict';
 
-module.exports = function controller(ActivityService, $scope, $mdToast, $state){
+module.exports = function controller(UserService, ActivityService, $scope, $mdToast, $state){
 
     var vm = this;
 
-    $scope.data = {
-        selectedIndex: 0,
-        secondLocked:  true,
-        secondLabel:   "Item Two",
-        bottom:        false
-    };
-    $scope.next = function() {
-        $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;
-    };
-    $scope.previous = function() {
-        $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
-    };
+    $scope.selectedId;
+    init();
 
-    $scope.deleteRowCallback = function(rows){
-        alert('Are you sure to delete the selected items ?');
-        $mdToast.show(
-            $mdToast.simple()
-                .content('Deleted row id(s): '+rows)
-                .hideDelay(3000)
-        );
-    };
-
-    function getAllUsers(){
-
-    }
-    
-    function getAllActivities() {
-
-        ActivityService.list(userId,function (response) {
+    function init(){
+        vm.selectedIndex = 0;
+        vm.secondLocked = true;
+        vm.thirdLocked = true;
+        UserService.list(function (response) {
             //console.log(response.data)
             vm.users = response.data;
         })
+    }
 
+    $scope.$watch(function(scope) { return scope.selectedId }, function(){
+        //alert($scope.selectedId)
+        if ($scope.selectedId > 0)
+            vm.secondLocked = false;
+    })
+
+    function getAllActivities() {
+        ActivityService.list($scope.selectedId,function (response) {
+            //console.log(response.data)
+            vm.activities = response.data;
+        })
+    }
+
+    $scope.selectTab2 = function() {
+        //alert('one selected');
+        vm.thirdLocked = false;
+    }
+
+    $scope.selectTab3 = function() {
+        //alert('two selected');
+        getAllActivities();
     }
 };
