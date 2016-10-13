@@ -3,7 +3,7 @@
 
 <div ng-cloak="" class="tabsdemoStaticTabs"  >
     <md-content class="md-padding">
-        <md-tabs class="md-accent" md-selected="activityList.selectedIndex" md-align-tabs="{{data.bottom ? 'bottom' : 'top'}}">
+        <md-tabs class="md-accent" md-selected="activityList.selectedIndex" md-dynamic-height md-border-bottom>
             <md-tab id="tab1">
                 <md-tab-label>User</md-tab-label>
                 <md-tab-body>
@@ -35,36 +35,31 @@
                 <md-tab-label>CRA</md-tab-label>
                 <md-tab-body>
                     <h2>CRA List</h2>
-                    <table st-table="activityList.rowCollection" class="table table-striped" >
-                        <thead>
-                        <tr>
-                            <th st-sort="activityList.getters.firstName">first name</th>
-                            <th st-sort="lastName">last name</th>
-                            <th st-sort="birthDate">birth date</th>
-                            <th st-sort="balance" st-skip-natural="true" >balance</th>
-                            <th>email</th>
-                        </tr>
-                        <tr>
-                            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in activityList.rowCollection">
-                            <td>{{row.firstName}}</td>
-                            <td>{{row.lastName}}</td>
-                            <td>{{row.birthDate}}</td>
-                            <td>{{row.balance}}</td>
-                            <td>{{row.email}}</td>
-                        </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-center">
-                                <div st-pagination="" st-items-by-page="2" st-displayed-pages="7"></div>
-                            </td>
-                        </tr>
-                        </tfoot>
-                    </table>
+                    <!--http://codepen.io/alimista15/pen/WvRXOx-->
+                    <md-input-container flex-gt-sm="">
+                        <label>Start Date</label>
+                        <md-datepicker ng-model="a"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container flex-gt-sm="">
+                        <label>End date</label>
+                        <md-datepicker ng-model="b"></md-datepicker>
+                    </md-input-container>
+                    <mdt-table table-card="{title: 'Nutritions'}">
+                        <mdt-header-row>
+                            <mdt-column align-rule="left">Mois</mdt-column>
+                            <mdt-column align-rule="right">Validation</mdt-column>
+                            <mdt-column align-rule="right">Statut</mdt-column>
+                            <mdt-column align-rule="right">Mis a jour par</mdt-column>
+                            <mdt-column align-rule="right">Date a mis a jour</mdt-column>
+                        </mdt-header-row>
+                        <mdt-row >
+                            <mdt-cell>nutrition.name</mdt-cell>
+                            <mdt-cell>nutrition.calories</mdt-cell>
+                            <mdt-cell>nutrition.fat</mdt-cell>
+                            <mdt-cell>nutrition.carbs</mdt-cell>
+                            <mdt-cell>nutrition.protein</mdt-cell>
+                        </mdt-row>
+                    </mdt-table>
                 </md-tab-body>
             </md-tab>
 
@@ -129,7 +124,7 @@
     }
 </style>
 
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+<!--p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
     In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-</p>
+</p-->
