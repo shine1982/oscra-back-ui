@@ -4,7 +4,7 @@
         <div>
             <md-input-container >
                 <label>Id</label>
-                <input ng-model="tuser.id"  disabled="">
+                <input ng-model="$ctrl.user.id"  disabled="">
             </md-input-container>
         </div>
     </md-content>
@@ -15,12 +15,12 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>First name</label>
-                        <input ng-model="tuser.firstName">
+                        <input ng-model="$ctrl.user.firstName">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Last name</label>
-                        <input ng-model="tuser.lastName">
+                        <input ng-model="$ctrl.user.lastName">
                     </md-input-container>
                 </div>
 
@@ -38,7 +38,7 @@
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Mobile Number</label>
-                        <input name="phoneNumber" ng-model="tuser.phoneNumber" placeholder="123457890" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                        <input name="phoneNumber" ng-model="$ctrl.user.phoneNumber" placeholder="123457890" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                         <div ng-messages="userForm.phoneNumber.$error" role="alert" multiple="">
                             <div ng-message="required" class="my-message">You must supply a mobile phone number.</div>
@@ -52,7 +52,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Fix Number</label>
-                        <input name="fixNumber" ng-model="tuser.fixNumber" placeholder="123457890"  ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
+                        <input name="fixNumber" ng-model="$ctrl.user.fixNumber" placeholder="123457890"  ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                         <div ng-messages="userForm.fixNumber.$error" role="alert" multiple="">
                             <div ng-message="pattern" class="my-message">That doesn't look like a valid fix phone number
@@ -67,19 +67,19 @@
                 <div layout-gt-xs="row">
                     <md-input-container>
                         <label>Position</label>
-                        <input ng-model="tuser.position">
+                        <input ng-model="$ctrl.user.position">
                     </md-input-container>
 
                     <md-input-container flex-gt-sm="">
                         <label>Birthday</label>
-                        <md-datepicker ng-model="tuser.birthday"></md-datepicker>
+                        <md-datepicker ng-model="$ctrl.user.birthday"></md-datepicker>
                     </md-input-container>
                 </div>
 
                 <div layout-gt-xs="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Civility</label>
-                        <md-select ng-model="tuser.civility">
+                        <md-select ng-model="$ctrl.user.civility">
                             <md-option value="MALE">
                                 MALE
                             </md-option>
@@ -90,24 +90,24 @@
                     </md-input-container>
                     <md-input-container >
                         <label>Role</label>
-                        <input ng-model="tuser.role" ng-init="role='USER'" disabled="">
+                        <input ng-model="$ctrl.user.role" ng-init="role='USER'" disabled="">
                     </md-input-container>
                 </div>
 
                 <md-input-container class="md-block">
                     <label>Address</label>
-                    <input ng-model="tuser.address">
+                    <input ng-model="$ctrl.user.address">
                 </md-input-container>
 
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>City</label>
-                        <input ng-model="tuser.city">
+                        <input ng-model="$ctrl.user.city">
                     </md-input-container>
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Postal Code</label>
-                        <input name="tuser.postalCode" ng-model="postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                        <input name="$ctrl.user.postalCode" ng-model="postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
                         <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                             <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div>
-                    <md-button class="md-raised md-primary" ng-click="tuser.submit()" type="submit">submit</md-button>
+                    <md-button class="md-raised md-primary" ng-click="$ctrl.user.submit()" type="submit">submit</md-button>
                 </div>
             </form>
         </div>

@@ -30,12 +30,12 @@ module.exports = function controller(UserService, ActivityService, $scope, $mdTo
         })
     }
 
-    $scope.selectTab2 = function() {
+    vm.selectTab2 = function() {
         //alert('one selected');
         vm.thirdLocked = false;
     }
 
-    $scope.selectTab3 = function() {
+    vm.selectTab3 = function() {
         //alert('two selected');
         getAllActivities();
     }

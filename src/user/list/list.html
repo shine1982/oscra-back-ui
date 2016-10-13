@@ -23,7 +23,7 @@
 
                       'table-row-id-key': 'id',
                       'column-keys': ['id','firstName', 'lastName', 'email', 'mobilephoneNumber', 'address', 'position', 'role', 'option']}"
-               delete-row-callback="deleteRowCallback(rows)">
+               delete-row-callback="userList.deleteRowCallback(rows)">
         <mdt-header-row>
             <mdt-column align-rule="left">Id</mdt-column>
             <mdt-column align-rule="right">firstName</mdt-column>
@@ -37,7 +37,7 @@
         </mdt-header-row>
 
         <mdt-custom-cell column-key="id" html-content="true">
-             <a ui-sref="root.mainpanel.usermodify({userId:value})">{{value}}</a>
+             <a ui-sref="root.usermodify({userId:value})">{{value}}</a>
         </mdt-custom-cell>
     </mdt-table>
 </div>

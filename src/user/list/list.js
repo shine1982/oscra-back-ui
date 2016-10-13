@@ -1,12 +1,11 @@
 'use strict';
 
-module.exports = function controller(UserService, $scope, $mdToast, $state){
+module.exports = function controller(UserService, $mdToast){
 
     var vm = this;
 
-
     init();
-    $scope.deleteRowCallback = function(rows){
+    vm.deleteRowCallback = function(rows){
         alert('Are you sure to delete the selected items ?');
         $mdToast.show(
             $mdToast.simple()
