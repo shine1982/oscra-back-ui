@@ -8,6 +8,7 @@ require('angular-aria');
 require('angular-material');
 require('angular-sanitize');
 require('lodash');
+require('angular-smart-table');
 require('md-data-table');
 
 
@@ -17,7 +18,7 @@ require('./util/api');
 
 
 var app = angular.module('oscra-ui',
-            ['ui.router','ngMaterial', 'mdDataTable', 'ngSanitize',  //'lodash',
+            ['ui.router','ngMaterial', 'mdDataTable', 'ngSanitize',  'smart-table',//'lodash',
                 'oscra-ui.util', 'oscra-ui.headbar', //'oscra-ui.mainpanel',
                 'oscra-ui.user', 'oscra-ui.activity']);
 

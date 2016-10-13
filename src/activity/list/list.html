@@ -1,4 +1,4 @@
-
+<link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
 <h2>Activity List</h2>
 
 <div ng-cloak="" class="tabsdemoStaticTabs"  >
@@ -35,9 +35,36 @@
                 <md-tab-label>CRA</md-tab-label>
                 <md-tab-body>
                     <h2>CRA List</h2>
-                    <md-tab>
-
-                    </md-tab>
+                    <table st-table="activityList.rowCollection" class="table table-striped" >
+                        <thead>
+                        <tr>
+                            <th st-sort="activityList.getters.firstName">first name</th>
+                            <th st-sort="lastName">last name</th>
+                            <th st-sort="birthDate">birth date</th>
+                            <th st-sort="balance" st-skip-natural="true" >balance</th>
+                            <th>email</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in activityList.rowCollection">
+                            <td>{{row.firstName}}</td>
+                            <td>{{row.lastName}}</td>
+                            <td>{{row.birthDate}}</td>
+                            <td>{{row.balance}}</td>
+                            <td>{{row.email}}</td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <div st-pagination="" st-items-by-page="2" st-displayed-pages="7"></div>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </md-tab-body>
             </md-tab>
 
@@ -70,7 +97,6 @@
         </md-tabs>
     </md-content>
 
-
 </div>
 <style>
     .tabsdemoStaticTabs md-tab-content {
@@ -93,6 +119,14 @@
     .tabsdemoStaticTabs .after-tabs-area > md-checkbox {
         margin-top: 26px;
         margin-left: 0; }
+/* for smart table */
+    .st-sort-ascent:before{
+        content: '\25B2';
+    }
+
+    .st-sort-descent:before{
+        content: '\25BC';
+    }
 </style>
 
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
