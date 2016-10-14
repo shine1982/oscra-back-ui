@@ -1,6 +1,6 @@
 <!--Refer to https://github.com/iamisti/mdDataTable-->
 <h2>User List</h2>
-<div layout-margin>
+<!--div layout-margin>
     <md-card >
         <md-subheader>Filter by search</md-subheader>
 
@@ -39,38 +39,9 @@
         <mdt-custom-cell column-key="id" html-content="true">
              <a ui-sref="root.usermodify({userId:value})">{{value}}</a>
         </mdt-custom-cell>
+
     </mdt-table>
 
-    <table st-table="userList.users" class="table table-striped" >
-        <thead>
-        <tr>
-            <th st-sort="firstName">first name</th>
-            <th st-sort="lastName">last name</th>
-            <th st-sort="birthDate">birth date</th>
-            <th st-sort="balance" st-skip-natural="true" >balance</th>
-            <th>email</th>
-        </tr>
-        <tr>
-            <th colspan="5"><input st-search="" class="form-control" placeholder="global search ..." type="text"/></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr st-select-row="row" st-select-mode="multiple" ng-repeat="row in userList.users">
-            <td>{{row.firstName}}</td>
-            <td>{{row.lastName}}</td>
-            <td>{{row.birthDate}}</td>
-            <td>{{row.balance}}</td>
-            <td>{{row.email}}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="5" class="text-center">
-                <div st-pagination="" st-items-by-page="2" st-displayed-pages="7"></div>
-            </td>
-        </tr>
-        </tfoot>
-    </table>
 </div>
 
 
@@ -78,7 +49,38 @@
 
 <ul ng-repeat="user in userList.users">
     <li>
-        <a ui-sref="root.mainpanel.userdelete({userId:{{user.id}}})">Delete</a></li>
+        <a ui-sref="root.userdelete({userId:{{user.id}}})">Delete</a></li>
 </ul>
 
+</div-->
+
+
+<div layout='column'>
+    <div class='main-fab'>
+        <md-button class="md-fab md-accent">+</md-button>
+    </div>
+    <md-toolbar class="md-tall" layout='column'>
+        <span flex></span>
+        <div class="md-toolbar-tools">
+            <div layout="row" flex="flex" class="fill-height">
+                <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb">
+                    <span ng-click="toggleSearch = !toggleSearch">Angular Material Table</span>
+                </div>
+                <span flex="flex" ng-hide="toggleSearch"></span>
+                <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">
+                    <input id="searchinput" type="text" ng-model="search" show-focus="toggleSearch"/>
+                </md-input-container>
+                <div layout="row" class="md-toolbar-item md-tools">
+                    <a href="#" ng-click="toggleSearch = !toggleSearch" class="md-button md-default-theme">
+                        <i class="material-icons">search</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </md-toolbar>
+
+    <md-content layout="column" flex ng-click="toggleSearch=false">
+        <md-table headers="userList.headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count"></md-table>
+    </md-content>
 </div>
+
