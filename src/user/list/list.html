@@ -79,8 +79,13 @@
         </div>
     </md-toolbar>
 
-    <md-content layout="column" flex ng-click="toggleSearch=false">
-        <md-table headers="userList.headers" content="content" sortable="sortable" filters="search" custom-class="custom" thumbs="thumbs" count="count"></md-table>
+    <md-content layout="column" ng-click="userList.toggleSearch=false">
+
+        <md-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                  filters="userList.search" custom-class="userList.custom" thumbs="userList.thumbs" count="userList.count">
+
+        </md-table>
     </md-content>
 </div>
+
 

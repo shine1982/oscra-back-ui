@@ -14,7 +14,14 @@ angular.module('oscra-ui.user').directive('mymdTable', function () {
             count: '='
         },
         controller: function ($scope,$filter,$window) {
-            alert('entering directive')
+            var vm=this;
+            console.log('headers '+$scope.headers[0].field);/*
+            console.log('content '+vm.content);
+            console.log('sortable '+vm.sortable[0]);
+            console.log('filters '+vm.filters);
+            console.log('custom-class '+vm.customClass);
+            console.log('thumbs '+vm.thumbs);
+            console.log('count '+vm.count);
 
             var orderBy = $filter('orderBy');
             $scope.tablePage = 0;
@@ -36,10 +43,10 @@ angular.module('oscra-ui.user').directive('mymdTable', function () {
                 $scope.tablePage = page;
             };
         },
-        template: require('./componentTemplate/testTable.html')
+        template: require('./componentTemplate/tableTemplate.html')
     }
 })
- */
+
 //UNCOMMENT BELOW TO BE ABLE TO RESIZE COLUMNS OF THE TABLE
 /*
  app.directive('mdColresize', function ($timeout) {
@@ -75,4 +82,4 @@ angular.module('oscra-ui.user').directive('mymdTable', function () {
             return input.slice(start);
         }
     });
-    */
+*/
