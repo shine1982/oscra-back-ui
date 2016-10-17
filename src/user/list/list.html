@@ -1,77 +1,32 @@
 <!--Refer to https://github.com/iamisti/mdDataTable-->
 <h2>User List</h2>
-<!--div layout-margin>
-    <md-card >
-        <md-subheader>Filter by search</md-subheader>
 
-        <md-input-container style="margin:15px;">
-            <label>Search</label>
-            <input type="text" ng-model="filterName">
-        </md-input-container>
-
-        <div ng-hide="true">
-            {{(filteredItems = (userList.users | filter: filterName))}}
-        </div>
-    </md-card>
-    <md-button class="md-raised md-primary" ui-sref="root.usercreate" >Add a user</md-button>
-
-    <mdt-table table-card="{visible: true, title: 'All Users'}"
-               alternate-headers="'contextual'"
-               sortable-columns="true" animate-sort-icon="true" paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}"
-               selectable-rows="true"
-               mdt-row="{'data': filteredItems,
-
-                      'table-row-id-key': 'id',
-                      'column-keys': ['id','firstName', 'lastName', 'email', 'mobilephoneNumber', 'address', 'position', 'role', 'option']}"
-               delete-row-callback="userList.deleteRowCallback(rows)">
-        <mdt-header-row>
-            <mdt-column align-rule="left">Id</mdt-column>
-            <mdt-column align-rule="right">firstName</mdt-column>
-            <mdt-column align-rule="right">lastName</mdt-column>
-            <mdt-column align-rule="right">Email</mdt-column>
-            <mdt-column align-rule="right">Mobile Phone</mdt-column>
-            <mdt-column align-rule="right">Address</mdt-column>
-            <mdt-column align-rule="right">Position</mdt-column>
-            <mdt-column align-rule="right">Role</mdt-column>
-            <mdt-column align-rule="right"><span></span><i class="material-icons">add</i></mdt-column>
-        </mdt-header-row>
-
-        <mdt-custom-cell column-key="id" html-content="true">
-             <a ui-sref="root.usermodify({userId:value})">{{value}}</a>
-        </mdt-custom-cell>
-
-    </mdt-table>
-
-</div-->
-
-
-<div>
+<!--div>
 
 <ul ng-repeat="user in userList.users">
     <li>
         <a ui-sref="root.userdelete({userId:{{user.id}}})">Delete</a></li>
 </ul>
 
-</div>
-
+</div-->
 
 <div layout='column'>
-    <div class='main-fab'>
-        <md-button class="md-fab md-accent">+</md-button>
-    </div>
     <md-toolbar class="md-tall" layout='column'>
+
         <span flex></span>
         <div class="md-toolbar-tools">
             <div layout="row" flex="flex" class="fill-height">
-                <div ng-hide="toggleSearch" class="md-toolbar-item md-breadcrumb">
-                    <span ng-click="toggleSearch = !toggleSearch">Angular Material Table</span>
+                <md-button  ui-sref="root.usercreate" class="md-fab md-accent">+</md-button>
+                <div ng-hide="userList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                    <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
                 </div>
-                <span flex="flex" ng-hide="toggleSearch"></span>
-                <md-input-container flex="flex" style="padding-left:88px;" ng-show="toggleSearch">
-                    <input id="searchinput" type="text" ng-model="search" show-focus="toggleSearch"/>
+                <span flex="flex" ng-hide="userList.toggleSearch"></span>
+                <md-input-container flex="flex" style="padding-left:88px;" ng-show="userList.toggleSearch">
+                    <input id="searchinput" type="text" ng-model="search" show-focus="userList.toggleSearch"/>
                 </md-input-container>
+
                 <div layout="row" class="md-toolbar-item md-tools">
-                    <a href="#" ng-click="toggleSearch = !toggleSearch" class="md-button md-default-theme">
+                    <a ui-sref="root.userall" ng-click="userList.toggleSearch = !userList.toggleSearch" class="md-button md-default-theme">
                         <i class="material-icons">search</i>
                     </a>
                 </div>
@@ -82,7 +37,7 @@
     <md-content layout="column" ng-click="userList.toggleSearch=false">
 
         <md-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
-                  filters="userList.search" custom-class="userList.custom" thumbs="userList.thumbs" count="userList.count">
+                  filters="search" custom-class="userList.custom" thumbs="userList.thumbs" count="userList.count">
 
         </md-table>
     </md-content>

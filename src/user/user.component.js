@@ -27,7 +27,10 @@ angular.module('oscra-ui.user').component('userinfo', {
          vm.tablePage = 0;
          vm.nbOfPages = function () {
             return Math.ceil(vm.content.length / vm.count);
-         },
+         };
+         vm.getNumber = function (num) {
+            return new Array(num);
+         };
          vm.handleSort = function (field) {
             if (vm.sortable.indexOf(field) > -1) { return true; } else { return false; }
          };
