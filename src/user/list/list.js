@@ -18,26 +18,43 @@ module.exports = function controller(UserService, $mdToast, $scope){
 
     function init() {
         UserService.list(function (response) {
-            //console.log(response.data)
+            console.log(response.data)
             vm.users = response.data;
         })
-    }
+        /*
+        console.log(vm.content.length)
+        vm.content=vm.users;
+*/
+
         vm.toggleSearch = false;
         vm.headers = [
             {
-                name:'',
-                field:'thumb'
+                name:'Id',
+                field:'id'
             },{
-                name: 'Name',
-                field: 'name'
+                name: 'First Name',
+                field: 'firstName'
             },{
-                name:'Description',
-                field: 'description'
+                name: 'Last Name',
+                field:'lastName'
             },{
-                name: 'Last Modified',
-                field: 'last_modified'
+                name: 'Email',
+                field: 'email'
+            },{
+                name: 'Mobile Phone',
+                field: 'mobilePhone'
+            },{
+                name: 'Address',
+                field: 'address'
+            },{
+                name: 'Position',
+                field: 'position'
+            },{
+                name: 'Role',
+                field: 'role'
             }
         ];
+
         vm.content = [
             {
                 thumb:'https://lh3.googleusercontent.com/-5NfcdlvGQhs/AAAAAAAAAAI/AAAAAAAAABY/ibGrApGYTuQ/photo.jpg',
@@ -66,10 +83,11 @@ module.exports = function controller(UserService, $mdToast, $scope){
                 last_modified: 'Jun 5, 2014'
             }
         ];
+        console.log( 'content is '+vm.content)
         vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
-        vm.sortable = ['name', 'description', 'last_modified'];
+        vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
         vm.thumbs = 'thumb';
         vm.count = 3;
 
-
+    }
 };

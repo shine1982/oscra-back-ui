@@ -9,7 +9,7 @@
                         <i ng-show="reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropup"></i>
                         <i ng-show="!reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropdown"></i>
                     </a>
-                    <span ng-if="!handleSort(h.field)">{{h.name}}</span></th>
+                    <span ng-if="!$ctrl.handleSort(h.field)">{{h.name}}</span></th>
                 <th class="md-table-header"></th>
             </tr>
         </thead>

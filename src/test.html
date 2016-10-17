@@ -22,7 +22,12 @@
       <table md-colresize="md-colresize" class="md-table">
         <thead>
           <tr class="md-table-headers-row">
-            <th ng-repeat="h in headers" class="md-table-header"><a href="#" ng-if="handleSort(h.field)" ng-click="reverse=!reverse;order(h.field,reverse)">{{h.name}}<i ng-show="reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropup"></i><i ng-show="!reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropdown"></i></a><span ng-if="!handleSort(h.field)">{{h.name}}</span></th>
+            <th ng-repeat="h in headers" class="md-table-header">
+              <a href="#" ng-if="handleSort(h.field)" ng-click="reverse=!reverse;order(h.field,reverse)">{{h.name}}
+                <i ng-show="reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropup"></i>
+                <i ng-show="!reverse &amp;&amp; h.field == predicate" class="ion-android-arrow-dropdown"></i>
+              </a>
+              <span ng-if="!handleSort(h.field)">{{h.name}}</span></th>
             <th class="md-table-header"></th>
           </tr>
         </thead>
