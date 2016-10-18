@@ -7,8 +7,10 @@ module.exports = function controller(UserService, $scope){
     $scope.selectedId;
     vm.users=[];
     vm.content=[];
-
-    vm.headers = [{name:'Id', field:'id'},
+    vm.toggleSearch = false;
+    vm.headers = [
+        {name: 'toggle', field:'toggle'},
+        {name:'Id', field:'id'},
         {name: 'First Name', field: 'firstName'},
         {name: 'Last Name', field:'lastName'},
         {name: 'Email', field: 'email'},
@@ -47,8 +49,9 @@ module.exports = function controller(UserService, $scope){
             //console.log(response.data)
             vm.users = response.data;
             console.log("all users are "+vm.users)
+            vm.content = vm.users;
         })
-        vm.content = vm.users;
+
         console.log('vm content in list page'+ vm.content)
     }
 

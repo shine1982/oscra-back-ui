@@ -1,28 +1,38 @@
+<table>
+    <thead ng-include="'./common/table/componentTemplate/tableHeaderTemplate.html'">
+    </thead>
+    <tbody>
+    
+            <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters | startFrom:$ctrl.tablePage*$ctrl.count | limitTo: $ctrl.count" class="md-table-content-row">
 
-{{$ctrl.content}}
-<thead ng-include="'./common/table/componentTemplate/tableHeaderTemplate.html'">
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
+                    ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                    {{f}}
+                </td>
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
+                    {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
+                </td>
 
-</thead>
+            </tr>
 
-<tbody>
-    entering radio template
-
-</tbody>
-<!--md-radio-group ng-model="selectedId" >
-    <div  class="row" ng-repeat=" user in activityList.users">
-        <div flex layout='row' layout-padding layout-align="start center" >
-            <md-radio-button flex
-                             ng-value="user.id"
-                             class="md-primary" >
-                {test
-            </md-radio-button>
-            <div flex style="max-width:200px;">
-                again
+    </tbody>
+</table>
+    <div layout="row" class="md-table-footer" ng-include="'./common/table/componentTemplate/tableFooterTemplate.html'"></div>
+    <!--md-radio-group ng-model="selectedId" >
+        <div  class="row" ng-repeat=" user in activityList.users">
+            <div flex layout='row' layout-padding layout-align="start center" >
+                <md-radio-button flex
+                                 ng-value="user.id"
+                                 class="md-primary" >
+                    {test
+                </md-radio-button>
+                <div flex style="max-width:200px;">
+                    again
+                </div>
             </div>
         </div>
-    </div>
-</md-radio-group>
-<md-divider></md-divider-->
+    </md-radio-group>
+    <md-divider></md-divider-->
 <!--div class="summary" flex layout="row" layout-align="space-between center">
     <div flex-initial>
         <span class="title">Selected User</span>: <span class="md-checked">{{selectedId}}</span>

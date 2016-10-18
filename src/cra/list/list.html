@@ -9,8 +9,28 @@
                 <md-tab-body>
                     <h2>User List</h2>
                     <md-divider></md-divider>
+                    <md-toolbar class="md-tall" layout='column'>
+                        <span flex></span>
+                        <div class="md-toolbar-tools">
+                            <div layout="row" flex="flex" class="fill-height">
+                                <div ng-hide="craList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                                    <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
+                                </div>
+                                <span flex="flex" ng-hide="craList.toggleSearch"></span>
+                                <md-input-container flex="flex" style="padding-left:88px;" ng-show="craList.toggleSearch">
+                                    <input id="searchinput" type="text" ng-model="search" show-focus="craList.toggleSearch"/>
+                                </md-input-container>
+
+                                <div layout="row" class="md-toolbar-item md-tools">
+                                    <a ui-sref="root.cra" ng-click="craList.toggleSearch = !craList.toggleSearch" class="md-button md-default-theme">
+                                        <i class="material-icons">search</i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </md-toolbar>
                     <md-radio-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
-                                    custom-class="craList.custom"  count="craList.count"
+                                    custom-class="craList.custom"  count="craList.count" filters="search"
                                     listurl="root.cra">
                     </md-radio-table>
                         <!--md-radio-group ng-model="selectedId" >

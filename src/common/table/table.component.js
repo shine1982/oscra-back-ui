@@ -65,34 +65,45 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
         };
     }
 })
-/*
-<md-radio-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
-custom-class="craList.custom"  count="craList.count"
-listurl="root.cra">
- </md-radio-table>
-  */
+
     .component('mdRadioTable',{
         bindings: {
             headers: '=',
             content: '=',
             sortable: '=',
+            filters: '=',
             customClass: '=',
             count: '=',
             listurl: '@'
-            //modifyurl : '@',
-            //deleteurl : '@',
-            //idkey : '@'
+
         },
         template: require('./componentTemplate/radioTableTemplate.html'),
-        controller: function mdRadioTableController() {
+        controller: function mdRadioTableController($filter) {
             var vm=this;
-            console.log('vm headers in radion controller' + vm.headers)
-            console.log(vm.content)
-            console.log('vm content in radio controller '+ vm.content)
-            console.log('vm sortable in radio controller '+ vm.sortable)
-            console.log('vm customClass in radio controller '+ vm.customClass)
-            console.log('vm count in radio controller '+ vm.count)
-            console.log('vm listurl in radio controller '+ vm.listurl)
+            var orderBy = $filter('orderBy');
+
+            vm.tablePage = 0;
+            vm.nbOfPages = function () {
+                return Math.ceil(vm.content.length / vm.count);
+            };
+            vm.getNumber = function (num) {
+                return new Array(num);
+            };
+            vm.handleSort = function (field) {
+                if (vm.sortable.indexOf(field) > -1) { return true; } else { return false; }
+            };
+            vm.order = function(predicate, reverse) {
+                vm.content = orderBy(vm.content, predicate, reverse);
+                vm.predicate = predicate;
+            };
+            vm.order(vm.sortable[0],false);
+            vm.getNumber = function (num) {
+                return new Array(num);
+            };
+            vm.goToPage = function (page) {
+                vm.tablePage = page;
+            }
+
         }
     })
     .filter('startFrom',function (){
