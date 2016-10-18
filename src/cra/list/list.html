@@ -1,16 +1,20 @@
-<link data-require="bootstrap-css@3.2.0" data-semver="3.2.0" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
 <h2>Activity List</h2>
 
 <div ng-cloak="" class="tabsdemoStaticTabs"  >
     <md-content class="md-padding">
-        <md-tabs class="md-accent" md-selected="activityList.selectedIndex" md-dynamic-height md-border-bottom>
+        <md-tabs class="md-accent" md-selected="craList.selectedIndex" md-dynamic-height md-border-bottom>
             <md-tab id="tab1">
                 <md-tab-label>User</md-tab-label>
                 <md-tab-body>
                     <h2>User List</h2>
                     <md-divider></md-divider>
-                        <md-radio-group ng-model="selectedId" >
-                            <div  class="row" ng-repeat=" user in activityList.users">
+                    <md-radio-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
+                                    custom-class="craList.custom"  count="craList.count"
+                                    listurl="root.cra">
+                    </md-radio-table>
+                        <!--md-radio-group ng-model="selectedId" >
+                            <div  class="row" ng-repeat=" user in craList.users">
                                 <div flex layout='row' layout-padding layout-align="start center" >
                                     <md-radio-button flex
                                                      ng-value="user.id"
@@ -28,10 +32,10 @@
                         <div flex-initial>
                             <span class="title">Selected User</span>: <span class="md-checked">{{selectedId}}</span>
                         </div>
-                    </div>
+                    </div-->
                 </md-tab-body>
             </md-tab>
-            <md-tab id="tab2" ng-disabled="activityList.secondLocked" md-on-select="activityList.selectTab2()">
+            <md-tab id="tab2" ng-disabled="craList.secondLocked" md-on-select="craList.selectTab2()">
                 <md-tab-label>CRA</md-tab-label>
                 <md-tab-body>
                     <h2>CRA List</h2>
@@ -63,13 +67,13 @@
                 </md-tab-body>
             </md-tab>
 
-            <md-tab id="tab3" ng-disabled="activityList.thirdLocked" md-on-select="activityList.selectTab3()">
+            <md-tab id="tab3" ng-disabled="craList.thirdLocked" md-on-select="craList.selectTab3()">
                 <md-tab-label >Activity</md-tab-label>
                 <md-tab-body>
                     <h2>Activity List</h2>
                     <md-divider></md-divider>
                     <md-radio-group ng-model="a.selectedId" >
-                        <div  class="row" ng-repeat=" activity in activityList.activities">
+                        <div  class="row" ng-repeat=" activity in craList.activities">
                             <div flex layout='row' layout-padding layout-align="start center" >
                                 <div>
                                     {{activity.start}}

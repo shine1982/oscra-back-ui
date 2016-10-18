@@ -35,11 +35,11 @@
     </md-toolbar>
 
     <md-content layout="column" ng-click="userList.toggleSearch=false">
+        <md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                  filters="search" custom-class="userList.custom"  count="userList.count"
+                    listurl="root.userall" modifyurl="root.usermodify" deleteurl="root.userdelete" idkey="userId" >
 
-        <md-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
-                  filters="search" custom-class="userList.custom" thumbs="userList.thumbs" count="userList.count">
-
-        </md-table>
+        </md-crud-table>
     </md-content>
 </div>
 

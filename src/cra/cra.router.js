@@ -1,21 +1,33 @@
 'use strict';
 
-angular.module('oscra-ui.activity').config(function($stateProvider, $urlRouterProvider) {
+angular.module('oscra-ui.cra').config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state('root.activityall', {
-            url: '/activity/list',
+        .state('root.cra', {
+            url: '/cra/list',
             template: require('./list/list.html'),
             controller: require('./list/list'),
-            controllerAs: 'activityList'
+            controllerAs: 'craList'
+        })/*
+        .state('root.cra.userall', {
+            url: '/cra/user/all',
+            template: require('./user/list.html'),
+            controller: require('./user/list'),
+            controllerAs: 'craUserList'
+        })
+        .state('root.cra.all', {
+            url: '/cra/crapermonth/all',
+            template: require('./crapermonth/list.html'),
+            controller: require('./crapermonth/list'),
+            controllerAs: 'crapermonthList'
         })
         /*
-        .state('root.mainpanel.usermodify', {
+        .state('root.cra.usermodify', {
             url: '/user/modify/:userId',
             template: require('./modify/modify.html'),
             controller: require('./modify/modify'),
             controllerAs: 'userModify'
-        })
+        })/*
         .state('root.mainpanel.userdelete', {
             url: '/user/delete/:userId',
             template: require('./delete/delete.html'),

@@ -6,22 +6,13 @@ module.exports = function controller(UserService, $mdToast, $scope){
 
     var vm = this;
     vm.users=[];
-    vm.content=[]
+    vm.content=[];
     vm.toggleSearch = false;
     //vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
-    vm.thumbs = 'thumb';
     vm.count = 3;
 
     init();
-    vm.deleteRowCallback = function(rows){
-        alert('Are you sure to delete the selected items ?');
-        $mdToast.show(
-            $mdToast.simple()
-                .content('Deleted row id(s): '+rows)
-                .hideDelay(3000)
-        );
-    };
 
     function init() {
         vm.headers = [{name:'Id', field:'id'},
@@ -37,6 +28,5 @@ module.exports = function controller(UserService, $mdToast, $scope){
             vm.users = response.data;
             vm.content = vm.users;
         })
-
     }
 };

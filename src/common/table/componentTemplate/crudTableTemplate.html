@@ -1,29 +1,22 @@
 <div id="md-table-template" >
     <table md-colresize="md-colresize" class="md-table">
-        <thead>
-            <tr class="md-table-headers-row" >
-                <th ng-repeat="h in $ctrl.headers" class="md-table-header" >
-                    <a ui-sref="root.userall" ng-if="$ctrl.handleSort(h.field)" ng-click="reverse=!reverse;$ctrl.order(h.field,reverse)">
-                        {{h.name}}
-                        <i ng-show="reverse &amp;&amp; h.field == predicate" class="material-icons">arrow_upward</i>
-                        <i ng-show="!reverse &amp;&amp; h.field == predicate" class="material-icons">arrow_downward</i>
-                    </a>
-                    <span ng-if="!$ctrl.handleSort(h.field)">{{h.name}}</span>
-                </th>
-                <th class="md-table-header"></th>
-            </tr>
+        <thead ng-include="'./common/table/componentTemplate/tableHeaderTemplate.html'">
+
         </thead>
 
         <tbody>
             <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters | startFrom:$ctrl.tablePage*$ctrl.count | limitTo: $ctrl.count" class="md-table-content-row">
-                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content" >
-                    <a ui-sref="root.usermodify({userId:c[h.field]})">{{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}</a>
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
+                ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                    <a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
+                        {{f}}
+                    </a>
                 </td>
-                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id'" class="md-table-content" >
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
                     {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" >
-                    <md-button  class="md-primary md-hue-2 md-table-footer-item">
+                    <md-button  class="md-primary md-raised edgePadding" ng-click="$ctrl.openOffscreenConfirm($event)">
                         delete
                     </md-button>
                 </td>
@@ -32,10 +25,10 @@
     </table>
     <div layout="row" class="md-table-footer">
         <span class="md-table-count-info">Rows per page :
-            <a  ui-sref="root.userall" ng-click="$ctrl.goToPage(0); $ctrl.count=10">10</a>,
-            <a  ui-sref="root.userall" ng-click="$ctrl.goToPage(0); $ctrl.count=25">25</a>,
-            <a  ui-sref="root.userall" ng-click="$ctrl.goToPage(0); $ctrl.count=50">50</a>,
-            <a  ui-sref="root.userall" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a>
+            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=10">10</a>,
+            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=25">25</a>,
+            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=50">50</a>,
+            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a>
             {{count}} (current is {{$ctrl.count}} )
         </span>
         <span flex="flex"></span>

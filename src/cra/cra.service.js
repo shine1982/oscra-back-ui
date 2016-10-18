@@ -1,5 +1,5 @@
 
-angular.module('oscra-ui.activity').factory('ActivityService', service);
+angular.module('oscra-ui.cra').factory('ActivityService', service);
 
 function service(API){
 
