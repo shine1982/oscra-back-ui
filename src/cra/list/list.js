@@ -1,15 +1,15 @@
 'use strict';
 
-module.exports = function controller(UserService, $scope){
+module.exports = function controller(UserService, CraService, ActivityService, $scope){
 
     var vm = this;
 
     $scope.selectedId;
     vm.users=[];
-    vm.content=[];
+    vm.userContent=[];
     vm.toggleSearch = false;
-    vm.headers = [
-        {name: 'toggle', field:'toggle'},
+    vm.userHeaders = [
+        {name: '', field:'toggle'},
         {name:'Id', field:'id'},
         {name: 'First Name', field: 'firstName'},
         {name: 'Last Name', field:'lastName'},
@@ -19,9 +19,19 @@ module.exports = function controller(UserService, $scope){
         {name: 'Position', field: 'position'},
         {name: 'Role', field: 'role'},
         {name: 'Action', field: 'action'}];
-    vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
+    vm.userSortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 3;
-/*
+
+    vm.craPerMonthHeaders=[
+        {name: '', field:'toggle'},
+        {name: 'Id', field:'id'},
+        {name: 'Month', field: 'month'},
+        {name: 'Validation', field:'validation'},
+        {name: 'Status', field: 'status'},
+        {name: 'Last modified by', field: 'lastModifyBy'},
+        {name: 'Last updated time', field: 'lastUpdatedTime'}
+    ];
+    vm.craPerMonthSortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
     $scope.$watch(function(scope) { return scope.selectedId }, function(){
         //alert($scope.selectedId)
         if ($scope.selectedId > 0)
@@ -29,34 +39,44 @@ module.exports = function controller(UserService, $scope){
     })
 
     vm.selectTab2 = function() {
-        //alert('one selected');
+        //list(providerId, start, end, callBack)
+        alert('one selected');
+        var providerId =1;
+        var starttime="20161019";
+        var endtime="20161020";
         vm.thirdLocked = false;
+        CraService.list(providerId, starttime, endtime, function(response){
+            console.log(response.data)
+        })
     }
 
     vm.selectTab3 = function() {
         //alert('two selected');
-        getAllActivities();
+        var currentdate = new Date();
+        console.log(currentdate.getMonth())
+        //getAllActivities();
     }
-*/
+
     init();
 
     function init(){
         vm.selectedIndex = 0;
-        vm.secondLocked = true;
-        vm.thirdLocked = true;
+        vm.secondLocked = false;
+        vm.thirdLocked = false;
 
         UserService.list(function (response) {
             //console.log(response.data)
             vm.users = response.data;
-            console.log("all users are "+vm.users)
-            vm.content = vm.users;
+            vm.userContent = vm.users;
         })
+    }
 
-        console.log('vm content in list page'+ vm.content)
+    function getCrasByInterval(){
+        CraService.list()
     }
 
     function getAllActivities() {
-        ActivityService.list($scope.selectedId,function (response) {
+        ActivityService.list($scope.selectedId, function (response) {
             //console.log(response.data)
             vm.activities = response.data;
         })

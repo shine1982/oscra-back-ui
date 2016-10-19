@@ -1,6 +1,9 @@
 'use strict';
 
 angular.module('oscra-ui.table').component('mdCrudTable',{
+    require: {
+
+    },
     bindings: {
         headers: '=',
         content: '=',
@@ -75,11 +78,15 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
             customClass: '=',
             count: '=',
             listurl: '@'
-
+            //selectedId: '='
         },
         template: require('./componentTemplate/radioTableTemplate.html'),
-        controller: function mdRadioTableController($filter) {
+        //template: require('./componentTemplate/radioGroupTemplate.html'),
+        controller: function mdRadioTableController($filter,$scope) {
+
             var vm=this;
+            console.log(vm.headers)
+            console.log(vm.content)
             var orderBy = $filter('orderBy');
 
             vm.tablePage = 0;
@@ -103,7 +110,15 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
             vm.goToPage = function (page) {
                 vm.tablePage = page;
             }
+/*
+            $scope.$watch(function(scope) { return vm.selectedId }, function(){
+                alert(vm.selectedId)
+                /*
+                if (vm.selectedId > 0)
+                    vm.secondLocked = false;
 
+            })
+ */
         }
     })
     .filter('startFrom',function (){

@@ -7,8 +7,6 @@
             <md-tab id="tab1">
                 <md-tab-label>User</md-tab-label>
                 <md-tab-body>
-                    <h2>User List</h2>
-                    <md-divider></md-divider>
                     <md-toolbar class="md-tall" layout='column'>
                         <span flex></span>
                         <div class="md-toolbar-tools">
@@ -29,10 +27,11 @@
                             </div>
                         </div>
                     </md-toolbar>
-                    <md-radio-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
+                    <md-radio-table headers="craList.userHeaders" content="craList.userContent" sortable="craList.userSortable"
                                     custom-class="craList.custom"  count="craList.count" filters="search"
-                                    listurl="root.cra">
+                                    listurl="root.cra" selectedId="selectedId">
                     </md-radio-table>
+                    test selectedId {{selectedId}}
                         <!--md-radio-group ng-model="selectedId" >
                             <div  class="row" ng-repeat=" user in craList.users">
                                 <div flex layout='row' layout-padding layout-align="start center" >
@@ -68,22 +67,10 @@
                         <label>End date</label>
                         <md-datepicker ng-model="b"></md-datepicker>
                     </md-input-container>
-                    <mdt-table table-card="{title: 'Nutritions'}">
-                        <mdt-header-row>
-                            <mdt-column align-rule="left">Mois</mdt-column>
-                            <mdt-column align-rule="right">Validation</mdt-column>
-                            <mdt-column align-rule="right">Statut</mdt-column>
-                            <mdt-column align-rule="right">Mis a jour par</mdt-column>
-                            <mdt-column align-rule="right">Date a mis a jour</mdt-column>
-                        </mdt-header-row>
-                        <mdt-row >
-                            <mdt-cell>nutrition.name</mdt-cell>
-                            <mdt-cell>nutrition.calories</mdt-cell>
-                            <mdt-cell>nutrition.fat</mdt-cell>
-                            <mdt-cell>nutrition.carbs</mdt-cell>
-                            <mdt-cell>nutrition.protein</mdt-cell>
-                        </mdt-row>
-                    </mdt-table>
+                    <!--md-radio-table headers="craList.craPerMonthHeaders" content="craList.content" sortable="craList.craPerMonthSortable"
+                                    custom-class="craList.custom"  count="craList.count" filters="search"
+                                    listurl="root.cra" selectedId="selectedId">
+                    </md-radio-table-->
                 </md-tab-body>
             </md-tab>
 
