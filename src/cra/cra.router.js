@@ -3,25 +3,26 @@
 angular.module('oscra-ui.cra').config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-        .state('root.cra', {
+        .state('root.cralist', {
             url: '/cra/list',
             template: require('./list/list.html'),
             controller: require('./list/list'),
             controllerAs: 'craList'
-        })/*
+        })
+
+        .state('root.cramodify', {
+            url: '/cra/modify/:craId',
+            template: require('./modify/modify.html'),
+            controller: require('./modify/modify'),
+            controllerAs: 'craModify'
+        })
+       /*/*
         .state('root.cra.userall', {
             url: '/cra/user/all',
             template: require('./user/list.html'),
             controller: require('./user/list'),
             controllerAs: 'craUserList'
         })
-        .state('root.cra.all', {
-            url: '/cra/crapermonth/all',
-            template: require('./crapermonth/list.html'),
-            controller: require('./crapermonth/list'),
-            controllerAs: 'crapermonthList'
-        })
-        /*
         .state('root.cra.usermodify', {
             url: '/user/modify/:userId',
             template: require('./modify/modify.html'),

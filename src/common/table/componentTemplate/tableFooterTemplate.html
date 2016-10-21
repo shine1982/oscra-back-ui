@@ -1,8 +1,8 @@
 <span class="md-table-count-info">Rows per page :
+            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=5">5</a>,
             <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=10">10</a>,
             <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=25">25</a>,
-            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=50">50</a>,
-            <a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a>
+            <!--a  ui-sref="{{$ctrl.listurl}}" ng-click="$ctrl.goToPage(0); $ctrl.count=100">100</a-->
             {{count}} (current is {{$ctrl.count}} )
         </span>
 <span flex="flex"></span>

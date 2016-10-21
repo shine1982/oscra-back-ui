@@ -17,7 +17,7 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
         idkey : '@'
     },
     template: require('./componentTemplate/crudTableTemplate.html'),
-    controller: function mdCrudTableController($filter, $mdDialog) {
+    controller: function mdCrudTableController($filter, $mdDialog, $scope) {
         var vm=this;
         var orderBy = $filter('orderBy');
 
@@ -42,7 +42,7 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
         vm.goToPage = function (page) {
             vm.tablePage = page;
         }
-        vm.openOffscreenConfirm = function(ev) {
+        vm.openOffscreenConfirm = function(element,ev) {
             var confirm =  $mdDialog.confirm()
                 .clickOutsideToClose(true)
                 .title('Opening from offscreen')
@@ -61,14 +61,17 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
                     left: 1500
                 });
             $mdDialog.show(confirm).then(function() {
-                alert('delete')
+                $scope.$emit('sendDeleteId', element);
+                //alert('delete')
             }, function() {
 
             });
         };
+
+
     }
 })
-
+/*
     .component('mdRadioTable',{
         bindings: {
             headers: '=',
@@ -110,17 +113,11 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
             vm.goToPage = function (page) {
                 vm.tablePage = page;
             }
-/*
-            $scope.$watch(function(scope) { return vm.selectedId }, function(){
-                alert(vm.selectedId)
-                /*
-                if (vm.selectedId > 0)
-                    vm.secondLocked = false;
 
-            })
- */
+
         }
     })
+ */
     .filter('startFrom',function (){
         return function (input,start) {
             start = +start;

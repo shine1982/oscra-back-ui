@@ -1,141 +1,51 @@
+<!--Refer to https://github.com/iamisti/mdDataTable-->
+<h2>CRA list</h2>
 
-<h2>Activity List</h2>
+<!--div>
 
-<div ng-cloak="" class="tabsdemoStaticTabs"  >
-    <md-content class="md-padding">
-        <md-tabs class="md-accent" md-selected="craList.selectedIndex" md-dynamic-height md-border-bottom>
-            <md-tab id="tab1">
-                <md-tab-label>User</md-tab-label>
-                <md-tab-body>
-                    <md-toolbar class="md-tall" layout='column'>
-                        <span flex></span>
-                        <div class="md-toolbar-tools">
-                            <div layout="row" flex="flex" class="fill-height">
-                                <div ng-hide="craList.toggleSearch" class="md-toolbar-item md-breadcrumb">
-                                    <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
-                                </div>
-                                <span flex="flex" ng-hide="craList.toggleSearch"></span>
-                                <md-input-container flex="flex" style="padding-left:88px;" ng-show="craList.toggleSearch">
-                                    <input id="searchinput" type="text" ng-model="search" show-focus="craList.toggleSearch"/>
-                                </md-input-container>
+<ul ng-repeat="user in userList.users">
+    <li>
+        <a ui-sref="root.userdelete({userId:{{user.id}}})">Delete</a></li>
+</ul>
 
-                                <div layout="row" class="md-toolbar-item md-tools">
-                                    <a ui-sref="root.cra" ng-click="craList.toggleSearch = !craList.toggleSearch" class="md-button md-default-theme">
-                                        <i class="material-icons">search</i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </md-toolbar>
-                    <md-radio-table headers="craList.userHeaders" content="craList.userContent" sortable="craList.userSortable"
-                                    custom-class="craList.custom"  count="craList.count" filters="search"
-                                    listurl="root.cra" selectedId="selectedId">
-                    </md-radio-table>
-                    test selectedId {{selectedId}}
-                        <!--md-radio-group ng-model="selectedId" >
-                            <div  class="row" ng-repeat=" user in craList.users">
-                                <div flex layout='row' layout-padding layout-align="start center" >
-                                    <md-radio-button flex
-                                                     ng-value="user.id"
-                                                     class="md-primary" >
-                                        {{user.firstName}}
-                                    </md-radio-button>
-                                    <div flex style="max-width:200px;">
-                                        {{user.lastName}}
-                                    </div>
-                                </div>
-                            </div>
-                        </md-radio-group>
-                    <md-divider></md-divider>
-                    <div class="summary" flex layout="row" layout-align="space-between center">
-                        <div flex-initial>
-                            <span class="title">Selected User</span>: <span class="md-checked">{{selectedId}}</span>
-                        </div>
-                    </div-->
-                </md-tab-body>
-            </md-tab>
-            <md-tab id="tab2" ng-disabled="craList.secondLocked" md-on-select="craList.selectTab2()">
-                <md-tab-label>CRA</md-tab-label>
-                <md-tab-body>
-                    <h2>CRA List</h2>
-                    <!--http://codepen.io/alimista15/pen/WvRXOx-->
-                    <md-input-container flex-gt-sm="">
-                        <label>Start Date</label>
-                        <md-datepicker ng-model="a"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container flex-gt-sm="">
-                        <label>End date</label>
-                        <md-datepicker ng-model="b"></md-datepicker>
-                    </md-input-container>
-                    <!--md-radio-table headers="craList.craPerMonthHeaders" content="craList.content" sortable="craList.craPerMonthSortable"
-                                    custom-class="craList.custom"  count="craList.count" filters="search"
-                                    listurl="root.cra" selectedId="selectedId">
-                    </md-radio-table-->
-                </md-tab-body>
-            </md-tab>
+</div-->
 
-            <md-tab id="tab3" ng-disabled="craList.thirdLocked" md-on-select="craList.selectTab3()">
-                <md-tab-label >Activity</md-tab-label>
-                <md-tab-body>
-                    <h2>Activity List</h2>
-                    <md-divider></md-divider>
-                    <md-radio-group ng-model="a.selectedId" >
-                        <div  class="row" ng-repeat=" activity in craList.activities">
-                            <div flex layout='row' layout-padding layout-align="start center" >
-                                <div>
-                                    {{activity.start}}
-                                </div>
-                                <div flex style="max-width:200px;">
+<div layout='column'>
+    <md-toolbar class="md-tall" layout='column'>
 
-                                    {{activity.end}}
-                                </div>
-                            </div>
-                        </div>
-                    </md-radio-group>
-                    <md-divider></md-divider>
-                    <div class="summary" flex layout="row" layout-align="space-between center">
-                        <div flex-initial>
-                            <span class="title">mark</span>
-                        </div>
-                    </div>
-                </md-tab-body>
-            </md-tab>
-        </md-tabs>
+        <!--span flex></span>
+        <div class="md-toolbar-tools">
+            <div layout="row" flex="flex" class="fill-height">
+                <md-button  ui-sref="root.usercreate" class="md-fab md-accent">+</md-button>
+                <div ng-hide="userList.toggleSearch" class="md-toolbar-item md-breadcrumb">
+                    <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
+                </div>
+                <span flex="flex" ng-hide="userList.toggleSearch"></span>
+                <md-input-container flex="flex" style="padding-left:88px;" ng-show="userList.toggleSearch">
+                    <input id="searchinput" type="text" ng-model="search" show-focus="userList.toggleSearch"/>
+                </md-input-container>
+
+                <div layout="row" class="md-toolbar-item md-tools">
+                    <a ui-sref="root.userall" ng-click="userList.toggleSearch = !userList.toggleSearch" class="md-button md-default-theme">
+                        <i class="material-icons">search</i>
+                    </a>
+                </div>
+            </div>
+        </div-->
+    </md-toolbar>
+
+    <md-content layout="column" ng-click="userList.toggleSearch=false">
+        <!--md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                       filters="search" custom-class="userList.custom"  count="userList.count"
+                       listurl="root.userall" modifyurl="root.usermodify" deleteurl="root.userdelete" idkey="userId" >
+
+        </md-crud-table-->
+
+        <md-crud-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
+                        custom-class="craList.custom"  count="craList.count" filters="search"
+                        listurl="root.cralist"  modifyurl="root.cramodify" deleteurl="root.cradelete" idkey="craId">
+        </md-crud-table>
     </md-content>
-
 </div>
-<style>
-    .tabsdemoStaticTabs md-tab-content {
-        padding: 25px; }
-    /*
-    .tabsdemoStaticTabs md-tab-content:nth-child(1) {
-        background-color: #42A5F5; }
-    .tabsdemoStaticTabs md-tab-content:nth-child(2) {
-        background-color: #689F38; }
-    .tabsdemoStaticTabs md-tab-content:nth-child(3) {
-        background-color: #26C6DA; }
-*/
-    .tabsdemoStaticTabs .after-tabs-area > span {
-        margin-top: 25px;
-        padding-right: 15px;
-        vertical-align: middle;
-        line-height: 30px;
-        height: 100px; }
 
-    .tabsdemoStaticTabs .after-tabs-area > md-checkbox {
-        margin-top: 26px;
-        margin-left: 0; }
-/* for smart table */
-    .st-sort-ascent:before{
-        content: '\25B2';
-    }
 
-    .st-sort-descent:before{
-        content: '\25BC';
-    }
-</style>
-
-<!--p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis vulputate. Etiam consequat aliquam cursus.
-    In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur felis nec, feugiat ultricies mi.
-</p-->

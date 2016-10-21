@@ -11,12 +11,13 @@
                     <a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
                         {{f}}
                     </a>
+
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
                     {{(h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field];}}
                 </td>
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" >
-                    <md-button  class="md-primary md-raised edgePadding" ng-click="$ctrl.openOffscreenConfirm($event)">
+                    <md-button  class="md-primary md-raised edgePadding" ng-click="$ctrl.openOffscreenConfirm(c,$event)">
                         delete
                     </md-button>
                 </td>
