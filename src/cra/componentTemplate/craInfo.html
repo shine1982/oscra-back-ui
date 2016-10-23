@@ -1,0 +1,103 @@
+<md-content class="md-padding" layout-xs="column" layout="column" >
+        <div flex-xs="" flex-gt-xs="20" layout="row">
+            <md-card flex="70">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">User information</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    {{$ctrl.craprovider}}
+                </md-card-content>
+            </md-card>
+            <md-card flex="30">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">CRA information</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between">
+                    {{$ctrl.initcra}}
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-xs="" flex-gt-xs="60" layout="row">
+            <md-card flex="100">
+                <md-card-title>
+                    <md-card-title-text>
+                        <div class="md-padding" ng-cloak layout="column">
+                            <div layout="row" >
+                                <h2 class="md-title">Pick an item below</h2>
+                                <md-input-container>
+                                    <label>Activities</label>
+                                    <md-select ng-model="$ctrl.selectedActivity" md-selected-text="$ctrl.getSelectedText($ctrl.selectedActivity)">
+                                        <md-optgroup label="activities">
+                                            <md-option ng-repeat="activity in $ctrl.activities" ng-value="activity" >
+                                                {{activity}}
+                                            </md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                                <md-button class="md-raised md-primary">Add an activity</md-button>
+                            </div>
+                            <div flex>
+                                <table >
+                                    <tbody>
+                                    <tr>
+                                        <td>Day&nbsp;&nbsp;&nbsp;</td>
+                                        <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr >
+                                        <td></td>
+                                        <td ng-repeat=" day in $ctrl.days">
+                                            <div ng-switch="day.getDay()">
+                                                <div ng-switch-when="0"></div>
+                                                <div ng-switch-when="6"></div>
+                                                <div ng-switch-default>[ ]</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-actions layout="row" layout-align="end center">
+                    <md-button>Action 1</md-button>
+                    <md-button>Action 2</md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+
+        <div flex-xs="" flex-gt-xs="20" layout="row">
+            <md-card flex="70">
+                <md-card-content layout="row" layout-align="space-between">
+                    <md-input-container flex="20">
+                        <label>Status</label>
+                        <md-select ng-model="$ctrl.selectedStatus" md-selected-text="$ctrl.getSelectedText($ctrl.selectedStatus)">
+                            <md-optgroup label="Status">
+                                <md-option ng-repeat="status in $ctrl.status" ng-value="status" >
+                                    {{status}}
+                                </md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Comments</label>
+                        <textarea ng-model="user.biography" columns="2" md-maxlength="150"></textarea>
+                    </md-input-container>
+
+                </md-card-content>
+            </md-card>
+            <md-card flex="30">
+                <md-card-content layout="row" layout-align="space-between">
+                    <div layout="column">
+                        <md-button class="md-raised md-primary">Valider</md-button>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+</md-content>
+
+

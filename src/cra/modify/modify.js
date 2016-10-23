@@ -20,7 +20,7 @@ module.exports = function controller(CraService,$stateParams){
             'VALIDATED_TRANSIMITTED'];
 
     }
-
+/*
     vm.selectedActivity;
     vm.getSelectedText = function(element) {
         if (element !== undefined) {
@@ -28,7 +28,7 @@ module.exports = function controller(CraService,$stateParams){
         } else {
             return "Please select an item";
         }
-    };
+    };*/
     function modify() {
         var user = {};
         user.firstName = vm.firstName;
