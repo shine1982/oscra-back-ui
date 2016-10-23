@@ -17,7 +17,7 @@ angular.module('oscra-ui.cra').component('crainfo', {
             if (element !== undefined) {
                 return element;
             } else {
-                return "Please select an item";
+                return "Choisir un element";
             }
         };
     }

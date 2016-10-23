@@ -1,4 +1,4 @@
-<md-content class="md-padding" layout-xs="column" layout="column" >
+<md-content class="" layout-xs="column" layout="column" >
         <div flex-xs="" flex-gt-xs="20" layout="row">
             <md-card flex="70">
                 <md-card-title>
@@ -7,7 +7,11 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    {{$ctrl.craprovider}}
+                    {{$ctrl.craprovider.firstName}}
+                    {{$ctrl.craprovider.lastName}}
+                    {{$ctrl.craprovider.email}}
+                    {{$ctrl.craprovider.phonenumber}}
+                    {{$ctrl.craprovider.birthday}}
                 </md-card-content>
             </md-card>
             <md-card flex="30">
@@ -17,7 +21,8 @@
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content layout="row" layout-align="space-between">
-                    {{$ctrl.initcra}}
+                    {{$ctrl.initcra.month}}
+                    {{$ctrl.initcra.status}}
                 </md-card-content>
             </md-card>
         </div>
@@ -27,7 +32,6 @@
                     <md-card-title-text>
                         <div class="md-padding" ng-cloak layout="column">
                             <div layout="row" >
-                                <h2 class="md-title">Pick an item below</h2>
                                 <md-input-container>
                                     <label>Activities</label>
                                     <md-select ng-model="$ctrl.selectedActivity" md-selected-text="$ctrl.getSelectedText($ctrl.selectedActivity)">
@@ -48,12 +52,14 @@
                                         <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
                                     </tr>
                                     <tr >
-                                        <td></td>
+                                        <td>Total</td>
                                         <td ng-repeat=" day in $ctrl.days">
                                             <div ng-switch="day.getDay()">
-                                                <div ng-switch-when="0"></div>
-                                                <div ng-switch-when="6"></div>
-                                                <div ng-switch-default>[ ]</div>
+                                                <div ng-switch-when="0">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-when="6">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-default>
+                                                    <input type="checkbox">&nbsp;&nbsp;&nbsp;
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
