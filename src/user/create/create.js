@@ -1,18 +1,22 @@
 'use strict';
 
-module.exports = function controller(UserService, $state){
+module.exports = function controller(UserService, $state, $scope){
 
     var vm = this;
+    vm.inituser=null;
 
-    vm.submit = create;
-
-    function create() {
-        var user = {};
-        user.firstName = vm.firstName;
-        user.lastName = vm.lastName;
-
+    $scope.$on('sendUser', function(event,user){
+        console.log(user)
         UserService.create(user,function (response) {
-            $state.go('root.userall');
+            if (response.status ==200){
+                alert('ok');
+                $scope.$broadcast("userUpdated")
+                $state.go('root.userall');
+            }else{
+                alert('System internal error');
+            }
         })
-    }
+
+
+    })
 };

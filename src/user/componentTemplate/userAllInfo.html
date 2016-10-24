@@ -119,7 +119,7 @@
 
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>Postal Code</label>
-                        <input name="$ctrl.user.postalCode" ng-model="postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                        <input name="$ctrl.user.postalCode" ng-model="$ctrl.user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
                         <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
                             <div ng-message="required" class="my-message">You must supply a postal code.</div>
@@ -134,10 +134,16 @@
                 </div>
 
                 <div>
-                    <md-button class="md-raised md-primary" ng-click="$ctrl.user.submit()" type="submit">submit</md-button>
+                    <md-button class="md-raised md-primary" ng-click="$ctrl.submit()" type="submit">submit</md-button>
                 </div>
+
+                <div layout="row" layout-sm="column" layout-align="space-around" ng-show="$ctrl.isloading">
+                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
+
             </form>
         </div>
     </md-content>
 </div>
+
 

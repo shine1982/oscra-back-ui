@@ -124,6 +124,29 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
             return input.slice(start);
         }
     })
+    .directive('showFocus', function($timeout) {
+    return function(scope, element, attrs) {
+        scope.$watch(attrs.showFocus,
+            function (newValue) {
+                $timeout(function() {
+                    newValue && element.focus();
+                });
+            },true);
+    };
+});
+
+/*
+app.directive('showFocus', function($timeout) {
+    return function(scope, element, attrs) {
+        scope.$watch(attrs.showFocus,
+            function (newValue) {
+                $timeout(function() {
+                    newValue && element.focus();
+                });
+            },true);
+    };
+});
+*/
 
 //UNCOMMENT BELOW TO BE ABLE TO RESIZE COLUMNS OF THE TABLE
 /*

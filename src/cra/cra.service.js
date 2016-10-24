@@ -14,12 +14,12 @@ function craService(API){
         API.get(CRAS+'findById?craId='+craId, null, callBack);
     }
 
-    /*
-    function modify(activity, userId, callBack) {
-        API.post(CRAS+'update?userId='+userId, activity, callBack);
+
+    function modify(cra, providerId, validatorId, callBack) {
+        API.post(CRAS+'update?providerId='+providerId+'&validatorId='+validatorId, cra, callBack);
     }
 
-
+    /*
     function create(activity, userId, callBack) {
         API.post(CRAS+'add?userId='+userId, activity, callBack);
     }
@@ -32,10 +32,10 @@ function craService(API){
 
     return {
         list : list,
+
         /*
-        create : create,
+        create : create,*/
         modify : modify,
-        */
         delete : remove,
         findById : findById
     }

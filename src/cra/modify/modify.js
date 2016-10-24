@@ -9,34 +9,17 @@ module.exports = function controller(CraService,$stateParams){
     function init() {
         CraService.findById($stateParams.craId, function (response) {
             vm.initcra = response.data;
+            console.log(vm.initcra)
             vm.craprovider = vm.initcra.provider
             vm.cratime=vm.initcra.month.split("-");
             vm.days=getDaysInMonth(parseInt(vm.cratime[1])-1,parseInt(vm.cratime[0]));
-
         });
-        vm.activities =['CP','RTT','CPSansSolde'];
+
+        vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
         vm.status =[ 'NOT_TRANSIMITTED',
             'TRANSIMITTED_NOT_VALIDATED',
             'VALIDATED_TRANSIMITTED'];
 
-    }
-/*
-    vm.selectedActivity;
-    vm.getSelectedText = function(element) {
-        if (element !== undefined) {
-            return element;
-        } else {
-            return "Please select an item";
-        }
-    };*/
-    function modify() {
-        var user = {};
-        user.firstName = vm.firstName;
-        user.lastName = vm.lastName;
-        user.id=$stateParams.userId;
-        UserService.modify(user,function (response) {
-            $state.go('root.craall');
-        })
     }
 
     function getDaysInMonth(month, year) {

@@ -30,15 +30,10 @@
     "angular": "^1.5.8",
     "angular-animate": "^1.5.8",
     "angular-aria": "^1.5.8",
-    "angular-lodash": "^0.1.1",
     "angular-material": "^1.1.1",
-    "angular-sanitize": "^1.5.8",
-    "angular-smart-table": "^2.1.8",
     "angular-ui-router": "^0.3.1",
     "css-loader": "^0.25.0",
     "html-loader": "^0.4.4",
-    "lodash": "^4.16.4",
-    "md-data-table": "^1.8.0",
     "style-loader": "^0.13.1"
   },
   "devDependencies": {

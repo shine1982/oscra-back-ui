@@ -25,7 +25,7 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                 },
                 'mainpanel':{
                     template:
-                    '<div layout="column" ui-view flex-offset="20" flex="80"></div>',
+                    '<div layout="column" ui-view flex-offset="25" flex="75"></div>',
                     controller:function($scope,$state){
                         //$state.go('root.activityall')
                     }
