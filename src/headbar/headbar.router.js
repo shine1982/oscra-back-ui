@@ -10,8 +10,6 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                     controller:function($scope, $mdSidenav){
                         init()
                         function init(){
-                            //alert('init')
-                            //$mdSidenav('left').toggle();
                         }
                         $scope.showMobileMainHeader = true;
 

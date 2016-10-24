@@ -71,53 +71,6 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
 
     }
 })
-/*
-    .component('mdRadioTable',{
-        bindings: {
-            headers: '=',
-            content: '=',
-            sortable: '=',
-            filters: '=',
-            customClass: '=',
-            count: '=',
-            listurl: '@'
-            //selectedId: '='
-        },
-        template: require('./componentTemplate/radioTableTemplate.html'),
-        //template: require('./componentTemplate/radioGroupTemplate.html'),
-        controller: function mdRadioTableController($filter,$scope) {
-
-            var vm=this;
-            console.log(vm.headers)
-            console.log(vm.content)
-            var orderBy = $filter('orderBy');
-
-            vm.tablePage = 0;
-            vm.nbOfPages = function () {
-                return Math.ceil(vm.content.length / vm.count);
-            };
-            vm.getNumber = function (num) {
-                return new Array(num);
-            };
-            vm.handleSort = function (field) {
-                if (vm.sortable.indexOf(field) > -1) { return true; } else { return false; }
-            };
-            vm.order = function(predicate, reverse) {
-                vm.content = orderBy(vm.content, predicate, reverse);
-                vm.predicate = predicate;
-            };
-            vm.order(vm.sortable[0],false);
-            vm.getNumber = function (num) {
-                return new Array(num);
-            };
-            vm.goToPage = function (page) {
-                vm.tablePage = page;
-            }
-
-
-        }
-    })
- */
     .filter('startFrom',function (){
         return function (input,start) {
             start = +start;

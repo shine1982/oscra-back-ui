@@ -1,14 +1,4 @@
-<!--Refer to https://github.com/iamisti/mdDataTable-->
 <h2>CRA list</h2>
-
-<!--div>
-
-<ul ng-repeat="user in userList.users">
-    <li>
-        <a ui-sref="root.userdelete({userId:{{user.id}}})">Delete</a></li>
-</ul>
-
-</div-->
 
 <div layout='column'>
     <md-toolbar class="md-tall" layout='column'>
@@ -35,12 +25,6 @@
     </md-toolbar>
 
     <md-content layout="column" ng-click="userList.toggleSearch=false">
-        <!--md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
-                       filters="search" custom-class="userList.custom"  count="userList.count"
-                       listurl="root.userall" modifyurl="root.usermodify" deleteurl="root.userdelete" idkey="userId" >
-
-        </md-crud-table-->
-
         <md-crud-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
                         custom-class="craList.custom"  count="craList.count" filters="search"
                         listurl="root.cralist"  modifyurl="root.cramodify" deleteurl="root.cradelete" idkey="craId">
