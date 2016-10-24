@@ -5,7 +5,7 @@ config.entry.app.unshift("webpack-dev-server/client?http://localhost:8000/");
 var compiler = webpack(config);
 var server = new WebpackDevServer(compiler, {
     proxy: {
-        '/users/*': {
+        '/api/*': {
             target: 'http://localhost:8080',
             secure: false
         }

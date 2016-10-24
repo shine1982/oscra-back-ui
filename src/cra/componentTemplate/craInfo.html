@@ -1,0 +1,148 @@
+<md-content class="" layout-xs="column" layout="column" >
+        <div flex-xs="" flex-gt-xs="20" layout="row">
+            <md-card flex="70">
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">User information</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <div layout="row">
+                        <div flex="50">
+                            <strong >Nom : </strong>{{$ctrl.craprovider.firstName}}&nbsp;&nbsp;&nbsp;{{$ctrl.craprovider.lastName}}
+                        </div>
+                        <div flex="50">
+                            <strong>Manager : </strong>{{$ctrl.initcra.validator.firstName}}{{$ctrl.initcra.validator.lastName}}
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                            <strong>Email : </strong>{{$ctrl.craprovider.email}}
+                        </div>
+                        <div flex="50">
+                            <strong>Mobile : </strong>{{$ctrl.craprovider.phonenumber}}
+                        </div>
+                    </div>
+                    <div layout="row">
+                        <div flex="50">
+                            <strong>Address : </strong>{{$ctrl.craprovider.address}}
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+            <md-card flex="30">
+                <md-card-title>
+                    <md-card-title-text>
+                        <h2>CRA information</h2>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="row" layout-align="space-between">
+                    <div >
+                        <div flex="50">
+                            <strong >Mois : </strong>{{$ctrl.initcra.month}}
+                        </div>
+                        <div flex="50">
+                            <strong>Status : </strong>{{$ctrl.initcra.status}}
+                        </div>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+        <div flex-xs="" flex-gt-xs="60" layout="row">
+            <md-card flex="100">
+                <md-card-title>
+                    <md-card-title-text>
+                        <div class="md-padding" ng-cloak layout="column">
+                            <div layout="row" >
+                                <md-input-container>
+                                    <label>Activities</label>
+                                    <md-select ng-model="$ctrl.selectedActivity" md-selected-text="$ctrl.getSelectedText($ctrl.selectedActivity)">
+                                        <md-optgroup label="activities">
+                                            <md-option ng-repeat="activity in $ctrl.activitiesHeader" ng-value="activity" >
+                                                {{activity}}
+                                            </md-option>
+                                        </md-optgroup>
+                                    </md-select>
+                                </md-input-container>
+                                <md-button class="md-raised md-primary" ng-click="$ctrl.addActivity($ctrl.selectedActivity)">Add an activity</md-button>
+                            </div>
+                            <div flex>
+                                <table >
+                                    <tbody>
+                                    <tr>
+                                        <td>Day&nbsp;&nbsp;&nbsp;</td>
+                                        <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
+                                    </tr>
+                                    <tr ng-repeat=" activity in $ctrl.craActivities">
+                                        <td>{{activity}}</td>
+                                        <td ng-repeat=" day in $ctrl.days">
+                                            <div ng-switch="day.getDay()">
+                                                <div ng-switch-when="0">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-when="6">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-default>
+                                                    <!--input type="checkbox"-->
+                                                    <div ng-if="activity!= 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
+                                                        <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)">0.5&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-default>
+                                                            <div ng-click="$ctrl.chooseDay(activity,day)">
+                                                                1&nbsp;&nbsp;&nbsp;
+                                                            </div>
+                                                            <!--div ng-click="$ctrl.chooseDay(day)" ng-include="'./../../../assets/images/svg/1.svg'">
+                                                            </div-->
+                                                        </div>
+                                                    </div>
+                                                    <div ng-if="activity == 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
+                                                        <div ng-switch-when="0" >0&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="1" >0.5&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-default>
+                                                            <div>
+                                                                {{$ctrl.clickcount['Total'][day.getDate()-1]/2.0}}&nbsp;&nbsp;&nbsp;
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <md-divider ></md-divider>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </md-card-title-text>
+                </md-card-title>
+            </md-card>
+        </div>
+
+        <div flex-xs="" flex-gt-xs="20" layout="row">
+            <md-card flex="70">
+                <md-card-content layout="row" layout-align="space-between">
+                    <md-input-container flex="30">
+                        <label>Status</label>
+                        <md-select ng-model="$ctrl.initcra.status" md-selected-text="$ctrl.getSelectedText($ctrl.initcra.status)">
+                            <md-optgroup label="Status">
+                                <md-option ng-repeat="status in $ctrl.status" ng-value="status" >
+                                    {{status}}
+                                </md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>
+                    <md-input-container flex>
+                        <label>Comments</label>
+                        <textarea ng-model="$ctrl.initcra.description" columns="2" md-maxlength="150"></textarea>
+                    </md-input-container>
+
+                </md-card-content>
+            </md-card>
+            <md-card flex="30">
+                <md-card-content layout="row" layout-align="space-between">
+                    <div layout="column">
+                        <md-button class="md-raised md-primary" ng-click="$ctrl.submit()">Valider</md-button>
+                    </div>
+                </md-card-content>
+            </md-card>
+        </div>
+</md-content>
+
+

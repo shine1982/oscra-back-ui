@@ -1,5 +1,5 @@
 
-angular.module('oscra-ui').factory('UserService', service);
+angular.module('oscra-ui.user').factory('UserService', service);
 
 function service(API){
 

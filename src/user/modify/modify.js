@@ -1,32 +1,30 @@
 'use strict';
 
-module.exports = function controller(UserService, $stateParams, $state){
+module.exports = function controller(UserService, $stateParams, $state, $scope){
 
     var vm = this;
-
-    vm.modify = modify;
-
-    var userToModify;
 
     init();
 
     function init() {
-        console.log($stateParams.userId);
         UserService.findById($stateParams.userId, function (response) {
-            userToModify = response.data;
-            vm.firstName = userToModify.firstName;
-            vm.lastName = userToModify.lastName;
+            vm.inituser=response.data;
         });
-
     }
 
-    function modify() {
-        var user = {};
-        user.firstName = vm.firstName;
-        user.lastName = vm.lastName;
-        user.id=$stateParams.userId;
+    $scope.$on('sendUser', function(event,user){
+        //console.log(user)
         UserService.modify(user,function (response) {
-            $state.go('usersall');
+            if (response.status ==200){
+                alert('ok');
+                $scope.$broadcast("userUpdated")
+                $state.go('root.userall');
+            }else{
+                alert('System internal error');
+            }
         })
-    }
-};
+
+
+    })
+
+}

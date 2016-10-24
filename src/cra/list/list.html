@@ -1,9 +1,9 @@
-<h2>User List</h2>
+<h2>CRA list</h2>
 
 <div layout='column'>
     <md-toolbar class="md-tall" layout='column'>
 
-        <span flex></span>
+        <!--span flex></span>
         <div class="md-toolbar-tools">
             <div layout="row" flex="flex" class="fill-height">
                 <md-button  ui-sref="root.usercreate" class="md-fab md-accent">+</md-button>
@@ -21,15 +21,15 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div-->
     </md-toolbar>
 
     <md-content layout="column" ng-click="userList.toggleSearch=false">
-        <md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
-                  filters="search" custom-class="userList.custom"  count="userList.count"
-                    listurl="root.userall" modifyurl="root.usermodify" deleteurl="root.userdelete" idkey="userId" >
-
+        <md-crud-table headers="craList.headers" content="craList.content" sortable="craList.sortable"
+                        custom-class="craList.custom"  count="craList.count" filters="search"
+                        listurl="root.cralist"  modifyurl="root.cramodify" deleteurl="root.cradelete" idkey="craId">
         </md-crud-table>
     </md-content>
 </div>
+
 
