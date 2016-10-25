@@ -19,6 +19,7 @@ var app = angular.module('oscra-ui',
 
 require('./../assets/css/commonCrudTable.css');
 require('./../assets/css/loading.css');
+require('./../assets/css/headbar.css');
 require('./headbar/headbar.module');
 require('./common/table/table.module');
 require('./user/user.module');

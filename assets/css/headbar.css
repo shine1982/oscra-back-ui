@@ -23,6 +23,12 @@
     font-feature-settings: 'liga';
 }
 
+.md-sidenav-left-small {
+    min-width: 50px !important;
+    width: 50vw !important;
+    max-width: 70px !important;
+}
+
 /* Rules for sizing the icon. */
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
