@@ -11,7 +11,7 @@
 
     <md-content layout-padding="">
         <div>
-            <form name="userForm">
+            <form name="userForm" ng-submit="$ctrl.submit()">
                 <div layout-gt-sm="row">
                     <md-input-container class="md-block" flex-gt-sm="">
                         <label>First name</label>
@@ -134,11 +134,7 @@
                 </div>
 
                 <div>
-                    <md-button class="md-raised md-primary" ng-click="$ctrl.submit()" type="submit">submit</md-button>
-                </div>
-
-                <div layout="row" layout-sm="column" layout-align="space-around" ng-show="$ctrl.isloading">
-                    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                    <md-button class="md-raised md-primary"  type="submit">submit</md-button>
                 </div>
 
             </form>
@@ -146,4 +142,5 @@
     </md-content>
 </div>
 
+<div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>
 

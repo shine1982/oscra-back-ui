@@ -16,7 +16,7 @@ module.exports = function controller(CraService,$stateParams){
         });
 
         vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
-        vm.status =[ 'NOT_TRANSIMITTED',
+        vm.statusHeader =[ 'NOT_TRANSIMITTED',
             'TRANSIMITTED_NOT_VALIDATED',
             'VALIDATED_TRANSIMITTED'];
 

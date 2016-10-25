@@ -16,4 +16,12 @@ angular.module('oscra-ui.cra').config(function($stateProvider, $urlRouterProvide
             controller: require('./modify/modify'),
             controllerAs: 'craModify'
         })
+        .state('root.cracreate', {
+            url: '/cra/create',
+            template: require('./create/create.html'),
+            controller: require('./create/create'),
+            controllerAs: 'craCreate'
+        })
 });
+
+

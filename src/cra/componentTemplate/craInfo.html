@@ -1,9 +1,9 @@
 <md-content class="" layout-xs="column" layout="column" >
         <div flex-xs="" flex-gt-xs="20" layout="row">
-            <md-card flex="70">
+            <md-card flex="60">
                 <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">User information</span>
+                    <md-card-title-text layout="row">
+                        <span class="md-headline" >User information</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
@@ -30,7 +30,7 @@
                     </div>
                 </md-card-content>
             </md-card>
-            <md-card flex="30">
+            <md-card flex="40">
                 <md-card-title>
                     <md-card-title-text>
                         <h2>CRA information</h2>
@@ -48,7 +48,8 @@
                 </md-card-content>
             </md-card>
         </div>
-        <div flex-xs="" flex-gt-xs="60" layout="row">
+
+        <div flex-xs="" flex-gt-xs="40" layout="row">
             <md-card flex="100">
                 <md-card-title>
                     <md-card-title-text>
@@ -58,7 +59,7 @@
                                     <label>Activities</label>
                                     <md-select ng-model="$ctrl.selectedActivity" md-selected-text="$ctrl.getSelectedText($ctrl.selectedActivity)">
                                         <md-optgroup label="activities">
-                                            <md-option ng-repeat="activity in $ctrl.activitiesHeader" ng-value="activity" >
+                                            <md-option ng-repeat="activity in $ctrl.activities" ng-value="activity" >
                                                 {{activity}}
                                             </md-option>
                                         </md-optgroup>
@@ -73,7 +74,8 @@
                                         <td>Day&nbsp;&nbsp;&nbsp;</td>
                                         <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
                                     </tr>
-                                    <tr ng-repeat=" activity in $ctrl.craActivities">
+                                    <!-- add exisited activities-->
+                                    <tr ng-repeat=" activity in $ctrl.initcra.activities">
                                         <td>{{activity}}</td>
                                         <td ng-repeat=" day in $ctrl.days">
                                             <div ng-switch="day.getDay()">
@@ -92,12 +94,38 @@
                                                             </div-->
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <md-divider ></md-divider>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- display added activities-->
+                                    <tr ng-repeat=" activity in $ctrl.craActivities">
+                                        <td>{{activity}}</td>
+                                        <td ng-repeat=" day in $ctrl.days">
+                                            <div ng-switch="day.getDay()">
+                                                <div ng-switch-when="0">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-when="6">&nbsp;&nbsp;&nbsp;</div>
+                                                <div ng-switch-default>
+                                                    <!--input type="checkbox"-->
+                                                    <div ng-if="activity!= 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
+                                                        <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)"><font color="orange">0.5</font>&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="2" ng-click="$ctrl.chooseDay(activity,day)"><font color="blue">0.5</font>&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-default>
+                                                            <div ng-click="$ctrl.chooseDay(activity,day)">
+                                                                1&nbsp;&nbsp;&nbsp;
+                                                            </div>
+                                                            <!--div ng-click="$ctrl.chooseDay(day)" ng-include="'./../../../assets/images/svg/1.svg'">
+                                                            </div-->
+                                                        </div>
+                                                    </div>
                                                     <div ng-if="activity == 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
                                                         <div ng-switch-when="0" >0&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-when="1" >0.5&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="0.5" >0.5&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-default>
                                                             <div>
-                                                                {{$ctrl.clickcount['Total'][day.getDate()-1]/2.0}}&nbsp;&nbsp;&nbsp;
+                                                                {{$ctrl.clickcount['Total'][day.getDate()-1]}}&nbsp;&nbsp;&nbsp;
                                                             </div>
                                                         </div>
                                                     </div>
@@ -144,5 +172,7 @@
             </md-card>
         </div>
 </md-content>
+
+<div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>
 
 
