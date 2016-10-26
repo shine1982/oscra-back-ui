@@ -60,8 +60,8 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                 },
                 'mainpanel':{
                     template:
-                        '<div hide show-gt-xs layout="column" ui-view flex-offset="25" flex="75"></div>'+
-                        '<div hide show-xs layout="column" ui-view flex-offset="10" flex="90"></div>',
+                        '<div  layout="column" ui-view flex-offset="25" flex="75"></div>',
+                        //+ '<div hide show-xs layout="column" ui-view flex-offset="10" flex="90"></div>',
                     controller:function($scope,$state){
                         //$state.go('root.activityall')
                     }

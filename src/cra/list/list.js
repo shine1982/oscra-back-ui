@@ -25,7 +25,7 @@ module.exports = function controller(CraService, ActivityService, $scope){
             {name: 'Validation', field:'validation'},
             {name: 'Status', field: 'status'},
             {name: 'Last modified by', field: 'lastModifyBy'},
-            {name: 'Last updated time', field: 'lastUpdatedTime'},
+            {name: 'Last updated time', field: 'Date'},
             {name: 'Action', field: 'action'}
         ];
         vm.sortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
@@ -37,7 +37,18 @@ module.exports = function controller(CraService, ActivityService, $scope){
     function getAllCras(){
         CraService.list(function(response){
             console.log(response.data)
-            vm.content =response.data
+            var rawcra = response.data;
+            var finalcra=[];
+            for (var i=0;i<rawcra.length;i++){
+                var cradata ={
+                    "id": rawcra[i].id, "month": rawcra[i].month,"firstName":rawcra[i].provider.firstName,
+                    "lastName":rawcra[i].provider.lastName, "status":rawcra[i].status,"Date": (new Date(rawcra[i].updated)).toISOString(),
+                    "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName
+                };
+                console.log(cradata)
+                finalcra.push(cradata);
+            }
+            vm.content =finalcra
         })
     }
 

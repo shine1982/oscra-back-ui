@@ -65,18 +65,18 @@ angular.module('oscra-ui.cra').component('crainfo', {
         }
 
         vm.submit = function(){
-            handleActivities()
-            console.log('init cra activities ' + vm.initcra.activities)
-            console.log('selectedStatus '+vm.initcra.status);
-            console.log('comments '+vm.initcra.description);
-            //$scope.$emit('sendDeleteId', element);
+            var persistActivities=handleActivities();
         }
 
         function handleActivities(){
-            for (var i=0;i<vm.activities;i++){
-                if (vm.activities[i]!='Total')
-                    handleEachActivity(vm.activities[i],vm.clickcount[vm.activities[i]]);
+            var persistActivities={};
+            for (var i=0;i<vm.activities.length;i++){
+                if (vm.activities[i]!='Total' && vm.clickcount[vm.activities[i]]!== undefined ){
+                    persistActivities[vm.activities[i]]=[];
+                    persistActivities[vm.activities[i]]=handleEachActivity(vm.activities[i],vm.clickcount[vm.activities[i]]);
+                }
             }
+            return persistActivities;
         }
 
         function handleEachActivity(actname,actcount){
@@ -84,23 +84,60 @@ angular.module('oscra-ui.cra').component('crainfo', {
             var isStarted=false;
             var count=0, starttime=0, endtime=0;
             for (var i=0;i <vm.days.length;i++){
-                if (actcount[vm.days[i].getDate()-1] == 0 && isStarted === false) continue;
-                else if (actcount[vm.days[i].getDate()-1] == 0 && isStarted === true){
-                    endtime = vm.days[i].getDate();
-                    isStarted = false;
-                    var yearmonth=vm.initcra.month.split('-')
-                    var action ={
-                        'starttime': new Date(parseInt(vm.cratime[0]),parseInt(vm.cratime[1]-1), starttime),
-                        'endtime': new Date(parseInt(vm.cratime[0]),parseInt(vm.cratime[1]-1), endtime),
-                        'duration': endtime-starttime+1,
-                        'activityType': actname
-                    }
-                    allactions.push(action);
-                }
-
-
+                switch(isStarted){
+                    case false:
+                        switch(actcount[vm.days[i].getDate()-1]){
+                            case 0:
+                                break;
+                            case 1: //0.5 am
+                                starttime = vm.days[i].getDate();
+                                endtime=vm.days[i].getDate();
+                                allactions.push(createActionObject(starttime, endtime, actname,1));
+                                break;
+                            case 2://0.5 pm
+                                starttime = vm.days[i].getDate();
+                                endtime=vm.days[i].getDate();
+                                allactions.push(createActionObject(starttime, endtime, actname,2));
+                                break;
+                            case 3:// 1 day
+                                isStarted = true;
+                                starttime = vm.days[i].getDate();
+                                break;
+                        };
+                        break;
+                    case true:
+                        switch(actcount[vm.days[i].getDate()-1]){
+                            case 0:
+                                endtime = vm.days[i].getDate();
+                                allactions.push(createActionObject(starttime, endtime, actname,0));
+                                isStarted = false;
+                                break;
+                            case 1: //0.5 am
+                                endtime=vm.days[i].getDate();
+                                allactions.push(createActionObject(starttime, endtime, actname,1));
+                                break;
+                            case 2://0.5 pm
+                                endtime=vm.days[i].getDate();
+                                allactions.push(createActionObject(starttime, endtime, actname,2));
+                                break;
+                            case 3:// 1 day
+                                break;
+                        };
+                        break;
+                };
             }
+            return allactions;
+        }
 
+        function createActionObject(starttime,endtime,actname,amOrpm){
+            var yearmonth=vm.initcra.month.split('-');
+            return {
+                'starttime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), starttime),
+                'endtime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), endtime),
+                'amorpm': amOrpm,
+                'duration': endtime-starttime+1,
+                'activityType': actname
+            }
         }
 
 
