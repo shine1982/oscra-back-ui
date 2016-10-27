@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('oscra-ui.setting', ['oscra-ui.setting.activitytype']);
-require('./activtytype/activitytype.module')
+
+require('./activitytype/activitytype.module')
 
 

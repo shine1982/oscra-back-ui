@@ -1,9 +1,6 @@
 'use strict';
 
 angular.module('oscra-ui.table').component('mdCrudTable',{
-    require: {
-
-    },
     bindings: {
         headers: '=',
         content: '=',
@@ -86,7 +83,59 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
                 });
             },true);
     };
+    })
+    .component('mdSimpleTable',{
+        bindings: {
+            headers: '=',
+            content: '=',
+            sortable: '=',
+            filters: '=',
+            customClass: '=',
+            count: '=',
+            listurl: '@',
+            modifyurl : '@',
+            deleteurl : '@',
+            idkey : '@'
+        },
+        template: require('./componentTemplate/simpleTableTemplate.html'),
+        controller: function mdCrudTableController($filter, $mdDialog, $scope) {
+            var vm=this;
+            var orderBy = $filter('orderBy');
+
+            vm.tablePage = 0;
+            vm.nbOfPages = function () {
+                return Math.ceil(vm.content.length / vm.count);
+            };
+
+            vm.openOffscreenConfirm = function(element,ev) {
+                var confirm =  $mdDialog.confirm()
+                    .clickOutsideToClose(true)
+                    .title('Opening from offscreen')
+                    .textContent('Are you sure to delete the user ?')
+                    .ariaLabel('Offscreen Demo')
+                    .targetEvent(ev)
+                    .ok('Yes')
+                    .cancel('Cancel')
+                    // Or you can specify the rect to do the transition from
+                    .openFrom({
+                        top: -50,
+                        width: 30,
+                        height: 80
+                    })
+                    .closeTo({
+                        left: 1500
+                    });
+                $mdDialog.show(confirm).then(function() {
+                    $scope.$emit('sendDeleteId', element);
+                    //alert('delete')
+                }, function() {
+
+                });
+            };
+
+        }
 });
+
 
 /*
 app.directive('showFocus', function($timeout) {
