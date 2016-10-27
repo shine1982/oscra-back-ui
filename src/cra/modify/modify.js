@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(CraService,$stateParams, $scope){
+module.exports = function controller(CraService,$stateParams, $scope, $state){
 
     var vm = this;
 
@@ -9,6 +9,7 @@ module.exports = function controller(CraService,$stateParams, $scope){
     function init() {
         CraService.findById($stateParams.craId, function (response) {
             vm.initcra = response.data;
+            console.log('In modification cra')
             console.log(vm.initcra)
             vm.craprovider = vm.initcra.provider
             vm.cratime=vm.initcra.month.split("-");
@@ -43,9 +44,14 @@ module.exports = function controller(CraService,$stateParams, $scope){
         delete initcra["provider"];
         delete initcra["validator"];
         delete initcra["lastModifyUser"];
-        console.log(initcra);
         CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
             console.log(response.data)
+            if (response.status ==200){
+
+                $state.go('root.cralist');
+            }else{
+                alert('System internal error');
+            }
         })
     });
 /*

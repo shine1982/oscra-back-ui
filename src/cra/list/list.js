@@ -36,7 +36,6 @@ module.exports = function controller(CraService, ActivityService, $scope){
 
     function getAllCras(){
         CraService.list(function(response){
-            console.log(response.data)
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){
@@ -45,7 +44,6 @@ module.exports = function controller(CraService, ActivityService, $scope){
                     "lastName":rawcra[i].provider.lastName, "status":rawcra[i].status,"Date": (new Date(rawcra[i].updated)).toISOString(),
                     "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName
                 };
-                console.log(cradata)
                 finalcra.push(cradata);
             }
             vm.content =finalcra
@@ -53,7 +51,6 @@ module.exports = function controller(CraService, ActivityService, $scope){
     }
 
     $scope.$on('sendDeleteId', function(event,cra){
-        console.log(cra)
         CraService.delete(cra.id,function (response) {
             if (response.status ==200){
                 var index = vm.content.indexOf(cra);

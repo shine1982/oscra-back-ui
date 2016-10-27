@@ -75,29 +75,27 @@
                                         <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
                                     </tr>
                                     <!-- add exisited activities-->
-                                    <!--tr ng-repeat=" activity in $ctrl.initcra.activities">
-                                        <td>{{activity}}</td>
+                                    <tr ng-repeat=" activity in $ctrl.initcra.activities">
+                                        <td>{{activity.name}}</td>
                                         <td ng-repeat=" day in $ctrl.days">
                                             <div ng-switch="day.getDay()">
                                                 <div ng-switch-when="0">&nbsp;&nbsp;&nbsp;</div>
                                                 <div ng-switch-when="6">&nbsp;&nbsp;&nbsp;</div>
                                                 <div ng-switch-default>
-
-                                                    <div ng-if="activity!= 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
+                                                    <div ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
                                                         <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)">0.5&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-default>
                                                             <div ng-click="$ctrl.chooseDay(activity,day)">
                                                                 1&nbsp;&nbsp;&nbsp;
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <md-divider ></md-divider>
                                             </div>
                                         </td>
-                                    </tr-->
+                                    </tr>
                                     <!-- display added activities-->
                                     <tr ng-repeat=" activity in $ctrl.craActivities">
                                         <td>{{activity}}</td>

@@ -134,12 +134,13 @@ angular.module('oscra-ui.cra').component('crainfo', {
 
         function createActionObject(starttime,endtime,actname,amOrpm){
             var yearmonth=vm.initcra.month.split('-');
+            console.log('actname is '+actname)
             return {
                 'starttime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), starttime),
                 'endtime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), endtime),
                 'amorpm': amOrpm,
                 'duration': endtime-starttime+1,
-                'activityType': actname
+                'activityType': {'name':actname}
             }
         }
 

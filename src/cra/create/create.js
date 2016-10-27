@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(UserService,$stateParams){
+module.exports = function controller(UserService,$stateParams, $scope){
 
     var vm = this;
     vm.years =[];
@@ -26,7 +26,6 @@ module.exports = function controller(UserService,$stateParams){
         for (var  i=0;i<12;i++){
             vm.months.push(i+1)
         }
-
     }
 
     vm.updateYearMonth = function(month, year){
@@ -78,4 +77,25 @@ module.exports = function controller(UserService,$stateParams){
         }
         return days;
     }
+
+    $scope.$on('sendCra', function(event,initcra){
+        /*
+        console.log('cra in creation : '+initcra );
+        console.log(initcra);
+        var providerId = initcra.provider.id;
+        var validatorId = initcra.validator.id;
+        var lastModifyUserId = initcra.lastModifyUser.id;
+        delete initcra["provider"];
+        delete initcra["validator"];
+        delete initcra["lastModifyUser"];
+        CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
+            console.log(response.data)
+            if (response.status ==200){
+
+                $state.go('root.cralist');
+            }else{
+                alert('System internal error');
+            }
+        })*/
+    });
 }
