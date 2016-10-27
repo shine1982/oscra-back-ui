@@ -4,9 +4,9 @@ angular.module('oscra-ui.util').factory('API', service);
 
 function service($http){
 
-    var apiServerUrl = 'http://localhost:8000/';
+    var apiServerUrl = 'http://localhost:8000/api/';
 
-    function callApi(method,url, data, callback){
+    function callApi(method, url, data, callback){
         $http({
             method: method,
             url: apiServerUrl+url,
