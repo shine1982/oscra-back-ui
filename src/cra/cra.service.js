@@ -15,8 +15,8 @@ function craService(API){
     }
 
 
-    function modify(cra, providerId, validatorId, callBack) {
-        API.post(CRAS+'update?providerId='+providerId+'&validatorId='+validatorId, cra, callBack);
+    function modify(cra, providerId, validatorId, lastModifyUserId, callBack) {
+        API.post(CRAS+'update?providerId='+providerId+'&validatorId='+validatorId+'&lastModifyUserId='+lastModifyUserId, cra, callBack);
     }
 
     /*

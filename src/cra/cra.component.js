@@ -66,14 +66,17 @@ angular.module('oscra-ui.cra').component('crainfo', {
 
         vm.submit = function(){
             var persistActivities=handleActivities();
+            vm.initcra['activities']=persistActivities;
+            console.log(vm.initcra)
+            $scope.$emit('sendCra', vm.initcra);
         }
 
         function handleActivities(){
-            var persistActivities={};
+            var persistActivities=[];
             for (var i=0;i<vm.activities.length;i++){
                 if (vm.activities[i]!='Total' && vm.clickcount[vm.activities[i]]!== undefined ){
-                    persistActivities[vm.activities[i]]=[];
-                    persistActivities[vm.activities[i]]=handleEachActivity(vm.activities[i],vm.clickcount[vm.activities[i]]);
+                    var arrayToInsert = handleEachActivity(vm.activities[i],vm.clickcount[vm.activities[i]])
+                    persistActivities.splice.apply(persistActivities, [persistActivities.length, 0].concat(arrayToInsert));
                 }
             }
             return persistActivities;

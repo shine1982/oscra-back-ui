@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(CraService,$stateParams){
+module.exports = function controller(CraService,$stateParams, $scope){
 
     var vm = this;
 
@@ -33,4 +33,30 @@ module.exports = function controller(CraService,$stateParams){
         }
         return days;
     }
+
+    $scope.$on('sendCra', function(event,initcra){
+        console.log('cra in modification : '+initcra );
+        console.log(initcra);
+        var providerId = initcra.provider.id;
+        var validatorId = initcra.validator.id;
+        var lastModifyUserId = initcra.lastModifyUser.id;
+        delete initcra["provider"];
+        delete initcra["validator"];
+        delete initcra["lastModifyUser"];
+        console.log(initcra);
+        CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
+            console.log(response.data)
+        })
+    });
+/*
+    UserService.modify(user,function (response) {
+        if (response.status ==200){
+            alert('ok');
+            $scope.$broadcast("userUpdated")
+            $state.go('root.userall');
+        }else{
+            alert('System internal error');
+        }
+    })
+*/
 }
