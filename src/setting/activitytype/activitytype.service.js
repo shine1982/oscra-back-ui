@@ -9,18 +9,20 @@ function service(API){
         API.get(ACTIVITYTYPES+'all', null, callBack);
     }
 
-    function create(user, callBack) {
-        API.post(ACTIVITYTYPES+'add', user, callBack);
-    }
-/*
-    function modify(user, callBack) {
-        API.post(ACTIVITYTYPES+'update', user, callBack);
+    function create(activityType, callBack) {
+        API.post(ACTIVITYTYPES+'add', activityType, callBack);
     }
 
-    function remove(userId, callBack) {
-        API.post(ACTIVITYTYPES+'delete?userId='+userId, null, callBack);
+    function remove(activityTypeId, callBack) {
+        API.post(ACTIVITYTYPES+'delete?activityTypeId='+activityTypeId, null, callBack);
     }
 
+    function modify(activityType, callBack) {
+        API.post(ACTIVITYTYPES+'update', activityType, callBack);
+    }
+
+
+    /*
     function findById(userId, callBack) {
         API.get(ACTIVITYTYPES+'findById?userId='+userId, null, callBack);
     }
@@ -28,9 +30,10 @@ function service(API){
 
     return {
         list : list,
-        create : create/*
-        modify : modify,
+        create : create,
         delete : remove,
+        modify : modify
+        /*
         findById : findById*/
     }
 }
