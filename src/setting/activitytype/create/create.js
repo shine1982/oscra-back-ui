@@ -1,17 +1,21 @@
 'use strict';
 
-module.exports = function AddController(ActivityTypeService, $mdDialog, $scope) {
+module.exports = function controller($rootScope,$mdDialog, $scope) {
     var vm=this;
     vm.title='Ajouter un type d\'activite';
     vm.answer = function(answer) {
+        /*
+        console.log('current scope is ')
+        console.log($scope)
+        console.log('parent scope is ')
+        console.log($scope.$parent)*/
         //console.log('entering create controller')
-        $scope.$emit('sendAddIdViaSimpleTable', answer);
-        console.log(answer)
+        $rootScope.$emit('sendAddIdViaSimpleTable', answer);
+
         //console.log('sent event in create controller')
 
-        /*
-        $scope.$on('AddActivityTypeDone',function(event){
+        $rootScope.$on('AddActivityTypeDone',function(event){
             $mdDialog.hide(answer);
-        })*/
+        })
     };
 }

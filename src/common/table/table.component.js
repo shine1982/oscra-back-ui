@@ -90,8 +90,10 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
             content: '='
         },
         template: require('./componentTemplate/simpleTableTemplate.html'),
-        controller: function mdSimpleTableController($mdDialog, $scope, $filter) {
+        controller: function mdSimpleTableController($mdDialog, $scope, $rootScope) {
             var vm=this;
+
+
             vm.addNewElement = function(ev) {
                 $mdDialog.show({
                     controller: require('./../../setting/activitytype/create/create'),
@@ -107,14 +109,12 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
                     }, function() {
                         $scope.status = 'You cancelled the dialog.';
                     });
-
             };
 
             vm.modifyElement = function(element, ev) {
-                console.log(element)
                 $mdDialog.show({
                     controller: require('./../../setting/activitytype/modify/modify'),
-                    controllerAs: 'test',
+                    controllerAs: 'dialog',
                     template: require('./../../setting/activitytype/componentTemplate/activityTypeInfo.html'),
                     parent: angular.element(document.body),
                     targetEvent: ev,
@@ -129,7 +129,6 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
                     }, function() {
                         $scope.status = 'You cancelled the dialog.';
                     });
-
             };
 
             vm.openOffscreenConfirm = function(element,ev) {
@@ -156,11 +155,6 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
 
                 });
             };
-
-
-
-
-
         }
 });
 

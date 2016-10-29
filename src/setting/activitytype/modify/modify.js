@@ -1,15 +1,19 @@
-module.exports = function ModifyController($scope,ActivityTypeService, $mdDialog, element) {
+module.exports = function controller($rootScope, element, $mdDialog) {
+    console.log('elemene in modif is ')
+    console.log(element)
     var vm=this;
     vm.title='Modifier le type d\'activite';
     console.log('modify scope')
 
-    vm.submit = function(answer) {
+    vm.answer = function(answer) {
+
         var activityType = element;
-        activityType['name']=answer;
-        $scope.$emit('sendModifyIdViaSimpleTable', activityType);
-        /*
-        $scope.$on('AddActivityTypeDone',function(event){
+        activityType['name']=answer.toUpperCase();
+        console.log('the answer is '+activityType)
+        $rootScope.$emit('sendModifyIdViaSimpleTable', activityType);
+
+        $rootScope.$on('ModifyActivityTypeDone',function(event){
             $mdDialog.hide(answer);
-        })*/
+        })
     };
 }

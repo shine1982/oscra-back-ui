@@ -2,7 +2,7 @@
 /*
  * http://codepen.io/anon/pen/XjPprv
  * */
-module.exports = function controller(ActivityTypeService, $scope){
+module.exports = function controller(ActivityTypeService, $scope, $rootScope){
 
     var vm = this;
     init();
@@ -15,7 +15,7 @@ module.exports = function controller(ActivityTypeService, $scope){
             ];
 
         ActivityTypeService.list(function (response) {
-           console.log(response.data);
+           //console.log(response.data);
             var rawdata = response.data;
             var finaldata=[];
             for (var i=0;i<rawdata.length;i++){
@@ -30,9 +30,8 @@ module.exports = function controller(ActivityTypeService, $scope){
         })
     }
 
-    $scope.$on('sendAddIdViaSimpleTable', function(event,answer){
-        console.log('receieve event from add')
-        /*
+
+    $rootScope.$on('sendAddIdViaSimpleTable', function(event,answer){
         ActivityTypeService.create({'name':answer.toUpperCase()}, function (response) {
             if (response.status ==200){
                 if (response.data == null || response.data==[]){
@@ -43,26 +42,27 @@ module.exports = function controller(ActivityTypeService, $scope){
                         "name":response.data.name,
                         "Date": (new Date(response.data.updated)).toISOString()
                     })
-                    $scope.$broadcast('AddActivityTypeDone');
+                    $rootScope.$broadcast('AddActivityTypeDone');
                 }
             }else{
                 alert('System internal error');
             }
-        })*/
-    })
+        })
+    });
 
-    $scope.$on('sendModifyIdViaSimpleTable', function(event,element){
+    $rootScope.$on('sendModifyIdViaSimpleTable', function(event,element){
         ActivityTypeService.modify(element, function (response) {
             if (response.status ==200){
-
-
+                //should handle the case when the modified name is the same as one of element
+                $rootScope.$broadcast('ModifyActivityTypeDone');
             }else{
                 alert('System internal error');
             }
         })
-    })
+    });
 
     $scope.$on('sendDeleteIdViaSimpleTable', function(event,activityType){
+        console.log('delete event')
         ActivityTypeService.delete(activityType.id,function (response) {
             if (response.status ==200){
                 var index = vm.content.indexOf(activityType);
