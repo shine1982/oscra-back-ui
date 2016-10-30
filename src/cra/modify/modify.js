@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(CraService,$stateParams, $scope, $state){
+module.exports = function controller(CraService, ActivityTypeService, $stateParams, $scope, $state){
 
     var vm = this;
 
@@ -15,8 +15,14 @@ module.exports = function controller(CraService,$stateParams, $scope, $state){
             vm.cratime=vm.initcra.month.split("-");
             vm.days=getDaysInMonth(parseInt(vm.cratime[1])-1,parseInt(vm.cratime[0]));
         });
-
-        vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
+        vm.activitiesHeader=[];
+        ActivityTypeService.list(function(response){
+            var activityTypes = response.data;
+            for (var i=0; i<activityTypes.length;i++){
+                vm.activitiesHeader.push(activityTypes[i].name);
+            }
+        })
+        //vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
         vm.statusHeader =[ 'NOT_TRANSIMITTED',
             'TRANSIMITTED_NOT_VALIDATED',
             'VALIDATED_TRANSIMITTED'];

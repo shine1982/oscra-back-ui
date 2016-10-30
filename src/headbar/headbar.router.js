@@ -13,8 +13,8 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                          $mdSidenav('left')
                          .toggle()
                          .then(function(){
-                         console.log('toggled')
-                         })
+                             //console.log('toggled')
+                             })
                          });
 
                          $scope.openSideNavPanel = function() {
