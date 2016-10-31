@@ -44,6 +44,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
     $scope.$on('sendCra', function(event,initcra){
         console.log('cra in modification : '+initcra );
         console.log(initcra);
+
         var providerId = initcra.provider.id;
         var validatorId = initcra.validator.id;
         var lastModifyUserId = initcra.lastModifyUser.id;
@@ -60,6 +61,26 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             }
         })
     });
+/*
+    $scope.$on('sendCra', function(event,initcra){
+        console.log('cra in modification : '+initcra );
+        console.log(initcra);
+        var providerId = initcra.provider.id;
+        var validatorId = initcra.validator.id;
+        var lastModifyUserId = initcra.lastModifyUser.id;
+        delete initcra["provider"];
+        delete initcra["validator"];
+        delete initcra["lastModifyUser"];
+        CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
+            console.log(response.data)
+            if (response.status ==200){
+
+                $state.go('root.cralist');
+            }else{
+                alert('System internal error');
+            }
+        })
+    });*/
 /*
     UserService.modify(user,function (response) {
         if (response.status ==200){
