@@ -7,6 +7,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
     init();
 
     function init() {
+        vm.needLoadData = 2;
         CraService.findById($stateParams.craId, function (response) {
             vm.initcra = response.data;
             console.log('In modification cra')
@@ -14,6 +15,8 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             vm.craprovider = vm.initcra.provider
             vm.cratime=vm.initcra.month.split("-");
             vm.days=getDaysInMonth(parseInt(vm.cratime[1])-1,parseInt(vm.cratime[0]));
+            vm.initActivities = vm.initcra.activities;
+            vm.needLoadData-=1;
         });
         vm.activitiesHeader=[];
         ActivityTypeService.list(function(response){
@@ -21,6 +24,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             for (var i=0; i<activityTypes.length;i++){
                 vm.activitiesHeader.push(activityTypes[i].name);
             }
+            vm.needLoadData-=1;
         })
         //vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
         vm.statusHeader =[ 'NOT_TRANSIMITTED',

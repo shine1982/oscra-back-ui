@@ -10,10 +10,9 @@ angular.module('oscra-ui.cra').component('crainfo', {
         days:'='
     },
     template: require('./componentTemplate/craInfo.html'),
-    controller: function craInfoController($scope){
+    controller: function craInfoController($scope, $filter){
         var vm=this;
-
-
+        init();
 
         vm.getSelectedText = function(element) {
             if (element !== undefined) {
@@ -23,7 +22,6 @@ angular.module('oscra-ui.cra').component('crainfo', {
             }
         };
         vm.addActivity = function(activity){
-            //alert(activity)
             vm.craActivities.unshift(activity);
             var actcount=[]
             for (var i=0;i<32;i++){
@@ -32,19 +30,43 @@ angular.module('oscra-ui.cra').component('crainfo', {
             vm.clickcount[activity]=actcount;
         }
 
-        vm.init= init();
+
         function init(){
             console.log('cra init phase');
-            console.log(vm.initcra)
-
+            console.log(vm.initcra.activities);
+            // add total
             vm.craActivities = ['Total'];
             vm.clickcount=[];
-            var actcount=[]
-            for (var i=0;i<32;i++){
-                actcount[i]=0;
-            }
-            vm.clickcount['Total']=actcount;
+            vm.clickcount['Total']=clearMonthDayCounter();
+            // add all exisited activities
+            vm.initcra.activities.forEach(function(activity){
+                console.log('activity is ')
+                var startday = (new Date(activity.starttime)).getDate();
+                var endday = (new Date(activity.endtime)).getDate();
+                var actcount=clearMonthDayCounter();
+
+                for (var day=startday;day<=endday;day++){
+
+                }
+                if (vm.craActivities.indexOf(activity.activityType.name)<0){
+                    vm.craActivities.push(activity.activityType.name);
+
+                }else{
+
+                }
+                vm.clickcount[activity.activityType.name]=actcount;
+            })
         }
+
+        function clearMonthDayCounter(){
+            var daycounter=[];
+            for (var i=0;i<32;i++){
+                daycounter[i]=0;
+            }
+            return daycounter;
+        }
+
+
 
         vm.chooseDay = function (activity,day){
             var newact = (vm.clickcount[activity][day.getDate()-1]+1)%4;
