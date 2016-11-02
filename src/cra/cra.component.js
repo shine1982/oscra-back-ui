@@ -12,6 +12,9 @@ angular.module('oscra-ui.cra').component('crainfo', {
     template: require('./componentTemplate/craInfo.html'),
     controller: function craInfoController($scope){
         var vm=this;
+
+
+
         vm.getSelectedText = function(element) {
             if (element !== undefined) {
                 return element;
@@ -28,8 +31,12 @@ angular.module('oscra-ui.cra').component('crainfo', {
             }
             vm.clickcount[activity]=actcount;
         }
-        init();
+
+        vm.init= init();
         function init(){
+            console.log('cra init phase');
+            console.log(vm.initcra)
+
             vm.craActivities = ['Total'];
             vm.clickcount=[];
             var actcount=[]
@@ -143,7 +150,22 @@ angular.module('oscra-ui.cra').component('crainfo', {
                 'activityType': {'name':actname}
             }
         }
-
-
     }
-});
+})
+    .filter('dateFormat', function ($filter) {
+        return function (input) {
+            if (input == null){return '';}
+            var _date = $filter('date')(new Date(input), 'MMM dd yyyy');
+            return _date.toUpperCase();
+
+        }
+    })
+    .filter('getDayOnly', function ($filter) {
+        return function (input) {
+            if (input == null){return '';}
+            var _date = $filter('date')(new Date(input), 'dd');
+            return _date;
+
+        }
+    });;
+

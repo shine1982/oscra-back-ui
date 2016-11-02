@@ -49,7 +49,7 @@
             </md-card>
         </div>
 
-        <div flex-xs="" flex-gt-xs="40" layout="row">
+        <div flex-xs="" flex-gt-xs="40" layout="row" ng-init="$ctrl.init()">
             <md-card flex="100">
                 <md-card-title>
                     <md-card-title-text>
@@ -75,21 +75,27 @@
                                         <td ng-repeat=" day in $ctrl.days">{{day.getDate()}}&nbsp;&nbsp;&nbsp;</td>
                                     </tr>
                                     <!-- add exisited activities-->
-                                    <tr ng-repeat=" activity in $ctrl.initcra.activities">
-                                        <td>{{activity.name}}</td>
-                                        <td ng-repeat=" day in $ctrl.days">
-                                            <div ng-switch="day.getDay()">
+                                    <tr ng-repeat=" activity in $ctrl.initcra.activities"
+                                        ng-init="startday= (activity.starttime | getDayOnly); endday= (activity.endtime | getDayOnly)">
+                                        <td>{{activity.activityType.name}}</td>
+                                        <td ng-repeat=" day in $ctrl.days" >
+                                            <div ng-switch="day.getDay()" ng-init="dayinmonth= (day | getDayOnly)">
                                                 <div ng-switch-when="0">&nbsp;&nbsp;&nbsp;</div>
                                                 <div ng-switch-when="6">&nbsp;&nbsp;&nbsp;</div>
                                                 <div ng-switch-default>
-                                                    <div ng-switch="$ctrl.clickcount[activity][day.getDate()-1]">
-                                                        <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)">0.5&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-default>
-                                                            <div ng-click="$ctrl.chooseDay(activity,day)">
-                                                                1&nbsp;&nbsp;&nbsp;
-                                                            </div>
+                                                    <div ng-if="dayinmonth < startday" >
+                                                        0
+                                                    </div>
+                                                    <div ng-if="startday <= dayinmonth &amp;&amp; dayinmonth<= endday" >
+                                                        <div ng-switch="activity.amorpm">
+                                                            <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity.activityType.name,day)">1</div>
+                                                            <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity.activityType.name,day)"><font color="orange">0.5</font></div>
+                                                            <div ng-switch-when="2" ng-click="$ctrl.chooseDay(activity.activityType.name,day)"><font color="blue">0.5</font>&nbsp;&nbsp;&nbsp;</div>
+                                                            <div ng-switch-default>error</div>
                                                         </div>
+                                                    </div>
+                                                    <div ng-if="dayinmonth> endday" >
+                                                        0
                                                     </div>
                                                 </div>
                                                 <md-divider ></md-divider>
