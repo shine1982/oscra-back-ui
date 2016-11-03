@@ -14,7 +14,8 @@ require('./util/api');
 var app = angular.module('oscra-ui',
             ['ui.router','ngMaterial',
                 'oscra-ui.util', 'oscra-ui.headbar', 'oscra-ui.table',
-                'oscra-ui.user', 'oscra-ui.cra', 'oscra-ui.setting']);
+                'oscra-ui.user', 'oscra-ui.cra', 'oscra-ui.setting',
+                'oscra-ui.absence']);
 
 
 require('./../assets/css/commonCrudTable.css');
@@ -25,7 +26,7 @@ require('./common/table/table.module');
 require('./user/user.module');
 require('./cra/cra.module');
 require('./setting/setting.module');
-
+require('./absence/absence.module');
 
 
 
