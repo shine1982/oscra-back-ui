@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(UserService,$stateParams, $scope){
+module.exports = function controller(ActivityTypeService, UserService, CraService, $scope){
 
     var vm = this;
     vm.years =[];
@@ -9,17 +9,30 @@ module.exports = function controller(UserService,$stateParams, $scope){
     init();
 
     function init() {
-        vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
+        vm.needLoadData = 2;
+        vm.loadCraDetail = false;
+        UserService.list(function (response) {
+            vm.users = response.data;
+            vm.needLoadData -= 1;
+        })
+        vm.activitiesHeader=[];
+        ActivityTypeService.list(function(response){
+            var activityTypes = response.data;
+            for (var i=0; i<activityTypes.length;i++){
+                vm.activitiesHeader.push(activityTypes[i].name);
+            }
+            vm.needLoadData-=1;
+        })
         vm.status =[ 'NOT_TRANSIMITTED',
             'TRANSIMITTED_NOT_VALIDATED',
             'VALIDATED_TRANSIMITTED'];
         var yearBase = 2016;
         vm.years=getYears(getOffset(yearBase),getRange(yearBase))
         initMonth();
-        vm.loadCraDetail = false;
-        UserService.list(function (response) {
-            vm.users = response.data;
-        })
+
+        vm.initcra = {
+            'activities' : []
+        };
     }
 
     function initMonth() {
@@ -78,24 +91,24 @@ module.exports = function controller(UserService,$stateParams, $scope){
         return days;
     }
 
-    $scope.$on('sendCra', function(event,initcra){
+    $scope.$on('sendCra', function(event,cra){
+        console.log('cra in creation : '+cra );
+        console.log(cra);
+        var providerId = vm.selectedUser.id;
+        var validatorId = 2;
+        var lastModifyUserId = 2;
+        delete cra["provider"];
         /*
-        console.log('cra in creation : '+initcra );
-        console.log(initcra);
-        var providerId = initcra.provider.id;
-        var validatorId = initcra.validator.id;
-        var lastModifyUserId = initcra.lastModifyUser.id;
-        delete initcra["provider"];
         delete initcra["validator"];
-        delete initcra["lastModifyUser"];
-        CraService.modify(initcra, providerId, validatorId, lastModifyUserId, function (response){
+        delete initcra["lastModifyUser"];*/
+        CraService.create(cra, providerId, validatorId, lastModifyUserId, function (response){
             console.log(response.data)
             if (response.status ==200){
 
-                $state.go('root.cralist');
+               // $state.go('root.cralist');
             }else{
                 alert('System internal error');
             }
-        })*/
+        })
     });
 }

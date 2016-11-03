@@ -33,7 +33,8 @@ angular.module('oscra-ui.cra').component('crainfo', {
 
         function init(){
             console.log('cra init phase');
-            console.log(vm.initcra.activities);
+            console.log(vm.craprovider)
+            console.log(vm.initcra)
             // add total
             vm.craActivities = [];
             vm.clickcount=[];
@@ -166,7 +167,6 @@ angular.module('oscra-ui.cra').component('crainfo', {
 
         function createActionObject(starttime,endtime,actname,amOrpm){
             var yearmonth=vm.initcra.month.split('-');
-            console.log('actname is '+actname)
             return {
                 'starttime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), starttime),
                 'endtime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), endtime),

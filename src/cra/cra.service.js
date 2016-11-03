@@ -19,22 +19,18 @@ function craService(API){
         API.post(CRAS+'update?providerId='+providerId+'&validatorId='+validatorId+'&lastModifyUserId='+lastModifyUserId, cra, callBack);
     }
 
-    /*
-    function create(activity, userId, callBack) {
-        API.post(CRAS+'add?userId='+userId, activity, callBack);
+
+    function create(cra, providerId, validatorId, lastModifyUserId, callBack) {
+        API.post(CRAS+'add?providerId='+providerId+'&validatorId='+validatorId+'&lastModifyUserId='+lastModifyUserId, cra, callBack);
     }
-     */
+
     function remove(craId, callBack) {
         API.post(CRAS+'delete?craId='+craId, null, callBack);
     }
 
-
-
     return {
         list : list,
-
-        /*
-        create : create,*/
+        create : create,
         modify : modify,
         delete : remove,
         findById : findById
