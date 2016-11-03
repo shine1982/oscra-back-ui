@@ -35,27 +35,32 @@ angular.module('oscra-ui.cra').component('crainfo', {
             console.log('cra init phase');
             console.log(vm.initcra.activities);
             // add total
-            vm.craActivities = ['Total'];
+            vm.craActivities = [];
             vm.clickcount=[];
-            vm.clickcount['Total']=clearMonthDayCounter();
             // add all exisited activities
             vm.initcra.activities.forEach(function(activity){
-                console.log('activity is ')
                 var startday = (new Date(activity.starttime)).getDate();
                 var endday = (new Date(activity.endtime)).getDate();
                 var actcount=clearMonthDayCounter();
 
                 for (var day=startday;day<=endday;day++){
-
+                    actcount[day]= activity.amorpm == 0 ? 3: activity.amorpm;
                 }
                 if (vm.craActivities.indexOf(activity.activityType.name)<0){
                     vm.craActivities.push(activity.activityType.name);
-
+                    vm.clickcount[activity.activityType.name]=actcount;
                 }else{
-
+                    mergeCounter(actcount, activity.activityType.name);
                 }
-                vm.clickcount[activity.activityType.name]=actcount;
             })
+            vm.craActivities.push('Total');
+            vm.clickcount['Total']=clearMonthDayCounter();
+        }
+
+        function mergeCounter(src, aname){
+            for(var i=0;i<src.length;i++){
+                vm.clickcount[aname][i]+=src[i];
+            }
         }
 
         function clearMonthDayCounter(){
@@ -66,15 +71,13 @@ angular.module('oscra-ui.cra').component('crainfo', {
             return daycounter;
         }
 
-
-
         vm.chooseDay = function (activity,day){
-            var newact = (vm.clickcount[activity][day.getDate()-1]+1)%4;
-            vm.clickcount[activity][day.getDate()-1] = newact;
+            var newact = (vm.clickcount[activity][day.getDate()]+1)%4;
+            vm.clickcount[activity][day.getDate()] = newact;
             var sum=0;
             for (var i=0;i<vm.craActivities.length;i++){
                 if (vm.craActivities[i] !=  undefined && vm.craActivities[i]!= 'Total'){
-                    switch(vm.clickcount[vm.craActivities[i]][day.getDate()-1]){
+                    switch(vm.clickcount[vm.craActivities[i]][day.getDate()]){
                         case 0:
                             sum+=0;break;
                         case 1:
@@ -89,8 +92,8 @@ angular.module('oscra-ui.cra').component('crainfo', {
 
                 }
             }
-            vm.clickcount[activity][day.getDate()-1]= newact;
-            vm.clickcount['Total'][day.getDate()-1] = sum;
+            vm.clickcount[activity][day.getDate()]= newact;
+            vm.clickcount['Total'][day.getDate()] = sum;
         }
 
         vm.submit = function(){
