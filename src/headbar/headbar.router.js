@@ -18,10 +18,10 @@ angular.module('oscra-ui.headbar').config(function($stateProvider, $urlRouterPro
                          });
 
                          $scope.openSideNavPanel = function() {
-                         $mdSidenav('left').toggle();
+                             $mdSidenav('left').toggle();
                          };
                          $scope.closeSideNavPanel = function() {
-                         $mdSidenav('left').close();
+                            $mdSidenav('left').close();
                          };
 
                          $scope.openSmallSideNavPanel = function() {

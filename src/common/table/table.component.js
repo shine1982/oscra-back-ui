@@ -17,9 +17,12 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
     controller: function mdCrudTableController($filter, $mdDialog, $scope) {
         var vm=this;
         var orderBy = $filter('orderBy');
-
+//export
         vm.tablePage = 0;
-        vm.nbOfPages = function () {
+        vm.nbOfPages = nbOfPages;
+
+//declaration
+        function nbOfPages(){
             return Math.ceil(vm.content.length / vm.count);
         };
         vm.getNumber = function (num) {
