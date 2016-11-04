@@ -5,7 +5,7 @@ angular.module('oscra-ui.user').component('userinfo', {
     bindings: {
         user: '='
     },
-    template: require('./componentTemplate/userAllInfo.html'),
+    template: require('./componentTemplate/userInfo.html'),
     controller: function userInfoController($scope){
         var vm=this;
         vm.isloading = false;

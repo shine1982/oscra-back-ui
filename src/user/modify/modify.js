@@ -23,8 +23,6 @@ module.exports = function controller(UserService, $stateParams, $state, $scope){
                 alert('System internal error');
             }
         })
-
-
     })
 
 }

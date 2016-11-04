@@ -13,21 +13,14 @@ angular.module('oscra-ui.absence').config(function($stateProvider, $urlRouterPro
             url: '/absence/create',
             template: require('./create/create.html'),
             controller: require('./create/create'),
-            controllerAs: 'craCreate'
+            controllerAs: 'absenceCreate'
         })
-/*
-        .state('root.cramodify', {
-            url: '/cra/modify/:craId',
+        .state('root.absencemodify', {
+            url: '/absence/modify/:absenceId',
             template: require('./modify/modify.html'),
             controller: require('./modify/modify'),
-            controllerAs: 'craModify'
+            controllerAs: 'absenceModify'
         })
-        .state('root.cracreate', {
-            url: '/cra/create',
-            template: require('./create/create.html'),
-            controller: require('./create/create'),
-            controllerAs: 'craCreate'
-        })*/
 });
 
 
