@@ -5,16 +5,22 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
-<body ng-app="oscra-ui" >
-<div layout="column">
-    <div ui-view="headbar"></div>
-    <div ui-view="mainpanel" layout="row" flex="100"></div>
+<body ng-app="oscra-ui" layout="column" >
 
-</div>
+
+
+        <div ui-view="headbar" ></div>
+
+        <div ui-view="mainpanel" flex></div>
+
+        <div class="footer" ui-view="footer" ></div>
+
+
 
 <script type="text/javascript" src="/bundle.js" char  set="utf-8"></script>
 <!--https://codepen.io/renanpupin/pen/xGyopG -->
 
 
 </body>
+
 </html>
