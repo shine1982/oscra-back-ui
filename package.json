@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "oscra ui",
   "scripts": {
-    "test": "test",
+    "test": "./node_modules/karma/bin/karma start karma.conf.js",
     "start": "node ./serve.js"
   },
   "repository": {
@@ -37,6 +37,12 @@
     "style-loader": "^0.13.1"
   },
   "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-firefox-launcher": "^1.0.0",
+    "karma-jasmine": "^1.0.2",
+    "karma-safari-launcher": "^1.0.0",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.15.1"
   }

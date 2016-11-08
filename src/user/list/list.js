@@ -11,7 +11,7 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
-
+    vm.greeting="Hello, World!";
     init();
 
     function init() {
