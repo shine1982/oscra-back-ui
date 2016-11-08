@@ -3,6 +3,7 @@
 module.exports = function controller(UserService, $state, $scope){
 
     var vm = this;
+    vm.title="Créer un nouveau utilisateur";
     vm.inituser=null;
 
     $scope.$on('sendUser', function(event,user){

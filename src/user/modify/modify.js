@@ -3,7 +3,7 @@
 module.exports = function controller(UserService, $stateParams, $state, $scope){
 
     var vm = this;
-
+    vm.title="Modifier cet utilisateur";
     init();
 
     function init() {

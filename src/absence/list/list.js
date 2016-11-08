@@ -13,6 +13,7 @@ module.exports = function controller(AbsenceService, $scope){
     init();
 
     function init() {
+        vm.currentpage=0;
         vm.headers = [{name:'Id', field:'id'},
             {name: 'Provider', field: 'provider'},
             {name: 'Start time', field:'starttime'},
@@ -20,10 +21,8 @@ module.exports = function controller(AbsenceService, $scope){
             {name: 'Validator', field:'validator'},
             {name: 'LastModifyBy', field:'lastModifyBy'},
             {name: 'Action', field: 'action'}];
-        AbsenceService.list(function (response) {
-            vm.absences = adaptToHeaders(response.data);
-            console.log('list absences')
-            console.log(vm.absences)
+        AbsenceService.fakelist(vm.currentpage, function (response) {
+            var absences = adaptToHeaders(response.data);
             vm.content = vm.absences;
         })
     }
@@ -58,6 +57,15 @@ module.exports = function controller(AbsenceService, $scope){
             }else{
                 alert('System internal error');
             }
+        })
+    })
+
+    $scope.$on('sendCurrentPage', function(event,currentPage){
+        vm.currentpage=currentPage;
+        AbsenceService.fakelist(vm.currentpage, function (response) {
+            var absences = adaptToHeaders(response.data);
+            vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(absences))
+
         })
     })
 

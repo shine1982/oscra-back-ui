@@ -2,30 +2,16 @@
 
 module.exports = function ($scope, $rootScope) {
 
-    //var vm = this;
-    $scope.isSideNavOpen= false;
-    /*
-    $scope.$on('$viewContentLoaded', function () {
-        sendOpenLeftSideNavEvent();
+    var vm = this;
+    vm.isSideNavOpen= false;
 
-        $mdSidenav('left')
-            .toggle()
-            .then(function () {
-                //console.log('toggled')
-            })
-    });
-     */
-
-
-    $scope.openSideNavPanel = function () {
-        //$mdSidenav('left').toggle();
+    vm.openSideNavPanel = function () {
         console.log('clicked')
         sendOpenLeftSideNavEvent()
-        $scope.isSideNavOpen = !$scope.isSideNavOpen
+        vm.isSideNavOpen = !vm.isSideNavOpen
     };
-    $scope.closeSideNavPanel = function () {
-        $scope.isSideNavOpen = !$scope.isSideNavOpen
-       // $mdSidenav('left').close();
+    vm.closeSideNavPanel = function () {
+        vm.isSideNavOpen = !vm.isSideNavOpen
     };
 
     function sendOpenLeftSideNavEvent(){

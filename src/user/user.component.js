@@ -3,7 +3,8 @@
 
 angular.module('oscra-ui.user').component('userinfo', {
     bindings: {
-        user: '='
+        title : '=',
+        user : '='
     },
     template: require('./componentTemplate/userInfo.html'),
     controller: function userInfoController($scope){

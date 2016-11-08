@@ -2,6 +2,7 @@
 
 angular.module('oscra-ui.table').component('mdCrudTable',{
     bindings: {
+        currentpage : '=',
         headers: '=',
         content: '=',
         sortable: '=',
@@ -20,8 +21,14 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
 //export
         vm.tablePage = 0;
         vm.nbOfPages = nbOfPages;
+        vm.loadMore = loadMore;
 
 //declaration
+        function loadMore(){
+            vm.currentpage+=1;
+            $scope.$emit('sendCurrentPage', vm.currentpage);
+        }
+
         function nbOfPages(){
             return Math.ceil(vm.content.length / vm.count);
         };

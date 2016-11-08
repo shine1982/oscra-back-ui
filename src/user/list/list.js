@@ -11,6 +11,7 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
+    vm.currentpage=0;
 
     init();
 
@@ -24,7 +25,7 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
             {name: 'Position', field: 'position'},
             {name: 'Role', field: 'role'},
             {name: 'Action', field: 'action'}];
-        UserService.list(function (response) {
+        UserService.fakelist(vm.currentpage,function (response) {
             vm.users = response.data;
             vm.content = vm.users;
         })
@@ -38,6 +39,13 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
             }else{
                 alert('System internal error');
             }
+        })
+    })
+    $scope.$on('sendCurrentPage', function(event,currentPage){
+        vm.currentpage=currentPage;
+        UserService.fakelist(vm.currentpage,function (response) {
+            var insertUsers = response.data;
+            vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(insertUsers))
         })
     })
 };

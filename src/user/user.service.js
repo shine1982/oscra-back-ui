@@ -5,6 +5,10 @@ function service(API){
 
     var USERS = 'users/';
 
+    function fakelist(dstPage, callBack) {
+        API.get(USERS+'fakeall?dstPage='+dstPage, null, callBack);
+    }
+
     function list(callBack) {
         API.get(USERS+'all', null, callBack);
     }
@@ -27,6 +31,7 @@ function service(API){
 
 
     return {
+        fakelist : fakelist,
         list : list,
         create : create,
         modify : modify,

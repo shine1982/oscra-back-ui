@@ -5,6 +5,10 @@ function service(API){
 
     var ABSENCES = 'absences/';
 
+    function fakelist(dstPage, callBack) {
+        API.get(ABSENCES+'fakeall?dstPage='+dstPage, null, callBack);
+    }
+
     function list(callBack) {
         API.get(ABSENCES+'all', null, callBack);
     }
@@ -27,6 +31,7 @@ function service(API){
 
 
     return {
+        fakelist : fakelist,
         list : list,
         create : create,
         modify : modify,

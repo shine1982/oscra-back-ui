@@ -2,9 +2,9 @@
 
 <div layout='column' >
     <md-card  class="md-padding">
-
+        <h2>Liste d'employée</h2>
         <md-card-content >
-            <span class="md-headline"> List d'employée</span>
+
             <md-toolbar class="md-tall" >
 
                 <span flex></span>
@@ -29,7 +29,7 @@
             </md-toolbar>
 
             <md-content layout="column" ng-click="userList.toggleSearch=false">
-                <md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                <md-crud-table currentpage="userList.currentpage" headers="userList.headers" content="userList.content" sortable="userList.sortable"
                           filters="search" custom-class="userList.custom"  count="userList.count"
                             listurl="root.userall" modifyurl="root.usermodify" idkey="userId" >
 

@@ -5,24 +5,24 @@
 <!--div class="header"  -->
     <md-toolbar >
         <div class="md-toolbar-tools">
-            <md-button hide show-gt-xs class="md-icon-button" aria-label="Side Panel" ng-click="openSideNavPanel()">
+            <md-button hide show-gt-xs class="md-icon-button" aria-label="Side Panel" ng-click="headbarCtrl.openSideNavPanel()">
                 <md-tooltip>Side Panel</md-tooltip>
                 <md-icon class="md-default-theme" class="material-icons">&#xE5D2;</md-icon>
             </md-button>
 
             <h2 hide show-gt-xs>
-                <span>Heading</span>
+                <span>Oscra</span>
             </h2>
 
             <span flex></span>
             <md-button class="md-icon-button" aria-label="User">
-                <md-tooltip>User</md-tooltip>
-                <ai class="material-icons md-24" >account_box</ai>
-            </md-button>
-
-            <md-button class="md-icon-button" aria-label="User">
                 <md-tooltip>Help</md-tooltip>
                 <i class="material-icons">help</i>
+            </md-button>
+
+            <md-button class="md-icon-button" aria-label="User" ng-click="">
+                <md-tooltip>User</md-tooltip>
+                <ai class="material-icons md-24" >account_box</ai>
             </md-button>
         </div>
     </md-toolbar>
