@@ -4,13 +4,11 @@
     <md-card  class="md-padding">
         <h2>Liste d'employée</h2>
         <md-card-content >
-
             <md-toolbar class="md-tall" >
-
                 <span flex></span>
                 <div class="md-toolbar-tools">
                     <div layout="row" flex="flex" class="fill-height">
-                        <md-button  ui-sref="root.usercreate" class="md-fab md-accent">+</md-button>
+                        <md-button  id="user-crud-table-fixed-button" ui-sref="root.usercreate" class="md-fab md-accent ">+</md-button>
                         <div ng-hide="userList.toggleSearch" class="md-toolbar-item md-breadcrumb">
                             <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
                         </div>

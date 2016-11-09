@@ -7,12 +7,50 @@ i {
     font-size: 24px;
 }
 
+/*
 .main-fab {
     position:absolute;
     z-index:20;
     font-size:30px;
     top:220px;
     left:290px;
+    transform:scale(.88,.88);
+}
+*/
+#user-crud-table-fixed-button{
+    position:absolute;
+    z-index:20;
+    font-size:30px;
+    top:145px;
+    right:20px;
+    transform:scale(.88,.88);
+}
+
+#cra-crud-table-fixed-button{
+    position:absolute;
+    z-index:20;
+    font-size:30px;
+    top:145px;
+    right:20px;
+    transform:scale(.88,.88);
+}
+
+#absence-crud-table-fixed-button{
+    position:absolute;
+    z-index:20;
+    font-size:30px;
+    top:145px;
+    right:20px;
+    transform:scale(.88,.88);
+}
+
+#simple-table-fixed-button {
+    position:absolute;
+    z-index:20;
+    font-size:30px;
+    top:170px;
+    right:20px;
+
     transform:scale(.88,.88);
 }
 

@@ -3,13 +3,13 @@
             <md-card flex="60">
                 <md-card-title>
                     <md-card-title-text layout="row">
-                        <span class="md-headline" >User information</span>
+                        <span class="md-headline" >Information d'utlisateur</span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
                     <div layout="row">
                         <div flex="50">
-                            <strong >Nom : </strong>{{$ctrl.craprovider.firstName}}&nbsp;&nbsp;&nbsp;{{$ctrl.craprovider.lastName}}
+                            <strong >Nom Prénom: </strong>{{$ctrl.craprovider.firstName}}&nbsp;&nbsp;&nbsp;{{$ctrl.craprovider.lastName}}
                         </div>
                         <div flex="50">
                             <strong>Manager : </strong>{{$ctrl.initcra.validator.firstName}}{{$ctrl.initcra.validator.lastName}}
@@ -25,26 +25,34 @@
                     </div>
                     <div layout="row">
                         <div flex="50">
-                            <strong>Address : </strong>{{$ctrl.craprovider.address}}
+                            <strong>Adresse : </strong>{{$ctrl.craprovider.address}}
                         </div>
                     </div>
                 </md-card-content>
             </md-card>
             <md-card flex="40">
                 <md-card-title>
-                    <md-card-title-text>
-                        <h2>CRA information</h2>
+                    <md-card-title-text layout="row">
+                        <span class="md-headline" >Information du CRA</span>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content layout="row" layout-align="space-between">
-                    <div >
-                        <div flex="40">
+                <md-card-content>
+                        <div layout="row" >
+                            <div>
                             <strong >Mois : </strong>{{$ctrl.initcra.month}}
+                            </div>
                         </div>
-                        <div flex="40">
-                            <strong>Status : </strong>{{$ctrl.initcra.status}}
+                        <div layout="row" ng-switch="$ctrl.initcra.status">
+                            <div ng-switch-when="NOT_TRANSIMITTED">
+                                <strong>Status : </strong>Le CRA n'a été pas envoyé.
+                            </div>
+                            <div ng-switch-when="TRANSIMITTED_NOT_VALIDATED">
+                                <strong>Status : </strong>Le CRA a été envoyé, mais il n'est pas encore validé.
+                            </div>
+                            <div ng-switch-when="VALIDATED_TRANSIMITTED">
+                                <strong>Status : </strong>Le CRA a été envoyé, et il a pas été validé.
+                            </div>
                         </div>
-                    </div>
                 </md-card-content>
             </md-card>
         </div>
@@ -64,7 +72,9 @@
                                         </md-optgroup>
                                     </md-select>
                                 </md-input-container>
-                                <md-button class="md-raised md-primary" ng-click="$ctrl.addActivity($ctrl.selectedActivity)">Add an activity</md-button>
+                                <md-button class="md-fab" ng-click="$ctrl.addActivity($ctrl.selectedActivity)">
+                                    +
+                                </md-button>
                             </div>
                             <div flex>
                                 <table >
@@ -84,22 +94,16 @@
                                                     <!--input type="checkbox"-->
                                                     <div ng-if="activity!= 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()]">
                                                         <div ng-switch-when="0" ng-click="$ctrl.chooseDay(activity,day)">0&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)"><font color="orange">0.5</font>&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-when="2" ng-click="$ctrl.chooseDay(activity,day)"><font color="blue">0.5</font>&nbsp;&nbsp;&nbsp;</div>
-                                                        <div ng-switch-default>
-                                                            <div ng-click="$ctrl.chooseDay(activity,day)">
-                                                                1&nbsp;&nbsp;&nbsp;
-                                                            </div>
-                                                            <!--div ng-click="$ctrl.chooseDay(day)" ng-include="'./../../../assets/images/svg/1.svg'">
-                                                            </div-->
-                                                        </div>
+                                                        <div ng-switch-when="1" ng-click="$ctrl.chooseDay(activity,day)">0.5&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="2" ng-click="$ctrl.chooseDay(activity,day)">1&nbsp;&nbsp;&nbsp;</div>
                                                     </div>
                                                     <div ng-if="activity == 'Total' " ng-switch="$ctrl.clickcount[activity][day.getDate()]">
                                                         <div ng-switch-when="0" >0&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-when="0.5" >0.5&nbsp;&nbsp;&nbsp;</div>
+                                                        <div ng-switch-when="1" >1&nbsp;&nbsp;&nbsp;</div>
                                                         <div ng-switch-default>
                                                             <div>
-                                                                {{$ctrl.clickcount['Total'][day.getDate()]}}&nbsp;&nbsp;&nbsp;
+                                                                <font color="red">{{$ctrl.clickcount['Total'][day.getDate()]}}&nbsp;&nbsp;&nbsp;</font>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -125,7 +129,17 @@
                         <md-select ng-model="$ctrl.initcra.status" md-selected-text="$ctrl.getSelectedText($ctrl.initcra.status)">
                             <md-optgroup label="Status">
                                 <md-option ng-repeat="status in $ctrl.status" ng-value="status" >
-                                    {{status}}
+                                    <div ng-switch="status">
+                                        <div ng-switch-when="NOT_TRANSIMITTED">
+                                            Le CRA n'a été pas envoyé.
+                                        </div>
+                                        <div ng-switch-when="TRANSIMITTED_NOT_VALIDATED">
+                                            Le CRA a été envoyé, mais il n'est pas encore validé.
+                                        </div>
+                                        <div ng-switch-when="VALIDATED_TRANSIMITTED">
+                                            Le CRA a été envoyé, et il a été validé.
+                                        </div>
+                                    </div>
                                 </md-option>
                             </md-optgroup>
                         </md-select>

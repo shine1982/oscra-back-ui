@@ -1,7 +1,7 @@
 
 
 <div class="main-fab">
-    <md-button   class="md-fab md-accent" ng-click="$ctrl.addNewElement($event)">+</md-button>
+    <md-button   id="simple-table-fixed-button" class="md-fab md-accent" ng-click="$ctrl.addNewElement($event)">+</md-button>
 </div>
 
 <table md-colresize="md-colresize mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" class="md-table">
@@ -18,23 +18,12 @@
             </td>
 
             <td ng-repeat="h in $ctrl.headers"  ng-if="h.field == 'action'" class="md-table-content" >
-                <md-button  class="md-primary md-raised edgePadding" ng-click="$ctrl.modifyElement(c,$event)">
-                    edit
-                </md-button>
-                <md-button  class="md-primary md-raised edgePadding" ng-click="$ctrl.openOffscreenConfirm(c,$event)">
-                    delete
-                </md-button>
+                <i class="material-icons" ng-click="$ctrl.modifyElement(c,$event)">mode_edit</i>
+                <i class="material-icons" ng-click="$ctrl.openOffscreenConfirm(c,$event)">delete_forever</i>
             </td>
         </tr>
     </tbody>
 </table>
 <style>
-    .main-fab {
-        position:absolute;
-        z-index:20;
-        font-size:30px;
-        top:80px;
-        left:380px;
-        transform:scale(.88,.88);
-    }
+
 </style>
