@@ -10,6 +10,7 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
         vm.headers=[
             {name: 'Id', field: 'id'},
             {name: 'Name', field: 'name'},
+            {name: 'Label', field: 'label'},
             {name: 'Updated', field: 'Date'},
             {name: 'Action', field: 'action'}
             ];
@@ -22,6 +23,7 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
                 var data ={
                     "id": rawdata[i].id,
                     "name":rawdata[i].name,
+                    "label": rawdata[i].label,
                     "Date": (new Date(rawdata[i].updated)).toISOString()
                 };
                 finaldata.push(data);
@@ -32,7 +34,8 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
 
 
     $rootScope.$on('sendAddIdViaSimpleTable', function(event,answer){
-        ActivityTypeService.create({'name':answer.toUpperCase()}, function (response) {
+        answer.name = answer.name.toUpperCase();
+        ActivityTypeService.create(answer, function (response) {
             if (response.status ==200){
                 if (response.data == null || response.data==[]){
                     alert('you have already added this element');
@@ -40,6 +43,7 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
                     vm.content.push({
                         "id": response.data.id,
                         "name":response.data.name,
+                        "label": response.data.label,
                         "Date": (new Date(response.data.updated)).toISOString()
                     })
                     $rootScope.$broadcast('AddActivityTypeDone');

@@ -15,7 +15,7 @@ var app = angular.module('oscra-ui',
             ['ui.router','ngMaterial',
                 'oscra-ui.util',  'oscra-ui.table', //'oscra-ui.layout',
                 'oscra-ui.user', 'oscra-ui.cra', 'oscra-ui.setting',
-                'oscra-ui.absence']);
+                'oscra-ui.absence', 'oscra-ui.notif']);
 
 
 require('./../assets/css/commonCrudTable.css');
@@ -29,6 +29,7 @@ require('./user/user.module');
 require('./cra/cra.module');
 require('./setting/setting.module');
 require('./absence/absence.module');
+require('./notif/notif.module');
 app.config(function($mdThemingProvider) {
     $mdThemingProvider.theme('altTheme')
         .primaryPalette('blue') // specify primary color, all
@@ -81,32 +82,6 @@ app.config(function($mdThemingProvider) {
                 }
             }
         })
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/dashboard');
 });
- app.directive('sidenavPushIn', function () {
-     return {
-         restrict: 'A',
-         require: '^mdSidenav',
-         link: function ($scope, element, attr, sidenavCtrl) {
-             var body = angular.element(document.body);
-             body.addClass('md-sidenav-push-in');
-             var cssClass = (element.hasClass('md-sidenav-left') ? 'md-sidenav-left' : 'md-sidenav-right') + '-open';
-             var stateChanged = function (state) {
-                 body[state ? 'addClass' : 'removeClass'](cssClass);
-             };
-             // overvwrite default functions and forward current state to custom function
-             angular.forEach(['open', 'close', 'toggle'], function (fn) {
-                 var org = sidenavCtrl[fn];
-                 sidenavCtrl[fn] = function () {
-                     var res = org.apply(sidenavCtrl, arguments);
-                     stateChanged(sidenavCtrl.isOpen());
-                     return res;
-                 };
-             });
-         }
-     }
- });
-
-
-
 

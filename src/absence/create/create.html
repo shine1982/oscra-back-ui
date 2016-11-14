@@ -3,11 +3,12 @@
 </div>
 
 
-<div flex-xs="" flex-gt-xs="10" layout="column" ng-if="absenceCreate.needLoadData == 0 ">
-    <md-card  class="md-padding">
-        <h2>Créer un congé</h2>
 
-        <div layout="row" >
+<md-card  class="md-padding">
+    <div   ng-if="absenceCreate.needLoadData == 0 ">
+        <h2>Créer un congé</h2>
+        <div layout="row">
+
             <md-input-container  >
                 <label>User</label>
                 <md-select ng-model="absenceCreate.selectedUser" md-selected-text="absenceCreate.getSelectedText(absenceCreate.selectedUser.firstName+' '+absenceCreate.selectedUser.lastName)">
@@ -28,8 +29,8 @@
         <div ng-hide="absenceCreate.loadAbsenceDetail == false" flex="60">
             <absenceinfo absence="absenceCreate.initabsence"></absenceinfo>
         </div>
-    </md-card>
-</div>
+    </div>
+</md-card>
 
 
 

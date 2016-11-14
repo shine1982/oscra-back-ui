@@ -7,6 +7,9 @@ module.exports = function controller(UserService, AbsenceService, $scope){
     vm.loadAbsenceDetail = false;
     init();
 
+    vm.test = function(){
+        alert('test')
+    }
     function init(){
         vm.needLoadData = 1;
         UserService.list(function (response) {

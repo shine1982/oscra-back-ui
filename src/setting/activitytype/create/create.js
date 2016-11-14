@@ -2,7 +2,11 @@
 
 module.exports = function controller($rootScope,$mdDialog, $scope) {
     var vm=this;
-    vm.title='Ajouter un type d\'activite';
+    vm.title={
+        name:'Ajouter un type d\'activite',
+        label:'Ajouter un label'
+    }
+
     vm.answer = function(answer) {
         /*
         console.log('current scope is ')

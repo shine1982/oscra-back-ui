@@ -4,13 +4,23 @@
         <form name="ActivityType" ng-submit="dialog.answer(dialog.activityType)">
 
             <md-input-container class="md-block">
-                <label>{{dialog.title}}</label>
-                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="dialog.activityType">
+                <label>{{dialog.title.name}}</label>
+                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="dialog.activityType.name">
                 <div ng-messages="activityType.name.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="md-maxlength">The activity type name must be less than 20 characters long.</div>
                 </div>
             </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>{{dialog.title.label}}</label>
+                <input md-maxlength="20" md-no-asterisk name="name" ng-model="dialog.activityType.label">
+                <div ng-messages="activityType.name.$error">
+                    <div ng-message="md-maxlength">The activity type name must be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+
+
 
             <div>
                 <md-button type="submit">Submit</md-button>

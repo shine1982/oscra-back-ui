@@ -9,8 +9,12 @@ angular.module('oscra-ui.absence').component('absenceinfo', {
     controller: function absenceInfoController($scope){
         var vm=this;
         vm.isloading = false;
+        vm.saveasadraft = function(){
+            vm.absence.status='NOT_TRANSIMITTED'
+            $scope.$emit('sendAbsence', vm.absence)
+        }
         vm.submit = function(){
-            console.log(vm.absence)
+            vm.absence.status='TRANSIMITTED_NOT_VALIDATED'
             vm.isloading = true;
             $scope.$emit('sendAbsence', vm.absence);
         }
