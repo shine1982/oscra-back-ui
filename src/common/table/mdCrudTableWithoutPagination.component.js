@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('oscra-ui.table').component('mdCrudTable',{
+angular.module('oscra-ui.table').component('mdCrudTableWithoutPagination',{
     bindings: {
         currentpage : '=',
         headers: '=',
@@ -8,38 +8,28 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
         sortable: '=',
         filters: '=',
         customClass: '=',
-        count: '=',
         listurl: '@',
         modifyurl : '@',
         deleteurl : '@',
         idkey : '@'
     },
-    template: require('./componentTemplate/crudTableTemplate.html'),
-    controller: function mdCrudTableController($filter, $mdDialog, $scope) {
+    template: require('./componentTemplate/crudTableTemplateWithoutPagination.html'),
+    controller: function mdCrudTableWithoutPagination($filter, $mdDialog, $scope) {
         var vm=this;
         var orderBy = $filter('orderBy');
-       // vm.order(vm.sortable[0],false);
+        console.log(vm.content)
 //export
-        vm.tablePage = 0;
-        vm.nbOfPages = nbOfPages;
         vm.loadMore = loadMore;
         vm.getNumber = getNumber;
-        vm.goToPage = goToPage;
         vm.handleSort = handleSort;
         vm.order = order;
-
         vm.openOffscreenConfirm = openOffscreenConfirm;
-
-
+        //vm.order(vm.sortable[0],false);
 
 //declaration
         function loadMore(){
             vm.currentpage+=1;
             $scope.$emit('sendCurrentPage', vm.currentpage);
-        }
-
-        function nbOfPages(){
-            return Math.ceil(vm.content.length / vm.count);
         }
 
         function getNumber (num) {
@@ -64,8 +54,7 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
                 .targetEvent(ev)
                 .ok('Yes')
                 .cancel('Cancel')
-                // Or you can specify the rect to do the transition from
-                .openFrom({
+                .openFrom({ // Or you can specify the rect to do the transition from
                     top: -50,
                     width: 30,
                     height: 80
@@ -79,11 +68,6 @@ angular.module('oscra-ui.table').component('mdCrudTable',{
 
             });
         }
-
-        function goToPage (page) {
-            vm.tablePage = page;
-        }
-
     }
 })
 

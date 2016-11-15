@@ -41,6 +41,7 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
             }
         })
     })
+
     $scope.$on('sendCurrentPage', function(event,currentPage){
         vm.currentpage=currentPage;
         UserService.fakelist(vm.currentpage,function (response) {
