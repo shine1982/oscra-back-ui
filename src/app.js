@@ -83,6 +83,6 @@ app.config(function($mdThemingProvider) {
                 }
             }
         })
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/dashboard');
 });
 
