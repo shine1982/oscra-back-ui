@@ -8,8 +8,15 @@ module.exports = function controller(UserService, $stateParams, $state, $scope){
 
     function init() {
         UserService.findById($stateParams.userId, function (response) {
+            console.log('init user')
+            console.log(response.data)
             vm.inituser=response.data;
         });
+
+        UserService.managerlist(function(response){
+            console.log(response.data)
+            vm.managers = response.data;
+        })
     }
 
     $scope.$on('sendUser', function(event,user){

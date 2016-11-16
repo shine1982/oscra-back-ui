@@ -16,17 +16,17 @@
                 <form name="userForm" ng-submit="$ctrl.submit()">
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>First name</label>
+                            <label>Prénom</label>
                             <input ng-model="$ctrl.user.firstName">
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Last name</label>
+                            <label>Nom</label>
                             <input ng-model="$ctrl.user.lastName">
                         </md-input-container>
                     </div>
 
-                    <div layout-gt-sm="row">
+                    <!--div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Mot de passe</label>
                             <input ng-model="$ctrl.user.password" required="" type="password">
@@ -36,7 +36,7 @@
                             <label>Confirmation le mot de passe</label>
                             <input ng-model="$ctrl.user.confirmationpassword" required="" type="password">
                         </md-input-container>
-                    </div>
+                    </div-->
 
                     <md-input-container class="md-block">
                         <label>Email</label>
@@ -51,7 +51,7 @@
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Mobile Number</label>
+                            <label>Numero Mobile</label>
                             <input name="phoneNumber" ng-model="$ctrl.user.phoneNumber" placeholder="123457890" required="" ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                             <div ng-messages="userForm.phoneNumber.$error" role="alert" multiple="">
@@ -65,7 +65,7 @@
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Fix Number</label>
+                            <label>Tél Fix</label>
                             <input name="fixNumber" ng-model="$ctrl.user.fixNumber" placeholder="123457890"  ng-pattern="/^[0-9]{10}$/" md-maxlength="10">
 
                             <div ng-messages="userForm.fixNumber.$error" role="alert" multiple="">
@@ -79,30 +79,41 @@
                     </div>
 
                     <div layout-gt-xs="row">
-                        <md-input-container>
-                            <label>Position</label>
+                        <md-input-container flex-gt-sm="" flex="33">
+                            <label>Date de naissance</label>
+                            <md-datepicker ng-model="$ctrl.user.birthday"></md-datepicker>
+                        </md-input-container>
+
+                        <md-input-container flex="33">
+                            <label>Fonction</label>
                             <input ng-model="$ctrl.user.position">
                         </md-input-container>
 
-                        <md-input-container flex-gt-sm="">
-                            <label>Birthday</label>
-                            <md-datepicker ng-model="$ctrl.user.birthday"></md-datepicker>
+                        <md-input-container class="md-block" flex-gt-sm="" flex="33">
+                            <label>Manager</label>
+                            <md-select ng-model="$ctrl.user.manager">
+                                <md-option ng-repeat="manager in $ctrl.managers track by manager.id" ng-value="manager" ng-selected="manager.id === $ctrl.user.manager.id">
+                                    {{manager.firstName}} {{manager.lastName}}
+                                </md-option>
+                            </md-select>
                         </md-input-container>
+
                     </div>
 
                     <div layout-gt-xs="row">
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Civility</label>
+                            <label>Civilité</label>
                             <md-select ng-model="$ctrl.user.civility">
                                 <md-option value="MALE">
-                                    MALE
+                                    Moniseur
                                 </md-option>
                                 <md-option value="FEMALE">
-                                    FEMALE
+                                    Madame
                                 </md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container >
+
+                        <md-input-container ng-hide="true">
                             <label>Role</label>
                             <input ng-model="$ctrl.user.role" ng-init="role='USER'" disabled="">
                         </md-input-container>
@@ -114,25 +125,25 @@
                             <input ng-model="$ctrl.user.numero">
                         </md-input-container>
                         <md-input-container class="md-block">
-                            <label>Road</label>
+                            <label>Rue</label>
                             <input ng-model="$ctrl.user.road">
                         </md-input-container>
                     </div>
 
                     <md-input-container class="md-block">
-                        <label>Complement</label>
+                        <label>Complément</label>
                         <input ng-model="$ctrl.user.supplementaryAddress">
                     </md-input-container>
 
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>City</label>
+                            <label>Ville</label>
                             <input ng-model="$ctrl.user.city">
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm="">
-                            <label>Postal Code</label>
+                            <label>Code Postal</label>
                             <input name="$ctrl.user.postalCode" ng-model="$ctrl.user.postalCode" placeholder="12345" required="" ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
 
                             <div ng-messages="userForm.postalCode.$error" role="alert" multiple="">
@@ -148,7 +159,7 @@
                     </div>
 
                     <div>
-                        <md-button class="md-raised md-primary"  type="submit">submit</md-button>
+                        <md-button class="md-raised md-primary"  type="submit">Valider</md-button>
                     </div>
 
                 </form>
