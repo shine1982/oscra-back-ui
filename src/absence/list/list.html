@@ -1,5 +1,5 @@
 
-<div layout='column'>
+<div layout='column' >
     <md-card  class="md-padding">
         <h2>Liste de Congé</h2>
         <md-toolbar class="md-tall" layout='column'>
@@ -27,7 +27,7 @@
 
         <md-content layout="column" ng-click="absenceList.toggleSearch=false">
             <md-crud-table currentpage="absenceList.currentpage" headers="absenceList.headers" content="absenceList.content" sortable="absenceList.sortable"
-                           filters="search" custom-class="absenceList.custom"  count="absenceList.count"
+                           filters="search" custom-class="absenceList.custom"  count="absenceList.count" statusflag="absenceList.statusflag"
                            listurl="root.absencelist" modifyurl="root.absencemodify"  idkey="absenceId" >
 
             </md-crud-table>

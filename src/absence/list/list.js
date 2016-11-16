@@ -3,38 +3,46 @@
 module.exports = function controller(AbsenceService, $scope){
 
     var vm = this;
-    vm.absences=[];
     vm.content=[];
     vm.toggleSearch = false;
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
-    vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
+    vm.sortable = ['id','starttime', 'endtime','status','provider','lastModifyBy','updated', 'action'];
     vm.count = 5;
+
 
     init();
 
     function init() {
         vm.currentpage=0;
         vm.headers = [{name:'Id', field:'id'},
-            {name: 'Provider', field: 'provider'},
-            {name: 'Start time', field:'starttime'},
-            {name: 'End time', field:'endtime'},
-            {name: 'Validator', field:'validator'},
-            {name: 'LastModifyBy', field:'lastModifyBy'},
+            {name: 'Début', field:'starttime'},
+            {name: 'Fin', field:'endtime'},
+            {name: 'Statut', field: 'status'},
+            {name: 'Demandeur', field: 'provider'},
+            {name: 'Mis à jour par', field:'lastModifyBy'},
+            {name: 'Date de mis à jour', field:'updated'},
             {name: 'Action', field: 'action'}];
+        vm.statusflag={
+            'TO_VALIDATE': 'blankflag',
+            'AGREED': 'greenflag',
+            'REFUSED': 'redflag'
+        };
         AbsenceService.fakelist(vm.currentpage, function (response) {
             var absences = adaptToHeaders(response.data);
-            vm.content = vm.absences;
+            vm.content = absences;
+            console.log('absences content are')
+            console.log(vm.content)
         })
     }
 
     function adaptToHeaders(absences){
         absences.forEach(function(absence){
             absence['provider']=convertUserObjToName(absence['provider']);
-            absence['validator']=convertUserObjToName(absence['validator']);
             absence['lastModifyBy']=convertUserObjToName(absence['lastModifyUser']);
-            console.log(absence['starttime'])
             absence['starttime']=convertToDateString(absence['starttime']);
             absence['endtime']=convertToDateString(absence['endtime']);
+            absence['updated']=convertToDateString(absence['updated']);
+            delete absence["validator"];
         })
         return absences;
     }
@@ -43,13 +51,10 @@ module.exports = function controller(AbsenceService, $scope){
         return (new Date(obj)).toLocaleDateString();
     }
     function convertUserObjToName(user){
-        console.log('here the scope is in convertUserobj')
-        console.log(user)
         return user.firstName+' '+ user.lastName;
     }
 
     $scope.$on('sendDeleteId', function(event,absence){
-        console.log(absence)
         AbsenceService.delete(absence.id,function (response) {
             if (response.status ==200){
                 var index = vm.content.indexOf(absence);

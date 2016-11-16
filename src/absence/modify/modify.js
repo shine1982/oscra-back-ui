@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function controller(AbsenceService, $stateParams, $scope){
+module.exports = function controller(AbsenceService, $stateParams, $scope, $state){
 
     var vm = this;
 
@@ -20,7 +20,7 @@ module.exports = function controller(AbsenceService, $stateParams, $scope){
             if (response.status ==200){
                 alert('ok');
                 $scope.$broadcast("absenceUpdated")
-                //$state.go('root.userall');
+                $state.go('root.absencelist');
             }else{
                 alert('System internal error');
             }

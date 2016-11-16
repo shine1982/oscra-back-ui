@@ -6,26 +6,36 @@
                 <form name="absenceForm" ng-submit="$ctrl.submit()">
                     <div layout-gt-sm="row">
                         <md-input-container flex-gt-sm="">
-                            <label>Start time</label>
+                            <label>Début</label>
                             <md-datepicker ng-model="$ctrl.absence.starttime"></md-datepicker>
                         </md-input-container>
 
                         <md-input-container flex-gt-sm="">
-                            <label>End time</label>
+                            <label>Fin</label>
                             <md-datepicker ng-model="$ctrl.absence.endtime"></md-datepicker>
                         </md-input-container>
                     </div>
 
+                    <md-input-container class="md-block" flex-gt-sm="" flex="33">
+                        <label>Statut</label>
+                        <md-select ng-model="$ctrl.absence.status">
+                            <md-option value="TO_VALIDATE">
+
+                            </md-option>
+                            <md-option value="AGREED">
+                                Approuvé
+                            </md-option>
+                            <md-option value="REFUSED">
+                                Refusé
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
 
                     <div layout-gt-sm="row" >
                         <md-input-container >
-                            <label>Comments</label>
+                            <label>Commentaire</label>
                             <textarea ng-model="$ctrl.absence.description" columns="5" md-maxlength="150"></textarea>
                         </md-input-container>
-                    </div>
-
-                    <div>
-                        <md-button class="md-raised md-primary" ng-click="$ctrl.saveasadraft()">Sauvegarder comme un brouillon</md-button>
                     </div>
 
                     <div>
@@ -34,7 +44,6 @@
                 </form>
             </div>
         </md-content>
-
 </div>
 
 <div class="loading" ng-show="$ctrl.isloading">Loading&#8230;</div>

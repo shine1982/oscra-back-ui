@@ -7,15 +7,27 @@
 
         <tbody>
             <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters | startFrom:$ctrl.tablePage*$ctrl.count | limitTo: $ctrl.count" class="md-table-content-row">
+
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
-                ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                ng-init="f = c[h.field]">
                     {{f}}
-                    <!--a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
-                    </a-->
                 </td>
+
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
-                    {{(h.field.indexOf('date') > 0) ?  $filter('date')(c[h.field])  : c[h.field];}}
+                    <div ng-if=" h.field != 'status' ">
+                        {{c[h.field]}}
+                    </div>
+                    <div ng-if=" h.field == 'status' ">
+                        <div ng-switch="$ctrl.statusflag[c[h.field]]">
+                            <div ng-switch-when="blankflag">blankflag</div>
+                            <div ng-switch-when="redflag">redflag</div>
+                            <div ng-switch-when="greenflag">greenflag</div>
+                        </div>
+                    </div>
                 </td>
+
+
+
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" layout="row">
                     <div ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
                         ng-init="f = c[h.field]">
