@@ -10,7 +10,8 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
         vm.headers=[
             {name: 'Id', field: 'id'},
             {name: 'Name', field: 'name'},
-            {name: 'Label', field: 'label'},
+            {name: 'Category', field: 'category'},
+            {name: 'Description', field: 'description'},
             {name: 'Updated', field: 'Date'},
             {name: 'Action', field: 'action'}
             ];
@@ -23,7 +24,8 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
                 var data ={
                     "id": rawdata[i].id,
                     "name":rawdata[i].name,
-                    "label": rawdata[i].label,
+                    "category": rawdata[i].category,
+                    "description": rawdata[i].description,
                     "Date": (new Date(rawdata[i].updated)).toISOString()
                 };
                 finaldata.push(data);
@@ -35,6 +37,8 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
 
     $rootScope.$on('sendAddIdViaSimpleTable', function(event,answer){
         answer.name = answer.name.toUpperCase();
+        console.log('in list scope')
+        console.log(answer)
         ActivityTypeService.create(answer, function (response) {
             if (response.status ==200){
                 if (response.data == null || response.data==[]){
@@ -43,7 +47,8 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
                     vm.content.push({
                         "id": response.data.id,
                         "name":response.data.name,
-                        "label": response.data.label,
+                        "category": response.data.category,
+                        "description": response.data.description,
                         "Date": (new Date(response.data.updated)).toISOString()
                     })
                     $rootScope.$broadcast('AddActivityTypeDone');

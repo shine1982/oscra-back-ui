@@ -13,10 +13,18 @@
             </md-input-container>
 
             <md-input-container class="md-block">
-                <label>{{dialog.title.label}}</label>
-                <input md-maxlength="20" md-no-asterisk name="name" ng-model="dialog.activityType.label">
-                <div ng-messages="activityType.name.$error">
+                <label>{{dialog.title.description}}</label>
+                <input md-maxlength="20" md-no-asterisk name="description" ng-model="dialog.activityType.description">
+                <div ng-messages="activityType.description.$error">
                     <div ng-message="md-maxlength">The activity type name must be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>{{dialog.title.category}}</label>
+                <input md-maxlength="20" md-no-asterisk name="category" ng-model="dialog.activityType.category">
+                <div ng-messages="activityType.category.$error">
+                    <div ng-message="md-maxlength">The activity type category must be less than 20 characters long.</div>
                 </div>
             </md-input-container>
 
