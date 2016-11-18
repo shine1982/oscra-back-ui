@@ -16,20 +16,32 @@
                         </md-input-container>
                     </div>
 
-                    <md-input-container class="md-block" flex-gt-sm="" flex="33">
-                        <label>Statut</label>
-                        <md-select ng-model="$ctrl.absence.status">
-                            <md-option value="TO_VALIDATE">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm="" flex="33">
+                            <label>Statut</label>
+                            <md-select ng-model="$ctrl.absence.status">
+                                <md-option value="TO_VALIDATE">
 
-                            </md-option>
-                            <md-option value="AGREED">
-                                Approuvé
-                            </md-option>
-                            <md-option value="REFUSED">
-                                Refusé
-                            </md-option>
-                        </md-select>
-                    </md-input-container>
+                                </md-option>
+                                <md-option value="AGREED">
+                                    Approuvé
+                                </md-option>
+                                <md-option value="REFUSED">
+                                    Refusé
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container flex>
+                            <label>Type de congé </label>
+                            <md-select ng-model="$ctrl.absence.absenceType" md-selected-text="$ctrl.getSelectedText($ctrl.absence.absenceType)">
+                                <md-option ng-repeat="absencetype in $ctrl.absencetypes track by absencetype.id"
+                                           ng-selected="absencetype.id === $ctrl.absence.absenceType.id" ng-value="absencetype" >
+                                    {{absencetype.name}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
 
                     <div layout-gt-sm="row" >
                         <md-input-container >

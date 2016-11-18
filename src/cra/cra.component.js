@@ -25,13 +25,13 @@ angular.module('oscra-ui.cra').component('crainfo', {
             } else {
                 return "Choisir un element";
             }
-        };
+        }
 
         function addActivity(activity){
-            console.log('entering add activity')
+            console.log('entering add activity');
             if (checkActivity(activity)){
                 vm.craActivities.unshift(activity);
-                var actcount=[]
+                var actcount=[];
                 for (var i=0;i<32;i++){
                     actcount[i]=0;
                 }
