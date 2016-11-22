@@ -1,12 +1,12 @@
 var config = require("./webpack.config.js");
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-config.entry.app.unshift("webpack-dev-server/client?http://localhost:8000/");
+config.entry.app.unshift("webpack-dev-server/client?http://80.12.83.208:8000/");
 var compiler = webpack(config);
 var server = new WebpackDevServer(compiler, {
     proxy: {
         '/api/*': {
-            target: 'http://localhost:8080',
+            target: 'http://80.12.83.208:8080',
             secure: false
         }
     }
