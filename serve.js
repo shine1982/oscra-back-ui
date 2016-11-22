@@ -1,7 +1,7 @@
 var config = require("./webpack.config.js");
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-config.entry.app.unshift("webpack-dev-server/client?http://80.12.83.208:8000/");
+config.entry.app.unshift("webpack-dev-server/client?http://80.12.83.208:80/");
 var compiler = webpack(config);
 var server = new WebpackDevServer(compiler, {
     proxy: {
@@ -11,4 +11,4 @@ var server = new WebpackDevServer(compiler, {
         }
     }
 });
-server.listen(8000);
+server.listen(80);
