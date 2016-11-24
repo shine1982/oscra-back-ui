@@ -7,12 +7,13 @@ require('angular-animate');
 require('angular-aria');
 require('angular-material');
 
+require('angular-cookies')
 
 require('./util/api');
 
 
 var app = angular.module('oscra-ui',
-            ['ui.router','ngMaterial',
+            ['ui.router','ngMaterial', 'ngCookies',
                 'oscra-ui.util',  'oscra-ui.table', //'oscra-ui.layout',
                 'oscra-ui.user', 'oscra-ui.cra', 'oscra-ui.setting',
                 'oscra-ui.absence', 'oscra-ui.notif', 'oscra-ui.login']);

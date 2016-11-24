@@ -7,7 +7,12 @@ function service(API){
         API.post('login?username='+username+'&password='+password, null, callBack);
     }
 
+    function signout( callBack) {
+        API.post('logout', null, callBack);
+    }
+
     return {
-        signin : signin
+        signin  : signin,
+        signout : signout
     }
 }
