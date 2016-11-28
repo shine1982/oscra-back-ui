@@ -12,7 +12,7 @@ module.exports = function ($state, LoginService, $cookies, $mdDialog) {
         LoginService.signin(user.username,user.password, function (response) {
             console.log(response.data)
             var currentUser = response.data;
-            $cookies.put('currentUser', currentUser.id);
+            $cookies.putObject('currentUser', currentUser);
             $mdDialog.hide();
             $state.go('root');
         });

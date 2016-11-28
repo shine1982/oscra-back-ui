@@ -25,12 +25,17 @@ function service(API){
         API.post(ACTIVITYTYPES+'update', activityType, callBack);
     }
 
+    function findById(activityTypeId, callBack) {
+        API.get(ACTIVITYTYPES+'findById?activityTypeId=', activityTypeId, callBack);
+    }
+
     return {
         list : list,
         listCategoryAbsence: listCategoryAbsence,
         create : create,
         delete : remove,
-        modify : modify
+        modify : modify,
+        findById : findById
 
     }
 }

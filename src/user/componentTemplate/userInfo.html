@@ -17,16 +17,34 @@
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Prénom</label>
-                            <input ng-model="$ctrl.user.firstName">
+                            <input ng-model="$ctrl.user.firstName" required="">
                         </md-input-container>
 
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Nom</label>
-                            <input ng-model="$ctrl.user.lastName">
+                            <input ng-model="$ctrl.user.lastName" required="">
                         </md-input-container>
                     </div>
 
-                    <!--div layout-gt-sm="row">
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm="">
+                            <label>Identifiant</label>
+                            <input ng-model="$ctrl.user.username" required="" type="username">
+                        </md-input-container>
+
+                        <md-input-container class="md-block">
+                            <label>Email</label>
+                            <input required="" type="email" name="Email" ng-model="$ctrl.user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
+
+                            <div ng-messages="email.$error" role="alert">
+                                <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                    Your email must be between 10 and 100 characters long and look like an e-mail address.
+                                </div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
                             <label>Mot de passe</label>
                             <input ng-model="$ctrl.user.password" required="" type="password">
@@ -36,18 +54,9 @@
                             <label>Confirmation le mot de passe</label>
                             <input ng-model="$ctrl.user.confirmationpassword" required="" type="password">
                         </md-input-container>
-                    </div-->
+                    </div>
 
-                    <md-input-container class="md-block">
-                        <label>Email</label>
-                        <input required="" type="email" name="Email" ng-model="$ctrl.user.email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/">
 
-                        <div ng-messages="email.$error" role="alert">
-                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-                                Your email must be between 10 and 100 characters long and look like an e-mail address.
-                            </div>
-                        </div>
-                    </md-input-container>
 
                     <div layout-gt-sm="row">
                         <md-input-container class="md-block" flex-gt-sm="">
@@ -91,7 +100,7 @@
 
                         <md-input-container class="md-block" flex-gt-sm="" flex="33">
                             <label>Manager</label>
-                            <md-select ng-model="$ctrl.user.manager">
+                            <md-select ng-model="$ctrl.user.manager" required="">
                                 <md-option ng-repeat="manager in $ctrl.managers track by manager.id" ng-value="manager" ng-selected="manager.id === $ctrl.user.manager.id">
                                     {{manager.firstName}} {{manager.lastName}}
                                 </md-option>

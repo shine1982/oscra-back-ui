@@ -1,24 +1,23 @@
 'use strict';
 
-module.exports = function controller(CraNotifService, AbsenceNotifService, $scope){
+module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifService, $scope){
 
     var vm = this;
     init();
 
     function init(){
-        var currentuserid=2;
         //===================================== Cra Notif setting =======================================
         vm.initcranotifloaded=false;
         vm.cranotifCurrentpage=0;
         vm.cranotifHeaders=[{name:'Id', field:'id'},
             {name: 'Information du compte-rendu d\'activité(CRA) ', field: 'cra'},
             {name: 'Message envoyé par', field: 'crafrom'},
-            {name: 'Description', field: 'description'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'outlinkid', field: 'outlinkid'},
             {name: 'Action', field: 'action'}
         ];
         vm.cranotifSortable = ['id','cra', 'crafrom','description'];
-        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, currentuserid, function(response){
+        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.currentUser.id, function(response){
             console.log('cranotif works')
             console.log(response.data)
             vm.cranotifContent=adaptCraDataToDisplay(response.data);
@@ -31,12 +30,12 @@ module.exports = function controller(CraNotifService, AbsenceNotifService, $scop
         vm.absencenotifHeaders=[{name:'Id', field:'id'},
             {name: 'Information du Congé', field: 'absence'},
             {name: 'Message envoyé par', field: 'absencefrom'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'outlinkid', field: 'outlinkid'},
-            {name: 'Description', field: 'description'},
             {name: 'Action', field: 'action'}
         ];
-        vm.absencenotifSortable = ['id', 'absence','absencefrom', 'description'];
-        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, currentuserid, function (response) {
+        vm.absencenotifSortable = ['id', 'absence','absencefrom'];
+        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.currentUser.id, function (response) {
             vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);
             vm.initabsencenotifloaded = true;
         })

@@ -9,24 +9,24 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
     function init(){
         vm.headers=[
             {name: 'Id', field: 'id'},
-            {name: 'Name', field: 'name'},
-            {name: 'Category', field: 'category'},
+            {name: 'Nom', field: 'name'},
+            {name: 'Catégorie', field: 'category'},
             {name: 'Description', field: 'description'},
-            {name: 'Updated', field: 'Date'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
             ];
-
         ActivityTypeService.list(function (response) {
            //console.log(response.data);
             var rawdata = response.data;
             var finaldata=[];
             for (var i=0;i<rawdata.length;i++){
+                var updatedObj = new Date(rawdata[i].updated);
                 var data ={
                     "id": rawdata[i].id,
                     "name":rawdata[i].name,
                     "category": rawdata[i].category,
                     "description": rawdata[i].description,
-                    "Date": (new Date(rawdata[i].updated)).toISOString()
+                    "updated": updatedObj.toLocaleTimeString() + ' ' + updatedObj.toLocaleDateString()
                 };
                 finaldata.push(data);
             }
@@ -44,12 +44,13 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
                 if (response.data == null || response.data==[]){
                     alert('you have already added this element');
                 }else{
+                    var updatedObj = new Date(response.data.updated);
                     vm.content.push({
                         "id": response.data.id,
                         "name":response.data.name,
                         "category": response.data.category,
                         "description": response.data.description,
-                        "Date": (new Date(response.data.updated)).toISOString()
+                        "updated": updatedObj.toLocaleTimeString() + ' ' + updatedObj.toLocaleDateString()
                     })
                     $rootScope.$broadcast('AddActivityTypeDone');
                 }

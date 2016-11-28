@@ -9,13 +9,15 @@ module.exports = function controller(UserService, $state, $scope){
 
     function init(){
         UserService.managerlist(function(response){
-            console.log(response.data)
             vm.managers = response.data;
         })
     }
 
     $scope.$on('sendUser', function(event,user){
-        console.log(user)
+        console.log('the user is sent to backend. ');
+        console.log(user);
+        user['role']='USER';
+        user['enabled']=true;
         UserService.create(user,function (response) {
             if (response.status ==200){
                 alert('ok');
