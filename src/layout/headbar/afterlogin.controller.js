@@ -25,7 +25,7 @@ module.exports = function ($scope, $rootScope, $mdDialog, $state, LoginService, 
     }
 
     function configureUserMenu(){
-        vm.usermenu=['My Profile', 'Log out']
+        vm.usermenu=['Mon Profile', 'Déconnecter']
     }
 
     function sendOpenLeftSideNavEvent(){

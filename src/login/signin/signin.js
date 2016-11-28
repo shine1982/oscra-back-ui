@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function ($state, LoginService, $cookies) {
+module.exports = function ($state, LoginService, $cookies, $mdDialog) {
 
     var vm = this;
 
@@ -13,6 +13,7 @@ module.exports = function ($state, LoginService, $cookies) {
             console.log(response.data)
             var currentUser = response.data;
             $cookies.put('currentUser', currentUser.id);
+            $mdDialog.hide();
             $state.go('root');
         });
 
