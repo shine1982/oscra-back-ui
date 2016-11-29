@@ -3,6 +3,7 @@
 angular.module('oscra-ui.table').component('mdCrudTableWithoutPagination',{
     bindings: {
         currentpage : '=',
+        nbperpage : '=',
         headers: '=',
         content: '=',
         sortable: '=',
@@ -28,8 +29,19 @@ angular.module('oscra-ui.table').component('mdCrudTableWithoutPagination',{
 
 //declaration
         function loadMore(){
-            vm.currentpage+=1;
-            $scope.$emit('sendCurrentPage', vm.currentpage);
+            console.log('loadMore');
+            var incrementPage = (vm.content.length % vm.nbperpage == 0 && vm.content.length != 0) ? 1 : 0;
+            console.log(vm.content.length)
+            console.log(vm.content.length % vm.nbperpage == 0 && vm.content.length != 0)
+            console.log('increment page is');
+            console.log(incrementPage);
+            vm.currentpage+=incrementPage ;
+            console.log(vm.currentpage)
+            var sendtoObj = {
+                currentpage: vm.currentpage,
+                idkey : vm.idkey
+            }
+            $scope.$emit('sendCurrentPage', sendtoObj);
         }
 
         function getNumber (num) {

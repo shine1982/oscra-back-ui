@@ -20,14 +20,18 @@ module.exports = function controller(CraService, ActivityService, $scope){
         vm.headers=[
             {name: 'Id', field:'id'},
             {name: 'Mois', field: 'month'},
-            {name: 'Validation', field:'validation'},
             {name: 'Statut', field: 'status'},
             {name: 'Demandeur', field: 'provider'},
             {name: 'Mis à jour par', field: 'lastModifyBy'},
             {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
         ];
-        vm.sortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
+        vm.statusflag={
+            'TRANSIMITTED_TO_VALIDATE': 'blankflag',
+            'TRANSIMITTED_AGREED': 'greenflag',
+            'TRANSIMITTED_REFUSED': 'redflag'
+        };
+        vm.sortable = ['id','month', 'status','lastModifyBy','lastUpdatedTime'];
         vm.count=5
         vm.currentpage=0;
         getAllCras()

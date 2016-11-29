@@ -17,16 +17,17 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
 
     function init() {
         vm.headers = [{name:'Id', field:'id'},
-            {name: 'First Name', field: 'firstName'},
-            {name: 'Last Name', field:'lastName'},
-            {name: 'Email', field: 'email'},
-            {name: 'Mobile Phone', field: 'mobilePhone'},
-            {name: 'Address', field: 'address'},
-            {name: 'Position', field: 'position'},
-            {name: 'Role', field: 'role'},
+            {name: 'Prénom', field: 'firstName'},
+            {name: 'Nom', field:'lastName'},
+            {name: 'E-mail', field: 'email'},
+            {name: 'Portable', field: 'phoneNumber'},
+            {name: 'Adresse', field: 'address'},
+            {name: 'Fonction', field: 'position'},
+            {name: 'Rôle', field: 'role'},
             {name: 'Action', field: 'action'}];
         UserService.fakelist(vm.currentpage,function (response) {
             vm.users = response.data;
+            console.log(vm.users)
             vm.content = vm.users;
         })
     }

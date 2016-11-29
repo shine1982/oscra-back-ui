@@ -1,17 +1,17 @@
 <!--div layout="row" layout-fill="">
     <div -->
-<div flex layout="row">
+<div layout="row" >
 
         <md-sidenav class="md-sidenav-left" sidenav-push-in md-component-id='left'
                     md-disable-backdrop="" md-whiteframe="4"  md-is-locked-open="mainpanelCtrl.isSideNavOpen" >
 
-            <md-content  layout-padding="" >
+            <md-content  layout-padding=""  >
                 <md-list>
                     <md-list-item>
-                        <md-icon class="md-default-theme" class="material-icons">&#xE878;</md-icon>
+                        <md-icon class="md-default-theme" class="material-icons">notifications</md-icon>
                         <p><a ui-sref="root.notifall" >Acceuil</a></p>
                     </md-list-item>
-                    <md-subheader class="md-no-sticky">Gestion de employée</md-subheader>
+                    <md-subheader class="md-no-sticky">Gestion d'employées</md-subheader>
                     <md-list-item>
                         <md-icon class="md-default-theme" class="material-icons">group</md-icon>
                         <p> <a ui-sref="root.userall" >Liste d'employée</a></p>
@@ -20,7 +20,7 @@
                     <md-divider></md-divider>
                     <md-subheader class="md-no-sticky">GTA</md-subheader>
                     <md-list-item>
-                        <md-icon class="md-default-theme" class="material-icons">&#xE7F9;</md-icon>
+                        <md-icon class="md-default-theme" class="material-icons">assignment</md-icon>
                         <p> <a ui-sref="root.cralist">Compte Rendu d'Activité</a></p>
                     </md-list-item>
                     <md-list-item>
@@ -29,8 +29,8 @@
                     </md-list-item>
                     <md-subheader class="md-no-sticky">Paramétrage</md-subheader>
                     <md-list-item>
-                        <md-icon class="md-default-theme" class="material-icons">&#xE1BC;</md-icon>
-                        <p><a ui-sref="root.activitytypeall">Activité</a></p>
+                        <md-icon class="md-default-theme" class="material-icons">settings</md-icon>
+                        <p><a ui-sref="root.activitytypeall">Type d'activité</a></p>
                     </md-list-item>
                 </md-list>
 
@@ -38,6 +38,6 @@
         </md-sidenav>
     <!--/div-->
 
-        <md-content  layout="column" ui-view flex></md-content>
+        <md-content  layout="column" ui-view flex layout-fill=""></md-content>
 
 </div>

@@ -30,10 +30,9 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             vm.needLoadData-=1;
         })
         //vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
-        vm.statusHeader =[ 'NOT_TRANSIMITTED',
-            'TRANSIMITTED_NOT_VALIDATED',
-            'VALIDATED_TRANSIMITTED'];
-
+        vm.statusHeader =[ 'TRANSIMITTED_TO_VALIDATE',
+            'TRANSIMITTED_AGREED',
+            'TRANSIMITTED_REFUSED'];
     }
 
     function getDaysInMonth(month, year) {
@@ -62,7 +61,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             console.log(response.data)
             if (response.status ==200){
 
-               // $state.go('root.cralist');
+               $state.go('root.cralist');
             }else{
                 alert('System internal error');
             }
