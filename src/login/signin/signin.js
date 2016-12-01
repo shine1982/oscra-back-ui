@@ -1,10 +1,16 @@
 'use strict';
 
-module.exports = function ($state, LoginService, $cookies, $mdDialog) {
+module.exports = function ($state, LoginService, MyProfile, $cookies, $mdDialog) {
 
     var vm = this;
 
     vm.signin = signin;
+
+    init();
+
+    function init(){
+
+    }
 
     function signin(user){
         console.log(user)
@@ -12,7 +18,7 @@ module.exports = function ($state, LoginService, $cookies, $mdDialog) {
         LoginService.signin(user.username,user.password, function (response) {
             console.log(response.data)
             var currentUser = response.data;
-            $cookies.putObject('currentUser', currentUser);
+            MyProfile.setCurrentUser(currentUser);
             $mdDialog.hide();
             $state.go('root');
         });

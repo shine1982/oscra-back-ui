@@ -7,6 +7,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
     init();
 
     function init(){
+        console.log(MyProfile.currentUser)
         //===================================== Cra Notif setting =======================================
         vm.initcranotifloaded=false;
         vm.cranotifCurrentpage=0;
@@ -18,7 +19,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
             {name: 'Action', field: 'action'}
         ];
         vm.cranotifSortable = ['id','cra', 'crafrom','description'];
-        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.currentUser.id, function(response){
+        CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.getCurrentUser().id, function(response){
             console.log('cranotif works')
             console.log(response.data)
             vm.cranotifContent=adaptCraDataToDisplay(response.data);
@@ -36,7 +37,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
             {name: 'Action', field: 'action'}
         ];
         vm.absencenotifSortable = ['id', 'absence','absencefrom'];
-        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.currentUser.id, function (response) {
+        AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.getCurrentUser().id, function (response) {
             vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);
             vm.initabsencenotifloaded = true;
         })
@@ -117,7 +118,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
         switch(currentPageObj.idkey){
             case "craId":
                 vm.cranotifCurrentpage = currentPageObj.currentpage;
-                CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.currentUser.id, function(response){
+                CraNotifService.receivedCraFakeList(vm.cranotifCurrentpage, MyProfile.getCurrentUser().id, function(response){
                     console.log('lazy load cra info')
                     console.log(response.data)
                     vm.cranotifContent=adaptCraDataToDisplay(response.data);
@@ -127,7 +128,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
                 vm.absencenotifCurrentpage = currentPageObj.currentpage;
                 console.log(vm.absencenotifCurrentpage)
                 console.log(MyProfile.currentUser.id)
-                AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.currentUser.id, function (response) {
+                AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.getCurrentUser().id, function (response) {
                     console.log('lazy load absence info')
                     console.log(response.data)
                     vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);

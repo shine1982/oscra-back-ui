@@ -20,6 +20,13 @@ function service(API){
 }
 
 function getCurrentUserViaCookie($cookies){
-    var currentUserStr= $cookies.get('currentUser');
-    this.currentUser = angular.fromJson(currentUserStr);
+
+    this.getCurrentUser = function(){
+        var currentUserStr= $cookies.get('currentUser');
+        return angular.fromJson(currentUserStr)
+    }
+
+    this.setCurrentUser = function (currentUser) {
+        $cookies.putObject('currentUser', currentUser);
+    }
 }

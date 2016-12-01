@@ -3,16 +3,14 @@
 <div layout='column' layout-fill="">
     <md-card  class="md-padding">
         <h2>Liste d'employée</h2>
-        <md-card-header>
+        <!--md-card-header>
             <md-input-container class="md-icon-float md-block">
-                <!-- Use floating label instead of placeholder -->
                 <label>Name</label>
-                <!--md-icon md-svg-src="img/icons/ic_person_24px.svg" class="name"></md-icon-->
                 <input ng-model="search" type="text">
             </md-input-container>
-        </md-card-header>
+        </md-card-header-->
         <md-card-content >
-            <!--md-toolbar class="md-tall" >
+            <md-toolbar class="md-tall" >
                 <span flex></span>
                 <div class="md-toolbar-tools">
                     <div layout="row" flex="flex" class="fill-height">
@@ -32,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-            </md-toolbar-->
+            </md-toolbar>
             <md-content layout="column" ng-click="userList.toggleSearch=false">
                 <md-crud-table currentpage="userList.currentpage" headers="userList.headers" content="userList.content" sortable="userList.sortable"
                           filters="search" custom-class="userList.custom"  count="userList.count"
