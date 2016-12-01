@@ -20,8 +20,8 @@ module.exports = function ($scope, $rootScope, $mdDialog, $state, LoginService, 
     function init(){
         configureUserMenu();
         console.log('current user in cookie');
-        var currentUserid= $cookies.get('currentUser');
-        console.log(currentUserid)
+        var currentSession= $cookies.get('JSESSIONID');
+        console.log(currentSession)
     }
 
     function configureUserMenu(){

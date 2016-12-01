@@ -37,6 +37,7 @@ module.exports = function controller(MyProfile, CraNotifService, AbsenceNotifSer
             {name: 'Action', field: 'action'}
         ];
         vm.absencenotifSortable = ['id', 'absence','absencefrom'];
+
         AbsenceNotifService.receivedAbsenceFakeList(vm.absencenotifCurrentpage, MyProfile.getCurrentUser().id, function (response) {
             vm.absencenotifContent=adaptAbsenceDataToDisplay(response.data);
             vm.initabsencenotifloaded = true;
