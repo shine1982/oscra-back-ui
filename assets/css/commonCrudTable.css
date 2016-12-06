@@ -17,12 +17,21 @@ i {
     transform:scale(.88,.88);
 }
 */
+.my-search-table{
+
+    z-index:20;
+    width: 100px;
+    height: 50px;
+    font-size:30px;
+    transform:scale(.88,.88);
+}
+
 #user-crud-table-fixed-button{
     position:absolute;
     z-index:20;
     font-size:30px;
-    top:145px;
-    right:20px;
+    top:260px;
+    right:50px;
     transform:scale(.88,.88);
 }
 

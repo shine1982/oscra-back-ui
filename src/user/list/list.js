@@ -12,7 +12,7 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
     vm.currentpage=0;
-
+    vm.doSearch = doSearch;
     init();
 
     function init() {
@@ -31,6 +31,12 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
             vm.content = vm.users;
         })
     }
+
+    function doSearch(params){
+        console.log(params)
+        vm.searchParams = params;
+    }
+
     $scope.$on('sendDeleteId', function(event,user){
         console.log(user)
         UserService.delete(user.id,function (response) {
