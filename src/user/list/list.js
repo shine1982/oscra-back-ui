@@ -11,24 +11,36 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
     vm.custom = {name: 'bold', description:'grey',last_modified: 'grey'};
     vm.sortable = ['id','firstName', 'lastName','email','mobilePhone','address','position', 'role'];
     vm.count = 5;
+
     vm.greeting="Hello, World!";
+
+    vm.currentpage=0;
+    vm.doSearch = doSearch;
+
     init();
 
     function init() {
         vm.headers = [{name:'Id', field:'id'},
-            {name: 'First Name', field: 'firstName'},
-            {name: 'Last Name', field:'lastName'},
-            {name: 'Email', field: 'email'},
-            {name: 'Mobile Phone', field: 'mobilePhone'},
-            {name: 'Address', field: 'address'},
-            {name: 'Position', field: 'position'},
-            {name: 'Role', field: 'role'},
+            {name: 'Prénom', field: 'firstName'},
+            {name: 'Nom', field:'lastName'},
+            {name: 'E-mail', field: 'email'},
+            {name: 'Portable', field: 'phoneNumber'},
+            {name: 'Adresse', field: 'address'},
+            {name: 'Fonction', field: 'position'},
+            {name: 'Rôle', field: 'role'},
             {name: 'Action', field: 'action'}];
-        UserService.list(function (response) {
+        UserService.fakelist(vm.currentpage,function (response) {
             vm.users = response.data;
+            console.log(vm.users)
             vm.content = vm.users;
         })
     }
+
+    function doSearch(params){
+        console.log(params)
+        vm.searchParams = params;
+    }
+
     $scope.$on('sendDeleteId', function(event,user){
         console.log(user)
         UserService.delete(user.id,function (response) {
@@ -38,6 +50,14 @@ module.exports = function controller(UserService, $mdToast, $scope, $state){
             }else{
                 alert('System internal error');
             }
+        })
+    })
+
+    $scope.$on('sendCurrentPage', function(event,currentPage){
+        vm.currentpage=currentPage;
+        UserService.fakelist(vm.currentpage,function (response) {
+            var insertUsers = response.data;
+            vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(insertUsers))
         })
     })
 };

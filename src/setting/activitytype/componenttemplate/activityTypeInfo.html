@@ -4,16 +4,34 @@
         <form name="ActivityType" ng-submit="dialog.answer(dialog.activityType)">
 
             <md-input-container class="md-block">
-                <label>{{dialog.title}}</label>
-                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="dialog.activityType">
+                <label>{{dialog.title.name}}</label>
+                <input md-maxlength="20" required md-no-asterisk name="name" ng-model="dialog.activityType.name">
                 <div ng-messages="activityType.name.$error">
                     <div ng-message="required">This is required.</div>
                     <div ng-message="md-maxlength">The activity type name must be less than 20 characters long.</div>
                 </div>
             </md-input-container>
 
+            <md-input-container class="md-block">
+                <label>{{dialog.title.description}}</label>
+                <input md-maxlength="20" md-no-asterisk name="description" ng-model="dialog.activityType.description">
+                <div ng-messages="activityType.description.$error">
+                    <div ng-message="md-maxlength">The activity type name must be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+                <label>{{dialog.title.category}}</label>
+                <input md-maxlength="20" md-no-asterisk name="category" ng-model="dialog.activityType.category">
+                <div ng-messages="activityType.category.$error">
+                    <div ng-message="md-maxlength">The activity type category must be less than 20 characters long.</div>
+                </div>
+            </md-input-container>
+
+
+
             <div>
-                <md-button type="submit">Submit</md-button>
+                <md-button type="submit">Valider</md-button>
             </div>
 
         </form>

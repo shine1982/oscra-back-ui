@@ -1,16 +1,53 @@
 
 
-<div layout='column' >
+<div layout='column' layout-fill="">
     <md-card  class="md-padding">
+        <h2>Liste d'employée</h2>
 
+
+
+        <md-card-header layout="column">
+            <div layout="row" >
+                <md-input-container class="md-icon-float md-block" flex="25">
+                    <label>Prénom</label>
+                    <input ng-model="search.firstName" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block" flex="25">
+                    <label>Nom</label>
+                    <input ng-model="search.lastName" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block" flex="25">
+                    <label>Fonction</label>
+                    <input ng-model="search.position" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block" flex="">
+                    <label>Rôle</label>
+                    <input ng-model="search.role" type="text">
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container class="md-icon-float md-block"flex="33">
+                    <label>Portable</label>
+                    <input ng-model="search.phoneNumber" type="text">
+                </md-input-container>
+
+                <md-input-container class="md-icon-float md-block"flex="33">
+                    <label>Email</label>
+                    <input ng-model="search.email" type="text">
+                </md-input-container>
+                <md-button  class="md-raised md-warn my-search-table" flex ng-click="userList.doSearch(search)">Recherche</md-button>
+            </div>
+
+        </md-card-header>
         <md-card-content >
-            <span class="md-headline"> List d'employée</span>
-            <md-toolbar class="md-tall" >
-
+            <!--md-toolbar >
                 <span flex></span>
                 <div class="md-toolbar-tools">
                     <div layout="row" flex="flex" class="fill-height">
-                        <md-button  ui-sref="root.usercreate" class="md-fab md-accent">+</md-button>
+                        <md-button  id="user-crud-table-fixed-button" ui-sref="root.usercreate" class="md-fab md-accent ">+</md-button>
                         <div ng-hide="userList.toggleSearch" class="md-toolbar-item md-breadcrumb">
                             <span ng-click="userList.toggleSearch = !userList.toggleSearch">Angular Material Table</span>
                         </div>
@@ -26,11 +63,11 @@
                         </div>
                     </div>
                 </div>
-            </md-toolbar>
-
-            <md-content layout="column" ng-click="userList.toggleSearch=false">
-                <md-crud-table headers="userList.headers" content="userList.content" sortable="userList.sortable"
-                          filters="search" custom-class="userList.custom"  count="userList.count"
+            </md-toolbar-->
+            <md-button  id="user-crud-table-fixed-button" ui-sref="root.usercreate" class="md-fab md-accent ">+</md-button>
+            <md-content layout="column" ng-click="userList.toggleSearch=false" >
+                <md-crud-table currentpage="userList.currentpage" headers="userList.headers" content="userList.content" sortable="userList.sortable"
+                          filters="userList.searchParams" custom-class="userList.custom"  count="userList.count"
                             listurl="root.userall" modifyurl="root.usermodify" idkey="userId" >
 
                 </md-crud-table>

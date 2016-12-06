@@ -12,9 +12,12 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             vm.initcra = response.data;
             console.log('In modification cra')
             console.log(vm.initcra)
+            console.log(vm.initcra.month)
             vm.craprovider = vm.initcra.provider
-            vm.cratime=vm.initcra.month.split("-");
-            vm.days=getDaysInMonth(parseInt(vm.cratime[1])-1,parseInt(vm.cratime[0]));
+            var monthObj = new Date(vm.initcra.month);
+            var year = monthObj.getFullYear();
+            var month = monthObj.getMonth();
+            vm.days=getDaysInMonth(month, year);
             vm.initActivities = vm.initcra.activities;
             vm.needLoadData-=1;
         });
@@ -27,10 +30,9 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             vm.needLoadData-=1;
         })
         //vm.activitiesHeader =['CP','RTT','CP Sans Solde'];
-        vm.statusHeader =[ 'NOT_TRANSIMITTED',
-            'TRANSIMITTED_NOT_VALIDATED',
-            'VALIDATED_TRANSIMITTED'];
-
+        vm.statusHeader =[ 'TRANSIMITTED_TO_VALIDATE',
+            'TRANSIMITTED_AGREED',
+            'TRANSIMITTED_REFUSED'];
     }
 
     function getDaysInMonth(month, year) {
@@ -59,7 +61,7 @@ module.exports = function controller(CraService, ActivityTypeService, $statePara
             console.log(response.data)
             if (response.status ==200){
 
-               // $state.go('root.cralist');
+               $state.go('root.cralist');
             }else{
                 alert('System internal error');
             }

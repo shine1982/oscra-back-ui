@@ -9,6 +9,10 @@ function service(API){
         API.get(ACTIVITYTYPES+'all', null, callBack);
     }
 
+    function listCategoryAbsence(category, callBack){
+        API.get(ACTIVITYTYPES+'/absence/all?category='+category, null, callBack);
+    }
+
     function create(activityType, callBack) {
         API.post(ACTIVITYTYPES+'add', activityType, callBack);
     }
@@ -21,19 +25,17 @@ function service(API){
         API.post(ACTIVITYTYPES+'update', activityType, callBack);
     }
 
-
-    /*
-    function findById(userId, callBack) {
-        API.get(ACTIVITYTYPES+'findById?userId='+userId, null, callBack);
+    function findById(activityTypeId, callBack) {
+        API.get(ACTIVITYTYPES+'findById?activityTypeId=', activityTypeId, callBack);
     }
-*/
 
     return {
         list : list,
+        listCategoryAbsence: listCategoryAbsence,
         create : create,
         delete : remove,
-        modify : modify
-        /*
-        findById : findById*/
+        modify : modify,
+        findById : findById
+
     }
 }

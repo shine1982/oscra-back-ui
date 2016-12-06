@@ -10,31 +10,48 @@ angular.module('oscra-ui.cra').component('crainfo', {
         days:'='
     },
     template: require('./componentTemplate/craInfo.html'),
-    controller: function craInfoController($scope, $filter){
+    controller: function craInfoController($scope, $mdToast){
         var vm=this;
         init();
+        vm.addActivity = addActivity;
+        vm.chooseDay = chooseDay;
 
-        vm.getSelectedText = function(element) {
+        vm.getSelectedText = getSelectedText;
+        vm.submit = submit;
+
+        function getSelectedText(element) {
             if (element !== undefined) {
                 return element;
             } else {
                 return "Choisir un element";
             }
-        };
-        vm.addActivity = function(activity){
-            vm.craActivities.unshift(activity);
-            var actcount=[]
-            for (var i=0;i<32;i++){
-                actcount[i]=0;
-            }
-            vm.clickcount[activity]=actcount;
         }
 
+        function addActivity(activity){
+            console.log('entering add activity');
+            if (checkActivity(activity)){
+                vm.craActivities.unshift(activity);
+                var actcount=[];
+                for (var i=0;i<32;i++){
+                    actcount[i]=0;
+                }
+                vm.clickcount[activity]=actcount;
+            }
+            console.log(vm.craActivities)
+        }
+
+        function checkActivity(a){
+            if (a==undefined || a==null){
+                alert('Choisir un type d\'activité');
+                return false;
+            }else if(vm.craActivities.indexOf(a)>=0){
+                alert('Vous avez déjà ajouté ce type d\'activité');
+                return false;
+            }
+            return true;
+        }
 
         function init(){
-            console.log('cra init phase');
-            console.log(vm.craprovider)
-            console.log(vm.initcra)
             // add total
             vm.craActivities = [];
             vm.clickcount=[];
@@ -45,7 +62,7 @@ angular.module('oscra-ui.cra').component('crainfo', {
                 var actcount=clearMonthDayCounter();
 
                 for (var day=startday;day<=endday;day++){
-                    actcount[day]= activity.amorpm == 0 ? 3: activity.amorpm;
+                    actcount[day]= activity.amorpm == 0 ? 2: 1;
                 }
                 if (vm.craActivities.indexOf(activity.activityType.name)<0){
                     vm.craActivities.push(activity.activityType.name);
@@ -56,11 +73,14 @@ angular.module('oscra-ui.cra').component('crainfo', {
             })
             vm.craActivities.push('Total');
             vm.clickcount['Total']=clearMonthDayCounter();
+            countTotal();
         }
 
+        //to calculate total, should use countTotal absoultly, this function is used for merging activities
         function mergeCounter(src, aname){
             for(var i=0;i<src.length;i++){
                 vm.clickcount[aname][i]+=src[i];
+                vm.clickcount[aname][i]%=3;
             }
         }
 
@@ -72,8 +92,32 @@ angular.module('oscra-ui.cra').component('crainfo', {
             return daycounter;
         }
 
-        vm.chooseDay = function (activity,day){
-            var newact = (vm.clickcount[activity][day.getDate()]+1)%4;
+        function countTotal() {
+            console.log(vm.craActivities)
+            vm.craActivities.forEach(function (activityname) {
+                console.log(activityname)
+                if (activityname != 'Total') {
+                    for (var i=0; i<vm.clickcount[activityname].length;i++){
+                        var add=0;
+                        switch (vm.clickcount[activityname][i]){
+                            case 0:
+                                add=0;
+                                break;
+                            case 1:
+                                add=0.5;
+                                break;
+                            case 2:
+                                add=1;
+                                break;
+                        }
+                        vm.clickcount['Total'][i]+=add;
+                    }
+                }
+            })
+        }
+
+        function chooseDay(activity,day){
+            var newact = (vm.clickcount[activity][day.getDate()]+1)%3;
             vm.clickcount[activity][day.getDate()] = newact;
             var sum=0;
             for (var i=0;i<vm.craActivities.length;i++){
@@ -84,24 +128,48 @@ angular.module('oscra-ui.cra').component('crainfo', {
                         case 1:
                             sum+=0.5;break;
                         case 2:
-                            sum+=0.5;break;
-                        case 3:
                             sum+=1;break;
                         default:
                             break;
                     }
-
                 }
             }
             vm.clickcount[activity][day.getDate()]= newact;
             vm.clickcount['Total'][day.getDate()] = sum;
         }
 
-        vm.submit = function(){
+       function submit(){
             var persistActivities=handleActivities();
             vm.initcra['activities']=persistActivities;
-            console.log(vm.initcra)
-            $scope.$emit('sendCra', vm.initcra);
+            if (checkTotal()){
+                $scope.$emit('sendCra', vm.initcra);
+            }
+       }
+
+
+/* http://codepen.io/pen/ */
+        function checkTotal(){
+            for (var i=0; i<vm.clickcount['Total'].length;i++){
+                if (vm.clickcount['Total'][i]>1){
+                    console.log(i)
+                    $mdToast.show({
+                        hideDelay   : 3000,
+                        position    : 'top right',
+                        controller  : function(){
+
+                        },
+                        template :  '<md-toast>' +
+                                        '<span class="md-toast-text" flex>day {{parm}} is not valid</span>' +
+                                        '<md-button class="md-highlight" ng-click="openMoreInfo($event)">More info </md-button> ' +
+                                        '<md-button ng-click="closeToast()">Close </md-button> ' +
+                                    '</md-toast>',
+                        highlightAction : true,
+                        locals:{parm:i}
+                    });
+                    return false;
+                }
+            }
+            return true;
         }
 
         function handleActivities(){
@@ -125,17 +193,12 @@ angular.module('oscra-ui.cra').component('crainfo', {
                         switch(actcount[vm.days[i].getDate()-1]){
                             case 0:
                                 break;
-                            case 1: //0.5 am
+                            case 1: //0.5
                                 starttime = vm.days[i].getDate();
                                 endtime=vm.days[i].getDate();
                                 allactions.push(createActionObject(starttime, endtime, actname,1));
                                 break;
-                            case 2://0.5 pm
-                                starttime = vm.days[i].getDate();
-                                endtime=vm.days[i].getDate();
-                                allactions.push(createActionObject(starttime, endtime, actname,2));
-                                break;
-                            case 3:// 1 day
+                            case 2:// 1 day
                                 isStarted = true;
                                 starttime = vm.days[i].getDate();
                                 break;
@@ -153,10 +216,6 @@ angular.module('oscra-ui.cra').component('crainfo', {
                                 allactions.push(createActionObject(starttime, endtime, actname,1));
                                 break;
                             case 2://0.5 pm
-                                endtime=vm.days[i].getDate();
-                                allactions.push(createActionObject(starttime, endtime, actname,2));
-                                break;
-                            case 3:// 1 day
                                 break;
                         };
                         break;
@@ -166,31 +225,17 @@ angular.module('oscra-ui.cra').component('crainfo', {
         }
 
         function createActionObject(starttime,endtime,actname,amOrpm){
-            var yearmonth=vm.initcra.month.split('-');
+            var monthObj= new Date(vm.initcra.month);
+            var month=monthObj.getMonth();
+            var year=monthObj.getFullYear();
             return {
-                'starttime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), starttime),
-                'endtime': new Date(parseInt(yearmonth[0]),parseInt(yearmonth[1]-1), endtime),
+                'starttime': new Date(year,month, starttime),
+                'endtime': new Date(year,month, endtime),
                 'amorpm': amOrpm,
                 'duration': endtime-starttime+1,
                 'activityType': {'name':actname}
             }
         }
     }
-})
-    .filter('dateFormat', function ($filter) {
-        return function (input) {
-            if (input == null){return '';}
-            var _date = $filter('date')(new Date(input), 'MMM dd yyyy');
-            return _date.toUpperCase();
-
-        }
-    })
-    .filter('getDayOnly', function ($filter) {
-        return function (input) {
-            if (input == null){return '';}
-            var _date = $filter('date')(new Date(input), 'dd');
-            return _date;
-
-        }
-    });;
+});
 

@@ -7,30 +7,52 @@
 
         <tbody>
             <tr ng-repeat="c in $ctrl.content | filter:$ctrl.filters | startFrom:$ctrl.tablePage*$ctrl.count | limitTo: $ctrl.count" class="md-table-content-row">
-                <!--td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
-                ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
-                    <a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
-                        {{f}}
-                    </a>
 
-                </td-->
-                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
-                    {{(h.field.indexOf('date') > 0) ?  $filter('date')(c[h.field])  : c[h.field];}}
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
+                ng-init="f = c[h.field]">
+                    {{f}}
                 </td>
+
+                <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field != 'id' &amp;&amp; h.field != 'action' " class="md-table-content" >
+                    <div ng-if=" h.field != 'status' ">
+                        {{c[h.field]}}
+                    </div>
+                    <div ng-if=" h.field == 'status' ">
+                        <div ng-switch="$ctrl.statusflag[c[h.field]]">
+                            <div ng-switch-when="blankflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_black_24px.svg">
+                                Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div ng-switch-when="redflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_red_24px.svg">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                            <div ng-switch-when="greenflag">
+                                <object type="image/svg+xml" data="./../../../../assets/images/svg/ic_flag_green_24px.svg">
+                                    Your browser does not support SVG
+                                </object>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
                 <td ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'action'" class="md-table-content" layout="row">
                     <div ng-repeat="h in $ctrl.headers" ng-class="$ctrl.customClass[h.field]" ng-if="h.field == 'id'" class="md-table-content"
-                        ng-init="f = (h.field.indexOf('date') > 0) ? $filter('date')(c[h.field]) : c[h.field]">
+                        ng-init="f = c[h.field]">
+
                         <a ui-sref=" {{ $ctrl.modifyurl }}({ {{$ctrl.idkey}}: {{f}} })">
                             <i class="material-icons">mode_edit</i>
                         </a>
                         <i class="material-icons" ng-click="$ctrl.openOffscreenConfirm(c,$event)">delete_forever</i>
                     </div>
-
-
                 </td>
             </tr>
+
         </tbody>
     </table>
+    <md-button  class="" ng-click="$ctrl.loadMore()">lazy loading</md-button>
     <div layout="row" class="md-table-footer" ng-include="'./common/table/componentTemplate/tableFooterTemplate.html'">
 
     </div>

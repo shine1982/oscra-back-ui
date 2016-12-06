@@ -19,29 +19,39 @@ module.exports = function controller(CraService, ActivityService, $scope){
     function init(){
         vm.headers=[
             {name: 'Id', field:'id'},
-            {name: 'Month', field: 'month'},
-            {name: 'First Name', field: 'firstName'},
-            {name: 'Given Name', field: 'lastName'},
-            {name: 'Validation', field:'validation'},
-            {name: 'Status', field: 'status'},
-            {name: 'Last modified by', field: 'lastModifyBy'},
-            {name: 'Last updated time', field: 'Date'},
+            {name: 'Mois', field: 'month'},
+            {name: 'Statut', field: 'status'},
+            {name: 'Demandeur', field: 'provider'},
+            {name: 'Mis à jour par', field: 'lastModifyBy'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
         ];
-        vm.sortable = ['id','month', 'validation','status','lastModifyBy','lastUpdatedTime'];
+        vm.statusflag={
+            'TRANSIMITTED_TO_VALIDATE': 'blankflag',
+            'TRANSIMITTED_AGREED': 'greenflag',
+            'TRANSIMITTED_REFUSED': 'redflag'
+        };
+        vm.sortable = ['id','month', 'status','lastModifyBy','lastUpdatedTime'];
         vm.count=5
+        vm.currentpage=0;
         getAllCras()
 
     }
 
     function getAllCras(){
-        CraService.list(function(response){
+        CraService.fakelist(vm.currentpage, function(response){
             var rawcra = response.data;
             var finalcra=[];
             for (var i=0;i<rawcra.length;i++){
+                var monthobj = new Date(rawcra[i].month);
+                var updatedobj = new Date(rawcra[i].updated);
+
                 var cradata ={
-                    "id": rawcra[i].id, "month": rawcra[i].month,"firstName":rawcra[i].provider.firstName,
-                    "lastName":rawcra[i].provider.lastName, "status":rawcra[i].status,"Date": (new Date(rawcra[i].updated)).toISOString(),
+                    "id": rawcra[i].id,
+                    "month": monthobj.getFullYear() +'-' + (monthobj.getMonth()+1),
+                    "provider":rawcra[i].provider.firstName+' '+rawcra[i].provider.lastName,
+                    "status":rawcra[i].status,
+                    "updated": updatedobj.toLocaleDateString() +' '+updatedobj.toLocaleTimeString(),
                     "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName
                 };
                 finalcra.push(cradata);
@@ -58,6 +68,24 @@ module.exports = function controller(CraService, ActivityService, $scope){
             }else{
                 alert('System internal error');
             }
+        })
+    })
+
+    $scope.$on('sendCurrentPage', function(event,currentPage){
+        vm.currentpage=currentPage;
+        CraService.fakelist(vm.currentpage, function(response){
+            var rawcra = response.data;
+            var finalcra=[];
+            for (var i=0;i<rawcra.length;i++){
+                var cradata ={
+                    "id": rawcra[i].id, "month": rawcra[i].month,"firstName":rawcra[i].provider.firstName,
+                    "lastName":rawcra[i].provider.lastName, "status":rawcra[i].status,"Date": (new Date(rawcra[i].updated)).toISOString(),
+                    "lastModifyBy": rawcra[i].lastModifyUser.firstName+' '+rawcra[i].lastModifyUser.lastName
+                };
+                finalcra.push(cradata);
+            }
+            vm.content.splice.apply(vm.content, [vm.content.length, 0].concat(finalcra))
+            //vm.content =finalcra
         })
     })
 

@@ -1,0 +1,43 @@
+<!--http://blog.sodhanalibrary.com/2015/07/header-design-with-angularjs-material-ui.html#.V_O9uZOLQ8Y-->
+<!--http://blog.sodhanalibrary.com/2015/07/side-navigation-panel-design-using.html#.V_vtk5N95cA-->
+
+
+<!--div class="header"  -->
+<md-toolbar >
+    <div class="md-toolbar-tools">
+        <md-button hide show-gt-xs class="md-icon-button" aria-label="Side Panel" ng-click="headbarCtrl.openSideNavPanel()">
+            <md-tooltip>Menu</md-tooltip>
+            <md-icon class="md-default-theme" class="material-icons">&#xE5D2;</md-icon>
+        </md-button>
+
+        <h2 hide show-gt-xs>
+            <span>Oscra</span>
+        </h2>
+
+        <span flex></span>
+
+        <md-menu md-position-mode="target-right target">
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+                <md-tooltip>User</md-tooltip>
+                <i class="material-icons md-24" >account_box</i>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item ng-repeat="item in headbarCtrl.usermenu">
+                    <md-button ng-click="headbarCtrl.announceClick($index)">
+                        <div layout="row" flex="">
+                            <p flex="">{{item}}</p>
+                            <md-icon md-menu-align-target="" md-svg-icon="call:portable-wifi-off" style="margin: auto 3px auto 0;"></md-icon>
+                        </div>
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+
+    </div>
+</md-toolbar>
+<!--/div-->
+
+
+
+
+

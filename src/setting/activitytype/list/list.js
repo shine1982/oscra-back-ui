@@ -9,20 +9,24 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
     function init(){
         vm.headers=[
             {name: 'Id', field: 'id'},
-            {name: 'Name', field: 'name'},
-            {name: 'Updated', field: 'Date'},
+            {name: 'Nom', field: 'name'},
+            {name: 'Catégorie', field: 'category'},
+            {name: 'Description', field: 'description'},
+            {name: 'Date de mis à jour', field: 'updated'},
             {name: 'Action', field: 'action'}
             ];
-
         ActivityTypeService.list(function (response) {
            //console.log(response.data);
             var rawdata = response.data;
             var finaldata=[];
             for (var i=0;i<rawdata.length;i++){
+                var updatedObj = new Date(rawdata[i].updated);
                 var data ={
                     "id": rawdata[i].id,
                     "name":rawdata[i].name,
-                    "Date": (new Date(rawdata[i].updated)).toISOString()
+                    "category": rawdata[i].category,
+                    "description": rawdata[i].description,
+                    "updated": updatedObj.toLocaleTimeString() + ' ' + updatedObj.toLocaleDateString()
                 };
                 finaldata.push(data);
             }
@@ -32,15 +36,21 @@ module.exports = function controller(ActivityTypeService, $scope, $rootScope){
 
 
     $rootScope.$on('sendAddIdViaSimpleTable', function(event,answer){
-        ActivityTypeService.create({'name':answer.toUpperCase()}, function (response) {
+        answer.name = answer.name.toUpperCase();
+        console.log('in list scope')
+        console.log(answer)
+        ActivityTypeService.create(answer, function (response) {
             if (response.status ==200){
                 if (response.data == null || response.data==[]){
                     alert('you have already added this element');
                 }else{
+                    var updatedObj = new Date(response.data.updated);
                     vm.content.push({
                         "id": response.data.id,
                         "name":response.data.name,
-                        "Date": (new Date(response.data.updated)).toISOString()
+                        "category": response.data.category,
+                        "description": response.data.description,
+                        "updated": updatedObj.toLocaleTimeString() + ' ' + updatedObj.toLocaleDateString()
                     })
                     $rootScope.$broadcast('AddActivityTypeDone');
                 }

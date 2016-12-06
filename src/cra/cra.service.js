@@ -6,6 +6,10 @@ angular.module('oscra-ui.cra')
 function craService(API){
     var CRAS = 'cras/';
 
+    function fakelist(dstPage, callBack) {
+        API.get(CRAS+'fakeall?dstPage='+dstPage, null, callBack);
+    }
+
     function list(callBack) {
         API.get(CRAS+'all', null, callBack);
     }
@@ -29,6 +33,7 @@ function craService(API){
     }
 
     return {
+        fakelist : fakelist,
         list : list,
         create : create,
         modify : modify,

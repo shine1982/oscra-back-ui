@@ -1,18 +1,26 @@
 'use strict';
 
-module.exports = function controller(UserService, AbsenceService, $scope){
+module.exports = function controller(UserService, ActivityTypeService, AbsenceService, $scope){
 
     var vm = this;
 
     vm.loadAbsenceDetail = false;
     init();
 
+    vm.test = function(){
+        alert('test')
+    }
     function init(){
-        vm.needLoadData = 1;
+        vm.needLoadData = 2;
         UserService.list(function (response) {
             vm.users = response.data;
             vm.needLoadData-=1;
         })
+        var category = 'conge';
+        ActivityTypeService.listCategoryAbsence(category,function(response){
+            vm.absencetypes = response.data;
+            vm.needLoadData-=1;
+        });
     }
 
     vm.updateSelectedUser = function(user){
